@@ -1,36 +1,36 @@
 import { $ } from "../../lib/Pen.js";
-
-export const player = $.makeCircleCollider(20, $.h / 3, 20);
-
-export function controls() {
-    const max = 20;
-    if (player.velocity.x > max) {
-        player.velocity.x = max;
+export class player3{
+    constructor(){
+        this.player = $.makeCircleCollider(20, $.h / 3, 20);
+        this.player.fill = "green"
+        this.player.friction=5
     }
-    if (player.velocity.x < -max) {
-        player.velocity.x = -max;
-    }
-    if (player.velocity.y > max) {
-        player.velocity.y = max;
-    }
-    if (player.velocity.y < -max) {
-        player.velocity.y = -max;
-    }
-
-    if ($.keys.down("j")) {
-        player.velocity.x -= 1;
-    }
-    if ($.keys.down("l")) {
-        player.velocity.x += 1;
-    }
-    if ($.keys.down("i")) {
-        player.velocity.y -= 1;
-    }
-    if ($.keys.down("k")) {
-        player.velocity.y += 1;
-    }
-    if ($.keys.down(" ") && $.frameCount % 10 === 0) {
-        
-        player_shots.push(makeShot(player.x, player.y, "orange", 0));
-    }
+    controls() {
+        const max = 20;
+        if (this.player.velocity.x > max) {
+            this.player.velocity.x = max;
+        }
+        if (this.player.velocity.x < -max) {
+            this.player.velocity.x = -max;
+        }
+        if (this.player.velocity.y > max) {
+            this.player.velocity.y = max;
+        }
+        if (this.player.velocity.y < -max) {
+            this.player.velocity.y = -max;
+        }
+    
+        if ($.keys.down("j")) {
+            this.player.velocity.x -= 1;
+        }
+        if ($.keys.down("l")) {
+            this.player.velocity.x += 1;
+        }
+        if ($.keys.down("i")) {
+            this.player.velocity.y -= 1;
+        }
+        if ($.keys.down("k")) {
+            this.player.velocity.y += 1;
+        }
+}
 }

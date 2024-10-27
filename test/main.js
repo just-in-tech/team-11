@@ -1,7 +1,9 @@
 import { $ } from "../lib/Pen.js";
 import { player as player1, player1controls } from "./players/player1.js";
 // import { player2 } from "./players/player2.js";
-import { player as player3, controls as player3controls } from "./players/player3.js";
+import { player3 } from "./players/player3.js";
+
+const player3item =new player3 ;
 
 $.use(update);
 
@@ -10,7 +12,7 @@ function update() {
     $.h = 500
     player1controls()
 
-    player3controls()
+    player3item.controls()
 
     $.drawColliders()
 }
