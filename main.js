@@ -1,5 +1,6 @@
 import { $ } from "./lib/Pen.js";
 import { change_gamestate } from "./engine/assets.js";
+import { drawGUI } from "./engine/gui.js";
 
 $.use(update);
 $.debug = true;
@@ -11,5 +12,6 @@ function update() {
         change_gamestate("mainmenu");
     }
 
+    // drawGUI();
     $.drawColliders()
 }
