@@ -2,30 +2,24 @@ import { $ } from "../lib/Pen.js";
 
 export class Resources {
     constructor() {
-        this.dollaridoos = 0; 
+        this.fibre = 0; 
+        this.silk = 0;
     }
 
     update() {
-        // +1 dollar every 10th frame
         if ($.frameCount % 60 === 0) {
-            this.dollaridoos += 1;
-            console.log("900 dollaridoos", this.dollaridoos);
+            this.fibre += 1;
+            console.log("Current Fibre:", this.fibre);
         }
     }
 
     spend(cost) {
-        this.dollaridoos -= cost;
+        this.fibre -= cost;
     }
 
     processRequest(request) {
         if (request.action == "add") {
-            this.dollaridoos += request.value;
+            this.fibre += request.value;
         }
     }
 }
-
-// old:
-export const resources = { 
-    fiber: 0,
-    silk: 0
-};
