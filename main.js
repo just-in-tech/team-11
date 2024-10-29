@@ -1,11 +1,11 @@
-import { draw_screen as draw_mainmenu } from "./engine/_mainmenu/main.js";
+import { change_gamestate } from "./engine/assets.js";
 
 $.use(update);
 function update() {
     $.w = 900
     $.h = 900
 
-    //draw_mainmenu();
+    change_gamestate("mainmenu");
 
     $.drawColliders()
 }
