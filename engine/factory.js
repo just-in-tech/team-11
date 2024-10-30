@@ -3,7 +3,6 @@ import { $ } from "../lib/Pen.js";
 export class Factory {
     constructor() {
     }
-    //
     makeAnt(x, y, speed) {   // (feed values like "speed" from data later)
         const ant = $.makeBoxCollider(x, y, 20, 20);
         ant.fill = "brown"; // "no fill" possible?
