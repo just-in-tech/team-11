@@ -19,7 +19,7 @@ export class mainmenu{
 
     this.creditsbtn.draw()
     if(this.playbtn.up){
-        data.gameState="battle";
+        data.gameState="treemenu";
     }
 
 
