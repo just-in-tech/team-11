@@ -6,20 +6,40 @@ export class Resources {
         this.silk = 0;
     }
 
-    update() {
-        if ($.frameCount % 60 === 0) {
-            this.fibre += 1;
-            console.log("Current Fibre:", this.fibre);
+    // 'frame-based' resource generation
+    update(gameState) {
+        if (gameState == "battle") {
+            if ($.frameCount % 60 === 0) {
+                this.fibre += 1;
+                // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
+            }
+        }
+    }
+    
+    // add a resource value
+    gain(resource, cost) {
+        if (request.value == "fibre") {
+            this.fibre += request.value;
+        } else if (request == "silk") {
+            this.silk += request.value
+        }
+    }
+    // spend a resource value
+    spend(resource, cost) {
+        if (resource == "fibre") {
+            this.fibre -= cost;
+        } else if (resource == "silk") {
+            this.silk -= cost;
         }
     }
 
-    spend(cost) {
-        this.fibre -= cost;
-    }
-
     processRequest(request) {
-        if (request.action == "add") {
-            this.fibre += request.value;
+        console.log(request);   // debug: log any resource request(s)
+        if (request.action == "addValue") {
+            this.gain(request.value, request.amount);
+        }
+        if (request.action == "subtractValue") {
+            this.spend(request.value, request.amount);
         }
     }
 }
