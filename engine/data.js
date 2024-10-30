@@ -3,24 +3,11 @@ import { Resources } from "./resources.js";
 
 export class Data {
     constructor() {
-        this.blueThings = $.makeGroup();
-        this.blueThings.name = "blueThings";
-        this.redThings = $.makeGroup();
-        this.redThings.name = "redThings";
         this.resources = new Resources();
         this.gameState = "mainmenu"; // gameState = "loading" | "main menu" | "buildtree" | "battle"
-        // player entities
-        this.playerAnimals = $.makeGroup({
-            ant: [],
-            eagle: [],
-            bear: []
-        });
-        // enemy entities
-        this.enemyAnimals = $.makeGroup({
-            ant: [],
-            eagle: [],
-            bear: []
-        })
+        
+        this.playerAnimals = $.makeGroup();
+        this.enemyAnimals = $.makeGroup();
     }
     update(requests) {
         for (const request of requests) {
@@ -29,6 +16,6 @@ export class Data {
             }
         }
         // update resources
-        this.resources.update();
+        this.resources.update(this.gameState);
     }
 }

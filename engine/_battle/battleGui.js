@@ -36,7 +36,7 @@ export class BattleGui {
 
         this.mainMenuButton.draw(data);
         if (this.mainMenuButton.up) {
-            data.gameState = "main menu";
+            data.gameState = "mainmenu";
         }
     }
 
