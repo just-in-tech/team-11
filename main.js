@@ -6,8 +6,8 @@ import { Data } from "./engine/data.js";
 
 $.use(update);
 $.debug = true;
-$.w = 900
-$.h = 900
+$.w = 800
+$.h = 800
 
 const gui = new Gui();
 const factory = new Factory();
