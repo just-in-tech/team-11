@@ -9,7 +9,7 @@ export class Resources {
     update() {
         if ($.frameCount % 60 === 0) {
             this.fibre += 1;
-            console.log("Current Fibre:", this.fibre);
+            //console.log("Current Fibre:", this.fibre);
         }
     }
 

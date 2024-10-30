@@ -1,5 +1,6 @@
 import { $ } from "../lib/Pen.js";
 import { Factory } from "./factory.js";
+import { mainmenu} from "./_mainmenu/menumain.js"
 
 export class Gui {
     constructor() {
@@ -8,19 +9,25 @@ export class Gui {
         this.redButton = $.makeButton(200, 250, 100, 20);
         this.redButton.label = "red"
         this.requests = [];   // we use array, because "group() leak"
+        this.mainMenu = new mainmenu()
     }
 
     update(data) {
-        if (data.gameState = "loading") {
+        console.log()
+        if (data.gameState == "loading") {
             // draw loading
-        } else if (data.gameState = "main menu") {
+        } else if (data.gameState == "mainmenu") {
+            this.mainMenu.draw(data);
             // draw main_menu
-        } else if (data.gameState = "buildtree") {
+        } else if (data.gameState == "buildtree") {
             // draw buildtree
-        } else if (data.gameState = "battle") {
+            this.redButton.draw();
+        } else if (data.gameState == "battle") {
             // draw battle
+        } else {
+            console.log("incorrect gamestate set")
         }
-        
+        /*
         if (data.resources.fibre > 3) {
             this.blueButton.draw();
             if (this.blueButton.up) {
@@ -34,17 +41,30 @@ export class Gui {
         this.redButton.draw();
         if (this.redButton.up) {
             this.requests.push({
-                type: "resource",
+                type: "gui",
                 action: "add",
                 value: 2
             })
-        }
+        }*/
         
     }
 
-    getRequests() {
+    getRequests(data) {
         const requestsToBeReturned = this.requests;
+        if (data.gameState == "loading") {
+            // requests loading
+        } else if (data.gameState == "mainmenu") {
+            // requests main_menu
+            this.mainMenu.getRequests()
+
+        } else if (data.gameState == "buildtree") {
+            // requests buildtree
+        } else if (data.gameState == "battle") {
+            // requests battle
+        }
         this.requests = [];
         return requestsToBeReturned;
     }
+
+    
 }

@@ -11,12 +11,11 @@ $.h = 800
 const gui = new Gui();
 const factory = new Factory();
 const data = new Data();
-let gameState = "battle"; // gameState = "loading" | "main menu" | "buildtree" | "battle"
 
 function update() {
-    gui.update(data, gameState);
-    const requests = gui.getRequests();
+    gui.update(data);
+    const requests = gui.getRequests(data);
     factory.processRequests(requests, data);
-    data.update(requests, gameState);
+    data.update(requests);
     $.drawColliders();
 }
