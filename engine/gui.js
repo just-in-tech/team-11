@@ -1,15 +1,14 @@
 import { $ } from "../lib/Pen.js";
 import { Factory } from "./factory.js";
-import { mainmenu} from "./_mainmenu/menumain.js"
+import { mainmenu } from "./_mainmenu/menumain.js"
+import { BattleGui } from "./_battle/battleGui.js";
 
 export class Gui {
     constructor() {
-        this.blueButton = $.makeButton(200, 200, 100, 20);
-        this.blueButton.label = "blue";
-        this.redButton = $.makeButton(200, 250, 100, 20);
-        this.redButton.label = "red"
+        // p.s. can have "global UI" here
+        this.mainMenu = new mainmenu();
+        this.battleGui = new BattleGui();
         this.requests = [];   // we use array, because "group() leak"
-        this.mainMenu = new mainmenu()
     }
 
     update(data) {
@@ -23,48 +22,23 @@ export class Gui {
             // draw buildtree
             this.redButton.draw();
         } else if (data.gameState == "battle") {
-            // draw battle
+            this.battleGui.drawBattle(data);
         } else {
             console.log("incorrect gamestate set")
+            data.gameState = "loading"; // reset to "loading"
         }
-        /*
-        if (data.resources.fibre > 3) {
-            this.blueButton.draw();
-            if (this.blueButton.up) {
-                this.requests.push({
-                    type: "factory",
-                    action: "blue"
-                });
-                data.resources.spend(3);
-            }
-        }
-        this.redButton.draw();
-        if (this.redButton.up) {
-            this.requests.push({
-                type: "gui",
-                action: "add",
-                value: 2
-            })
-        }*/
-        
     }
 
     getRequests(data) {
-        const requestsToBeReturned = this.requests;
         if (data.gameState == "loading") {
-            // requests loading
+            // return this.requests = this.loadingGui.getRequests();
         } else if (data.gameState == "mainmenu") {
-            // requests main_menu
-            this.mainMenu.getRequests()
-
+            return this.requests = this.mainMenu.getRequests()
         } else if (data.gameState == "buildtree") {
-            // requests buildtree
+            // return this.requests = this.buildTreeGui.getRequests();
         } else if (data.gameState == "battle") {
-            // requests battle
+            return this.requests = this.battleGui.getRequests();
         }
         this.requests = [];
-        return requestsToBeReturned;
     }
-
-    
 }
