@@ -1,25 +1,39 @@
 import { $ } from "../../lib/Pen.js";
+import { Gui } from "../gui.js";
+export class mainmenu{
+    constructor(){
+        this.btnpositions=450
+        this.playbtn = $.makeButton(450,this.btnpositions,100,50,"play");
+        this.playbtn.background = "green";
 
-    let playbtn;
-    let creditsbtn;
-
-    export function draw_menuscreen(){
-        let btnpositions=450
-        playbtn = $.makeButton(450,btnpositions,100,50,"play");
-        playbtn.background = "green";
-        playbtn.draw()
-
-        btnpositions+=80;
-        creditsbtn = $.makeButton(450,btnpositions,100,50,"credits");
-        creditsbtn.background = "white";
-        creditsbtn.draw()
-    }
-
-    export function remove_menuscreen(){
-        playbtn.remove();
-        creditsbtn.remove();
-    }
-
-    export function draw_credits(){
+        this.btnpositions+=80;
+        this.creditsbtn = $.makeButton(450,this.btnpositions,100,50,"credits");
+        this.creditsbtn.background = "white";
         
+        this.requests=[];
     }
+
+     draw(data){
+    //console.log("mainmenu.draw")
+    this.playbtn.draw()
+
+    this.creditsbtn.draw()
+    if(this.playbtn.up){
+        data.gameState="battle";
+    }
+
+
+    }
+
+
+
+ draw_credits(){
+    
+}
+
+getRequests() {
+    const requestsToBeReturned = this.requests;
+    this.requests = [];
+    return requestsToBeReturned;
+}
+}

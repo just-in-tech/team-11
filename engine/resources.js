@@ -15,7 +15,7 @@ export class Resources {
             }
         }
     }
-    
+
     // add a resource value
     gain(resource, cost) {
         if (request.value == "fibre") {
@@ -24,7 +24,6 @@ export class Resources {
             this.silk += request.value
         }
     }
-    // spend a resource value
     spend(resource, cost) {
         if (resource == "fibre") {
             this.fibre -= cost;

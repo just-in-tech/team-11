@@ -8,15 +8,15 @@ export class Data {
         this.redThings = $.makeGroup();
         this.redThings.name = "redThings";
         this.resources = new Resources();
-        this.gameState = "loading"; // gameState = "loading" | "main menu" | "buildtree" | "battle"
+        this.gameState = "mainmenu"; // gameState = "loading" | "main menu" | "buildtree" | "battle"
         // player entities
-        this.playerAnimals = $.makeGroup({  
+        this.playerAnimals = $.makeGroup({
             ant: [],
             eagle: [],
             bear: []
         });
         // enemy entities
-        this.enemyAnimals = $.makeGroup({   
+        this.enemyAnimals = $.makeGroup({
             ant: [],
             eagle: [],
             bear: []
@@ -25,7 +25,7 @@ export class Data {
     update(requests) {
         for (const request of requests) {
             if (request.type == "resource") {
-                this.resources.processRequest(request, this.gameState);
+                this.resources.processRequest(request);
             }
         }
         // update resources
