@@ -70,8 +70,7 @@ popupManager(){
     if(this.closebtn.up){
         this.popupState="none";
     }
-    $.text.colour.fill="black"
-    $.text.background="black"
+    $.colour.fill="black"
     $.text.print(w/2+x,y+20,title,);
     
 
