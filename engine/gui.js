@@ -14,7 +14,6 @@ export class Gui {
     }
 
     update(data) {
-        console.log()
         if (data.gameState == "loading") {
             // draw loading
         } else if (data.gameState == "mainmenu") {
@@ -25,9 +24,12 @@ export class Gui {
             this.treeMenu.draw_treemenu(data);
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
+        }else if (data.gameState == "credits") {
+            this.battleGui.drawBattle(data);
+        }else if (data.gameState == "    ") {
+            //empty gamestate add what is needed
         } else {
-            console.log("incorrect gamestate set")
-            data.gameState = "loading"; // reset to "loading"
+            throw new Error("incorrect gamestate set")
         }
     }
 
@@ -40,7 +42,16 @@ export class Gui {
             return this.requests = this.treeMenu.getRequests();
         } else if (data.gameState == "battle") {
             return this.requests = this.battleGui.getRequests();
+        } else if (data.gameState == "credits") {
+            return this.requests = this.mainMenu.getRequests()
+        } else if (data.gameState == "battle") {
+            return this.requests = this.battleGui.getRequests();
+        }else{
+            throw new Error("incorrect gamestate set")
         }
+
+
+        
         
     }
 }

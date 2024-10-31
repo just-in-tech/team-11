@@ -1,5 +1,5 @@
 import { $ } from "../../lib/Pen.js";
-import { Gui } from "../gui.js";
+
 export class mainmenu{
     constructor(){
         this.btnpositions=$.h/2
