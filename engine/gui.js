@@ -9,8 +9,6 @@ export class Gui {
         this.mainMenu = new mainmenu();
         this.battleGui = new BattleGui();
         this.treeMenu = new treemenu();
-
-        
     }
 
     update(data) {
@@ -46,12 +44,8 @@ export class Gui {
             return this.requests = this.mainMenu.getRequests()
         } else if (data.gameState == "battle") {
             return this.requests = this.battleGui.getRequests();
-        }else{
+        } else {
             throw new Error("incorrect gamestate set")
         }
-
-
-        
-        
-    }
+    }    
 }

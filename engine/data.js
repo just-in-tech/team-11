@@ -4,7 +4,7 @@ import { Resources } from "./resources.js";
 export class Data {
     constructor() {
         this.resources = new Resources();
-        this.gameState = "mainmenu"; // gameState = "loading" | "main menu" | "buildtree" | "battle"
+        this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "buildtree" | "battle"
         
         this.playerAnimals = $.makeGroup();
         this.enemyAnimals = $.makeGroup();
