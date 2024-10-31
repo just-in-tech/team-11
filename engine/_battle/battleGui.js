@@ -35,9 +35,9 @@ export class BattleGui {
             this.antButton.background = "grey";
         }
 
-        this.mainMenuButton.draw(data);
-        if (this.mainMenuButton.up) {
-            data.gameState = "buildtree";
+        this.buildTreeButton.draw(data);
+        if (this.buildTreeButton.up) {
+            data.gameState = "treemenu";
         }
     }
 
