@@ -1,13 +1,13 @@
 import { $ } from "../../lib/Pen.js";
-import { Gui } from "../gui.js";
+
 export class mainmenu{
     constructor(){
-        this.btnpositions=450
-        this.playbtn = $.makeButton(450,this.btnpositions,100,50,"play");
+        this.btnpositions=$.h/2
+        this.playbtn = $.makeButton($.w/2,this.btnpositions,100,50,"play");
         this.playbtn.background = "green";
 
         this.btnpositions+=80;
-        this.creditsbtn = $.makeButton(450,this.btnpositions,100,50,"credits");
+        this.creditsbtn = $.makeButton($.w/2,this.btnpositions,100,50,"credits");
         this.creditsbtn.background = "white";
         
         this.requests=[];
@@ -19,7 +19,7 @@ export class mainmenu{
 
     this.creditsbtn.draw()
     if(this.playbtn.up){
-        data.gameState="battle";
+        data.gameState="treemenu";
     }
 
 
