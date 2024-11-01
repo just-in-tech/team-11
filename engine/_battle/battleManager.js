@@ -2,41 +2,85 @@ import { $ } from "../../lib/Pen.js";
 
 export class BattleManager {
     constructor() {
+        // "Lane Walls"
+        this.topWall = $.makeBoxCollider($.w/2, $.h/3, $.w, 10);
+        this.bottomWall = $.makeBoxCollider($.w/2, ($.h * 2/3), $.w, 10);
     }
 
-    battleUpdate() {
+    battleUpdate(data) {
         this.engage(data);
+        // this.engage(data.enemyAnimals);
     }
 
     engage(data) {
-        for (let i = 0; i < data.playerAnimals; i++) {
-            for (let j = 0; j < data.enemyAnimals; j++) {
-                // Subtract "playerAnimal x" (lower) from "enemyAnimal x" (bigger) as "proximity"
-                let proximity = data.enemyAnimals[j].x - data.playerAnimals[i].x;
-                if (0 < proximity < 100) {
-                    console.log("Spotted!");
-                    data.playerAnimals[i].getAngleToPoint(data.enemyAnimals[j].x, data.enemyAnimals[j].y);
-                    
+        for (let i = 0; i < data.playerAnimals.length; i++) {
+            for (let j = 0; j < data.enemyAnimals.length; j++) {
+                let proximity = (data.enemyAnimals[j].x - data.playerAnimals[i].x); // doesnt account for Y
+                // rewrite for "finding closest enemy" -- like finding min proximity per player
+
+
+                // for each playerAnimal[i];
+                    // find closest enemyAnimal (if no enemyAnimal, target tree);
+                    // i.e. target ~= "minimum distance"
+                // if "target" <= playerAnimal.range:\
+                    // attack(attacker, defender)
+
+
+
+                // console.log(proximity);
+                data.playerAnimals[i].collides(data.playerAnimals[i], data.enemyAnimals[j], this.topWall, this.bottomWall);
+                data.playerAnimals[i].collides(data.enemyAnimals[j]);
+                data.enemyAnimals[j].collides(data.enemyAnimals[j], this.topWall, this.bottomWall);
+                // (for playerAnimal[i]): if(proximity <= playerAnimal.range) {
+                //      attack(playerAnimal[i])
+                // }
+                if (data.playerAnimals[i].range >= proximity) {
+                    this.attack(data.playerAnimals[i], data.enemyAnimals[j]);
+                    data.playerAnimals[i].speed = 0;
+                } else {
+                    data.playerAnimals[i].speed = 4;    // for testing
+                }
+                if (data.enemyAnimals[j].range >= proximity) {
+                    this.attack(data.enemyAnimals[j], data.playerAnimals[i]);
+                    data.enemyAnimals[j].speed = 0;
+                } else {
+                    data.enemyAnimals[j].speed = 4;     // also testing
+                }
+
+
+
+                // If "unit[i] INFRONT OF unit[j]" move towards eachother
+                if (proximity <= 0) {
+                    // & not if they are behind them
+                    data.playerAnimals[i].direction = 90;
+                    data.enemyAnimals[j].direction = 270;
+                } else if (proximity < 100) {
+                    // console.log("Spotted!", data.playerAnimals[i].direction);
+                    data.enemyAnimals[j].direction = data.enemyAnimals[j].getAngleToPoint(data.playerAnimals[i].x, data.playerAnimals[i].y);
+                    data.playerAnimals[i].direction = data.playerAnimals[i].getAngleToPoint(data.enemyAnimals[j].x, data.enemyAnimals[j].y);
                 }
             }
         }
-        // let's make "proximity" = 2*"range"
-            // base range? or scale with "size"?
-
-        
-
-        // "getAngleToPoint" -- angle to give this entity to face the location
-        // asset -- holds image
-
-        // if collides():
-            // if (attackTimer == 0) {
-            //      attack();
-            //      attackTimer = attackCooldown;
-            // } else if (attackTimer > 0) {
-            //      attackTimer -= 1;
-            // }
     }
-    // attack() {       // defend? how do we reverse? 
+
+    attack(attacker, defender) {
+        if (attacker.attackCooldown == 0) {
+            if (defender.health <= attacker.attack) {
+                defender.lifespan = 20;
+                // TODO: if enemy die: +silk
+            } else if (defender.health > attacker.attack) {
+                defender.health -= attacker.attack;
+            }
+            attacker.attackCooldown = attacker.attackSpeed;
+            defender.speed -= attacker.attack *2;  // "velocity" is VERY unfriendly with remove()
+
+        } else if (attacker.attackCooldown > 0) {
+            attacker.attackCooldown -= 1;
+            console.log(attacker.attackCooldown);
+        }
+
+    }
+    // attack(unit1, unit2) {       // defend? how do we reverse? 
         // if (this.timer > 0) {
         //   this.windUpAnimation()  (like, move sprite left for now)
         //   this.timer -= 1;

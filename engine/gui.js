@@ -10,6 +10,7 @@ export class Gui {
         // p.s. can have "global UI" here
         this.mainMenu = new mainmenu();
         this.battleGui = new BattleGui();
+        this.battleManager = new BattleManager();
         this.treeMenu = new treemenu();
     }
 
@@ -24,9 +25,9 @@ export class Gui {
             this.treeMenu.draw_treemenu(data);
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
+            this.battleManager.battleUpdate(data);
         }else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
-            this.battleManager.battleUpdate(data);
         }else if (data.gameState == "    ") {
             //empty gamestate add what is needed
         } else {
