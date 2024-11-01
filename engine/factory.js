@@ -2,6 +2,8 @@ import { $ } from "../lib/Pen.js";
 
 export class Factory {
     constructor() {
+        this.playerSide = $.w * 0.1;
+        this.enemySide = $.w * 0.9;
     }
     makeAnt(x, y, speed) {   // (feed values like "speed" from data later)
         const ant = $.makeBoxCollider(x, y, 20, 10);
@@ -28,16 +30,29 @@ export class Factory {
         return bear;
     }
 
+    spawnHeight() {
+        return $.math.random($.h/3, 2*$.h/3);
+    }
+    
+    
+
     processRequests(requests, data) {
         for (const request of requests) {
             if (request.type == "factory") {
                 if (request.action == "makeAnimal") {
+                    let y = this.spawnHeight();
+                    let x = 0;
+                    if (request.playerSide == true) {
+                        x = this.playerSide;
+                    } else if (request.playerSide == false) {
+                        x = this.enemySide;
+                    }
                     if (request.value == "ant") {
-                        data.playerAnimals.push(this.makeAnt(100, 400, 1));
+                        data.playerAnimals.push(this.makeAnt(x, y, 1));
                     } else if (request.value == "eagle") {
-                        data.playerAnimals.push(this.makeEagle(100, 400, 1));
+                        data.playerAnimals.push(this.makeEagle(x, y, 1));
                     } else if (request.value == "bear") {
-                        data.playerAnimals.push(this.makeBear(100, 400, 1));
+                        data.playerAnimals.push(this.makeBear(x, y, 1));
                     }   
                 }
             }
