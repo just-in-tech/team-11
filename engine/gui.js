@@ -1,8 +1,10 @@
 import { $ } from "../lib/Pen.js";
 import { Factory } from "./factory.js";
-import { mainmenu } from "./_mainmenu/menumain.js"
+import { mainmenu } from "./_mainmenu/menumain.js";
 import { BattleGui } from "./_battle/battleGui.js";
-import { treemenu } from "./_buildtree/treemenu.js"
+import { BattleManager } from "./_battle/battleManager.js";
+import { treemenu } from "./_buildtree/treemenu.js";
+
 export class Gui {
     constructor() {
         // p.s. can have "global UI" here
@@ -24,6 +26,7 @@ export class Gui {
             this.battleGui.drawBattle(data);
         }else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
+            this.battleManager.battleUpdate(data);
         }else if (data.gameState == "    ") {
             //empty gamestate add what is needed
         } else {
