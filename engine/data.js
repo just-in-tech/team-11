@@ -8,7 +8,16 @@ export class Data {
         
         this.playerAnimals = $.makeGroup();
         this.enemyAnimals = $.makeGroup();
+
+        // Branch Levels
+        // damage, 
+        // speed, 
+        // health, 
+        // troop unlock, 
+        // silk gen, 
+        // fibre gen
     }
+
     update(requests) {
         for (const request of requests) {
             if (request.type == "resource") {

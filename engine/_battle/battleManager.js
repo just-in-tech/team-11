@@ -24,4 +24,9 @@ export class BattleManager {
             // attack()
         // IF enemyAnimal(ranged)  "NEAR" playerAnimal(front)
             // attack()
+
+    // function enemyDies() {
+    //      enemy.pull();
+    //      tokenRNG --
+    // }
 }
