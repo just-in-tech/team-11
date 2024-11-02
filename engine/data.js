@@ -23,13 +23,13 @@ export class Data {
                 unlocked: 0 ,   //bool true (1) is unlocked
                 unlockPrice: 200 ,
                 damage: 3 , //damage to other animal
-                maxHealth:  , 
+                maxHealth: 100 , 
                 speed:  3, //
                 priceInGame: 40, //
             },
             bear:{
                 unlocked:0,   //bool true (1) is unlocked
-                unlockPrice:
+                unlockPrice: 500,
                 damage: 3 , //damage to other animal
                 maxHealth: 5 , 
                 speed:  3, //
