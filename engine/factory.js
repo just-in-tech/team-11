@@ -40,6 +40,26 @@ export class Factory {
                         data.playerAnimals.push(this.makeBear(100, 400, 1));
                     }   
                 }
+                // to unlock animal on the treemenu
+                if (request.action == "unlockanimal"){
+                    if (request.value == "ant") {
+                        
+                    } else if (request.value == "eagle") {
+                        
+                    } else if (request.value == "bear") {
+                        
+                    }
+                }
+                // will be one per branch
+                if (request.action == "branchlevel") {
+                    if (request.value == "1") {
+                        
+                    } else if (request.value == "2") {
+                        
+                    } else if (request.value == "3") {
+                        
+                    }
+                }
             }
         }
     }

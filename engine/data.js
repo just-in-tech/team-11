@@ -9,6 +9,42 @@ export class Data {
         this.playerAnimals = $.makeGroup();
         this.enemyAnimals = $.makeGroup();
 
+        this.player={
+            ant:{
+                unlocked:1,   //bool true (1) is unlocked
+                damage: 3 , //damage to other animal
+                maxHealth: 10 , 
+                speed:  3, //speed the animal moves
+                attackintivel: 10, //how offen the animal attacks (in frames)
+                priceInGame: 10, //price to put on the track
+                
+            },
+            eagle:{
+                unlocked: 0 ,   //bool true (1) is unlocked
+                unlockPrice: 200 ,
+                damage: 3 , //damage to other animal
+                maxHealth:  , 
+                speed:  3, //
+                priceInGame: 40, //
+            },
+            bear:{
+                unlocked:0,   //bool true (1) is unlocked
+                unlockPrice:
+                damage: 3 , //damage to other animal
+                maxHealth: 5 , 
+                speed:  3, //
+                priceInGame: 100,
+            },
+            
+            
+
+
+
+        }
+
+
+
+
         // Branch Levels
         // damage, 
         // speed, 
@@ -17,6 +53,12 @@ export class Data {
         // silk gen, 
         // fibre gen
     }
+/*
+    if
+
+*/
+
+
 
     update(requests) {
         for (const request of requests) {
@@ -25,6 +67,6 @@ export class Data {
             }
         }
         // update resources
-        this.resources.update(this.gameState);
+        this.resources.update();
     }
 }
