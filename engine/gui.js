@@ -1,13 +1,16 @@
 import { $ } from "../lib/Pen.js";
 import { Factory } from "./factory.js";
-import { mainmenu } from "./_mainmenu/menumain.js"
+import { mainmenu } from "./_mainmenu/menumain.js";
 import { BattleGui } from "./_battle/battleGui.js";
-import { treemenu } from "./_buildtree/treemenu.js"
+import { BattleManager } from "./_battle/battleManager.js";
+import { treemenu } from "./_buildtree/treemenu.js";
+
 export class Gui {
     constructor() {
         // p.s. can have "global UI" here
         this.mainMenu = new mainmenu();
         this.battleGui = new BattleGui();
+        this.battleManager = new BattleManager();
         this.treeMenu = new treemenu();
     }
 
@@ -22,6 +25,7 @@ export class Gui {
             this.treeMenu.draw_treemenu(data);
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
+            this.battleManager.battleUpdate(data);
         }else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
         }else if (data.gameState == "    ") {

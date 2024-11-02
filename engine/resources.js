@@ -33,7 +33,7 @@ export class Resources {
     }
 
     processRequest(request) {
-        console.log(request);   // debug: log any resource request(s)
+        // console.log(request);   // debug: log any resource request(s)
         if (request.action == "addValue") {
             this.gain(request.value, request.amount);
         }

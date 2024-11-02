@@ -4,34 +4,67 @@ let currentFibre;
 
 export class BattleGui {
     constructor() {
+        this.unitButtonY = $.h * (80/100);
+        this.unitButtonX = $.w * (20/100);
+
         // Unit Buttons
-        this.antButton = $.makeButton(350, 600, 100, 150);
+        this.antButton = $.makeButton(this.unitButtonX*2, this.unitButtonY, 100, 150);
         this.antButton.label = "Buy Ant \n Cost: 3"; // this.cost
         this.antButton.border = "black";
 
-        this.eagleButton = $.makeButton(500, 600, 100, 150);
+        this.eagleButton = $.makeButton(this.unitButtonX*3, this.unitButtonY, 100, 150);
         this.eagleButton.label = "Buy Eagle \n Cost: 6"; // this.cost
         this.eagleButton.border = "black";
 
-        this.bearButton = $.makeButton(650, 600, 100, 150);
+        this.bearButton = $.makeButton(this.unitButtonX*4, this.unitButtonY, 100, 150);
         this.bearButton.label = "Buy Bear \n Cost: 9"; // this.cost
         this.bearButton.border = "black";
         // treemenu button
-        this.treeMenuButton = $.makeButton(100, 100, 100, 100); // replace later with "surrender" || "return to treeMenu"
-        this.treeMenuButton.label = "Return to \n Build Mode";
+        this.treeMenuButton = $.makeButton(100, 100, 100, 60);
+        this.treeMenuButton.label = "Surrender";
         
         this.requests = [];
+
+        this.battleTimer = 0;
+    }
+
+    enemySpawn(currentWave) {
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "ant",
+            amount: (1 + currentWave/2),
+            playerSide: false
+        })
     }
 
     drawBattle(data) {
+        // Update battleTimer
+        this.battleTimer += 1;
+        if (this.battleTimer%60 == 0) {
+            console.log(this.battleTimer/60);
+            if (this.battleTimer%600 == 0) {
+                this.enemySpawn(0);
+            }
+        }
+        
         // Fibre Panel
+        $.text.alignment.x = "center";
+        $.text.alignment.y = "center";
+        $.shape.alignment.x = "center"; // doesn't seem to be applying properly
+        $.shape.alignment.y = "center";
         $.colour.fill = "white";
-        $.shape.roundedRectangle(100, 525, 150, 150, 15);
+
+        $.shape.rectangle(this.unitButtonX, this.unitButtonY, 150, 140, 15);
         currentFibre = String(data.resources.fibre);
         $.text.size = 28;
         $.colour.fill = "black";
-        $.text.print(175, 575, "Fibre", 140);
-        $.text.print(175, 625, currentFibre, 140);
+        $.text.print(this.unitButtonX, this.unitButtonY - 20, "Fibre", 140);
+        $.text.print(this.unitButtonX, this.unitButtonY + 20, currentFibre, 140);
+
+        // Testing
+        $.shape.line(0, $.h/3, $.w, $.h/3);
+        $.shape.line(0, 2*($.h/3), $.w, 2*($.h/3));
 
         // Buy Animal Buttons
         this.antButton.draw();
@@ -42,7 +75,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "ant",
-                    boolean: 1
+                    playerSide: true
                 })
                 this.requests.push({    // fibre cost of 3
                     type: "resource",
@@ -62,7 +95,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "eagle",
-                    boolean: 1
+                    playerSide: true
                 })
                 this.requests.push({    // fibre cost of 6
                     type: "resource",
@@ -82,7 +115,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "bear",
-                    boolean: 1
+                    playerSide: true
                 })
                 this.requests.push({    // fibre cost of 6
                     type: "resource",
@@ -97,16 +130,24 @@ export class BattleGui {
         // Tree Menu Button
         this.treeMenuButton.draw(data);
         if (this.treeMenuButton.up) {
-            data.gameState = "treemenu";
+            this.endBattle(data);
         }
     }
 
-    endBattle() {
+    endBattle(data) {
         // Print Total Silk Gain (& "Continue" Button);
-        // Clear all entities
+
+        // Clean up animal groups
+        for (let i = 0; i < data.playerAnimals.length; i++) {
+            data.playerAnimals[i].remove();
+        }
+        for (let i = 0; i < data.enemyAnimals.length; i++) {
+            data.enemyAnimals[i].remove();
+        }
+        // Reset battle values
+        this.battleTimer = 0;
         data.resources.fibre = 0;
         data.gameState = "treemenu";
-        
     }
 
     getRequests() {
