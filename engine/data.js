@@ -34,12 +34,13 @@ export class Data {
                 maxHealth: 60 , 
                 speed:  3, //
                 priceInGame: 110
-            }
+            },
+            treehealth:200
             
 
         };
 
-        this.enemyStats={
+        this.computerStats={
             ant:{
                 unlocked:1,   //bool true (1) is unlocked
                 damage: 3 , //damage to other animal
@@ -64,7 +65,8 @@ export class Data {
                 maxHealth: 5 , 
                 speed:  3, //
                 fibreCost: 100
-            }
+            },
+            treehealth:200
             
 
         };

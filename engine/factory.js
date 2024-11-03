@@ -87,14 +87,17 @@ export class Factory {
                         data.playerStats.ant.damage=8
                         data.playerStats.eagle.damage=12
                         data.playerStats.bear.damage= 25
-                        data.playerStats.ant.fibreCost+=
-                        data.playerStats.ant.fibreCost+=
-                        data.playerStats.ant.fibreCost+=
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 3") {
                         data.playerStats.ant.damage=8
                         data.playerStats.eagle.damage=12
                         data.playerStats.bear.damage= 25
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     }
                 }
                 if (request.action == "speedBranch") {
@@ -102,40 +105,83 @@ export class Factory {
                         data.playerStats.ant.speed=2
                         data.playerStats.eagle.speed=15
                         data.playerStats.bear.speed=4
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     } else if (request.value == "level 2") {
                         data.playerStats.ant.speed=2
                         data.playerStats.eagle.speed=15
                         data.playerStats.bear.speed=4
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     } else if (request.value == "level 3") {
                         data.playerStats.ant.speed=2
                         data.playerStats.eagle.speed=15
                         data.playerStats.bear.speed=4
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     }
                 }
                 if (request.action == "silkBranch") {
                     if (request.value == "level 1") {
-                        
+                        data.playerStats.ant.
+                        data.playerStats.eagle.
+                        data.playerStats.bear.
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=
                     } else if (request.value == "level 2") {
                         
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     } else if (request.value == "level 3") {
                         
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     }
                 }
                 if (request.action == "damageBranch") {
                     if (request.value == "level 1") {
+
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 2") {
+
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 3") {
                         
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                     }
                 }
                 if (request.action == "healthBranch") {
                     if (request.value == "level 1") {
+
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 2") {
+
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 3") {
+
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
+                        data.playerStats.ant.fibreCost+=10
                         
                     }
                 }
