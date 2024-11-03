@@ -168,17 +168,14 @@ export class BuildTreeScene {
 
         this.background.draw()
         this.treeimg.draw()
-       
 
-        
-
-                //draw buttons
-                this.fibrebutton.draw()
-                this.troopbutton.draw()
-                this.silkbutton.draw()
-                this.damagebutton.draw()
-                this.speedbutton.draw()
-                this.healthbutton.draw()
+        //draw buttons
+        this.fibrebutton.draw()
+        this.troopbutton.draw()
+        this.silkbutton.draw()
+        this.damagebutton.draw()
+        this.speedbutton.draw()
+        this.healthbutton.draw()
 
         // popup
 
@@ -225,25 +222,11 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.troopbranchstate += 1
                 if(this.troopbranchstate == 2){
-
-                    this.troopbranchcurrentstage=this.troopbranchstage2
-                    
-                    this.troopbranchcurrentstage.w = 600
-                    this.troopbranchcurrentstage.h = 600
-
-                    this.troopbutton.x = 680
-                    this.troopbutton.y = 320
+                    setnewstage(this.troopbranchcurrentstage,this.troopbranchstage2,600,600,this.troopbutton,680,320)
                     
                 }else if (this.troopbranchstate == 3){
-                    this.troopbranchcurrentstage=this.troopbranchstage3
-                    
-                    this.troopbranchcurrentstage.w = 600
-                    this.troopbranchcurrentstage.h = 600
+                    setnewstage(this.troopbranchcurrentstage,this.troopbranchstage3,600,600,this.troopbutton,730,280)
 
-                    this.troopbutton.x = 730
-                    this.troopbutton.y = 280
-
-                    
                 }
             }
         }
@@ -260,24 +243,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.damagebranchstate += 1
                 if (this.damagebranchstate == 2) {
-                    this.damagebranchcurrentstage=this.damagebranchstage2
-                    
-                    this.damagebranchcurrentstage.w = 900
-                    this.damagebranchcurrentstage.h = 900
+                    setnewstage(this.damagebranchcurrentstage,this.damagebranchstage2,900,900,this.damagebutton,120,160)
 
-                    this.damagebutton.x = 120
-                    this.damagebutton.y = 160
-        
-                    
                 }else if (this.damagebranchstate == 3) {
-                    this.damagebranchcurrentstage=this.damagebranchstage3
-                    
-                    this.damagebranchcurrentstage.w = 900
-                    this.damagebranchcurrentstage.h = 900
-                    
-                    this.damagebutton.x = 160
-                    this.damagebutton.y = 70
-        
+                    setnewstage(this.damagebranchcurrentstage,this.damagebranchstage3,900,900,this.damagebutton,160,70)
                     
                 }
             }
@@ -297,25 +266,11 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.speedbranchstate += 1
                 if (this.speedbranchstate == 2) {
-                    this.speedbranchcurrentstage=this.speedbranchstage2
-                    
-                    this.speedbranchcurrentstage.w = 600
-                    this.speedbranchcurrentstage.h = 600
+                    setnewstage(this.speedbranchcurrentstage,this.speedbranchstage2,600,600,this.speedbutton,100,310)
 
-                    this.speedbutton.x = 100
-                    this.speedbutton.y = 310
-        
-                    
                 }else if (this.speedbranchstate == 3) {
-                    this.speedbranchcurrentstage=this.speedbranchstage3
-                    
-                    this.speedbranchcurrentstage.w = 600
-                    this.speedbranchcurrentstage.h = 600
+                    setnewstage(this.speedbranchcurrentstage,this.speedbranchstage3,600,600,this.speedbutton,70,270)
 
-                    this.speedbutton.x = 70
-                    this.speedbutton.y = 270
-        
-                    
                 }
             }
         }
@@ -333,32 +288,15 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.silkbranchstate += 1
                 if (this.silkbranchstate == 2) {
-                    this.silkbranchcurrentstage=this.silkbranchstage2
-                    
-                    this.silkbranchcurrentstage.w = 600
-                    this.silkbranchcurrentstage.h = 600
-                    
-                    this.silkbutton.x = 740
-                    this.silkbutton.y = 500
-        
-                    
+                    setnewstage(this.silkbranchcurrentstage,this.silkbranchstage2,600,600,this.silkbutton,740,500)
+
                 }else if (this.silkbranchstate == 3) {
-                    this.silkbranchcurrentstage=this.silkbranchstage3
-                    
-                    this.silkbranchcurrentstage.w = 600
-                    this.silkbranchcurrentstage.h = 600
-                    
-                    this.silkbutton.x = 740
-                    this.silkbutton.y = 500
-        
-                    
+                    setnewstage(this.silkbranchcurrentstage,this.silkbranchstage3,600,600,this.silkbutton,740,500)
+
                 }
             }
         }
         this.silkbranchcurrentstage.draw()
-
-        
-
 
         // fibre branch
 
@@ -370,33 +308,16 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.fibrebranchstate += 1
                 if (this.fibrebranchstate == 2) {
-                    this.fibrebranchcurrentstage=this.fibrebranchstage2
-                    
-                    this.fibrebranchcurrentstage.w = 600
-                    this.fibrebranchcurrentstage.h = 600
-                    
-                    this.fibrebutton.x = 65
-                    this.fibrebutton.y = 430
-        
-                    
+                    setnewstage(this.fibrebranchcurrentstage,this.fibrebranchstage2,600,600,this.fibrebutton,65,430)
+                   
                 }else if (this.fibrebranchstate == 3) {
-                    this.fibrebranchcurrentstage=this.fibrebranchstage3
-                    
-                    this.fibrebranchcurrentstage.w = 900
-                    this.fibrebranchcurrentstage.h = 900
-
-                    this.fibrebutton.x = 45
-                    this.fibrebutton.y = 380
-        
+                    setnewstage(this.fibrebranchcurrentstage,this.fibrebranchstage3,900,900,this.fibrebutton,45,380)
                     
                 }
             }
         }
 
         this.fibrebranchcurrentstage.draw()
-
-        
-
 
         // health branch
 
@@ -408,25 +329,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.healthbranchstate += 1
                 if (this.healthbranchstate == 2) {
-                    this.healthbranchcurrentstage=this.healthbranchstage2
-                    
-                    this.healthbranchcurrentstage.w = 900
-                    this.healthbranchcurrentstage.h = 900
-                    
-                    this.healthbutton.x = 660
-                    this.healthbutton.y = 190
-        
+                    setnewstage(this.healthbranchcurrentstage,this.healthbranchstage2,900,900,this.healthbutton,660,190)        
                     
                 }else if (this.healthbranchstate == 3 ) {
-                    this.healthbranchcurrentstage=this.healthbranchstage3
-                    
-                    this.healthbranchcurrentstage.w = 900
-                    this.healthbranchcurrentstage.h = 900
-                    
-                    this.healthbutton.x = 650
-                    this.healthbutton.y = 110
-        
-                    
+                    setnewstage(this.healthbranchcurrentstage,this.healthbranchstage3,900,900,this.healthbutton,650,110) 
                 }
             }
         }
@@ -435,12 +341,24 @@ export class BuildTreeScene {
 
     }
 
+    setnewstage(currentBranchStage,newBranchStage,w,h,button,buttonx,buttony){
+        currentBranchStage=newBranchStage
+                    
+                    currentBranchStage.w = w
+                    currentBranchStage.h = h
+                    
+                    button.x = buttonx
+                    button.y = buttony
+    }
+
     getRequests() {
         const requestsToBeReturned = this.requests;
         this.requests = [];
         return requestsToBeReturned;
     }
 }
+
+
 
 // export class treemenu{
 //     constructor(){
