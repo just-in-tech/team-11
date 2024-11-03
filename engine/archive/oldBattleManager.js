@@ -35,3 +35,13 @@ seekTarget(data) {
         } else {
             data.playerAnimals[i].speed = 5; // otherwise, return speed to "5"   -- maybe we do acceleration instead
         }
+    }
+}
+
+            // let damageDealt = attacker.attack   // damage calculation
+            // let tenacity = 110;                 // affects "recoil" effect
+            // // units still inside their tree receive half damage (optional)
+            // if (defender.x <= ($.w/16) || defender.x >= $.w/8) {
+            //     damageDealt = damageDealt/2;
+            //     console.log(defender, "took a hit While Under Tree");
+            // }
