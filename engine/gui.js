@@ -1,17 +1,17 @@
 import { $ } from "../lib/Pen.js";
 import { Factory } from "./factory.js";
-import { mainmenu } from "./_mainmenu/menumain.js";
+import { MainMenu } from "./_mainmenu/mainmenu.js";
 import { BattleGui } from "./_battle/battleGui.js";
 import { BattleManager } from "./_battle/battleManager.js";
-import { treemenu } from "./_buildtree/treemenu.js";
+import { BuildTreeScene } from "./_buildtree/treemenu.js";
 
 export class Gui {
     constructor(data) {
         // p.s. can have "global UI" here
-        this.mainMenu = new mainmenu();
+        this.mainMenu = new MainMenu()
         this.battleGui = new BattleGui();
         this.battleManager = new BattleManager(data);
-        this.treeMenu = new treemenu();
+        this.treeMenu = new BuildTreeScene();
     }
 
     update(data) {
@@ -19,16 +19,17 @@ export class Gui {
             // draw loading
         } else if (data.gameState == "mainmenu") {
             this.mainMenu.draw(data);
-            // draw main_menu
+            this.mainMenu.draw();
+            this.mainMenu.update(data)
         } else if (data.gameState == "treemenu") {
-            // draw buildtree
-            this.treeMenu.draw_treemenu(data);
+            this.treeMenu.draw()
+            this.treeMenu.update(data)
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);
-        }else if (data.gameState == "credits") {
+        } else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
-        }else if (data.gameState == "    ") {
+        } else if (data.gameState == "    ") {
             //empty gamestate add what is needed
         } else {
             throw new Error("incorrect gamestate set")
@@ -51,5 +52,5 @@ export class Gui {
         } else {
             throw new Error("incorrect gamestate set")
         }
-    }    
+    }
 }
