@@ -3,58 +3,58 @@ import { $ } from "../../lib/Pen.js";
 export class BuildTreeScene {
 
     constructor() {
-        this.treeimg = $.loadImage($.w / 2, 450, "initialtrunk.png")
-        this.background = $.loadImage($.w / 2, $.h / 2, "scene.jpg")
+        this.treeimg = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialtrunk.png")
+        this.background = $.loadImage($.w / 2, $.h / 2, "../engine/_buildtree/scene.jpg")
 
         // branches
 
-        this.troopbranchinitial = $.loadImage($.w / 2, 450, "troopbranchinitial.png")
-        this.troopbranchstage2 = $.loadImage($.w / 2, 450, "troopbranch2.png")
-        this.troopbranchstage3 = $.loadImage($.w / 2, 450, "troopbranch3.png")
+        this.troopbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranchinitial.png")
+        this.troopbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranch2.png")
+        this.troopbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranch3.png")
 
-        this.healthbranchinitial = $.loadImage($.w / 2, 450, "initialhealthbranch.png")
-        this.healthbranchstage2 = $.loadImage($.w / 2, 450, "healthbranch2.png")
-        this.healthbranchstage3 = $.loadImage($.w / 2, 450, "healthbranch3.png")
+        this.healthbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialhealthbranch.png")
+        this.healthbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/healthbranch2.png")
+        this.healthbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/healthbranch3.png")
 
-        this.fibrebranchinitial = $.loadImage($.w / 2, 450, "initialfibrebranch.png")
-        this.fibrebranchstage2 = $.loadImage($.w / 2, 450, "fibrebranch2.png")
-        this.fibrebranchstage3 = $.loadImage($.w / 2, 450, "fibrebranch3.png")
+        this.fibrebranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialfibrebranch.png")
+        this.fibrebranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/fibrebranch2.png")
+        this.fibrebranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/fibrebranch3.png")
 
-        this.silkbranchinitial = $.loadImage($.w / 2, 450, "initialsilkbranch.png")
-        this.silkbranchstage2 = $.loadImage($.w / 2, 450, "silkbranch2.png")
-        this.silkbranchstage3 = $.loadImage($.w / 2, 450, "silkbranch3.png")
+        this.silkbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialsilkbranch.png")
+        this.silkbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/silkbranch2.png")
+        this.silkbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/silkbranch3.png")
 
-        this.speedbranchinitial = $.loadImage($.w / 2, 450, "initialspeedbranch.png")
-        this.speedbranchstage2 = $.loadImage($.w / 2, 450, "speedbranch2.png")
-        this.speedbranchstage3 = $.loadImage($.w / 2, 450, "speedbranch3.png")
+        this.speedbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialspeedbranch.png")
+        this.speedbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/speedbranch2.png")
+        this.speedbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/speedbranch3.png")
 
-        this.damagebranchinitial = $.loadImage($.w / 2, 450, "initialdamagebranch.png")
-        this.damagebranchstage2 = $.loadImage($.w / 2, 450, "damagebranch2.png")
-        this.damagebranchstage3 = $.loadImage($.w / 2, 450, "damagebranch3.png")
+        this.damagebranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialdamagebranch.png")
+        this.damagebranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/damagebranch2.png")
+        this.damagebranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/damagebranch3.png")
 
         // buttons
 
-        this.troopbutton = $.loadImage(660, 315, "button1.png")
-        this.fibrebutton = $.loadImage(65, 430, "button1.png")
-        this.silkbutton = $.loadImage(740, 500, "button1.png")
-        this.healthbutton = $.loadImage(620, 190, "button1.png")
-        this.speedbutton = $.loadImage(120, 310, "button1.png")
-        this.damagebutton = $.loadImage(270, 200, "button1.png")
+        this.troopbutton = $.loadImage(660, 315, "../engine/_buildtree/button1.png")
+        this.fibrebutton = $.loadImage(65, 430, "../engine/_buildtree/button1.png")
+        this.silkbutton = $.loadImage(740, 500, "../engine/_buildtree/button1.png")
+        this.healthbutton = $.loadImage(620, 190, "../engine/_buildtree/button1.png")
+        this.speedbutton = $.loadImage(120, 310, "../engine/_buildtree/button1.png")
+        this.damagebutton = $.loadImage(270, 200, "../engine/_buildtree/button1.png")
 
-        this.troopbutton2 = $.loadImage(660, 315, "button2.png")
-        this.fibrebutton2 = $.loadImage(65, 430, "button2.png")
-        this.silkbutton2 = $.loadImage(740, 500, "button2.png")
-        this.healthbutton2 = $.loadImage(620, 190, "button2.png")
-        this.speedbutton2 = $.loadImage(120, 310, "button2.png")
-        this.damagebutton2 = $.loadImage(270, 200, "button2.png")
+        this.troopbutton2 = $.loadImage(660, 315, "../engine/_buildtree/button2.png")
+        this.fibrebutton2 = $.loadImage(65, 430, "../engine/_buildtree/button2.png")
+        this.silkbutton2 = $.loadImage(740, 500, "../engine/_buildtree/button2.png")
+        this.healthbutton2 = $.loadImage(620, 190, "../engine/_buildtree/button2.png")
+        this.speedbutton2 = $.loadImage(120, 310, "../engine/_buildtree/button2.png")
+        this.damagebutton2 = $.loadImage(270, 200, "../engine/_buildtree/button2.png")
 
         // pop-up box
 
-        this.popup = $.loadImage($.w / 2, 670, "popup.png")
+        this.popup = $.loadImage($.w / 2, 670, "../engine/_buildtree/popup.png")
 
         // font
 
-        this.font = $.loadCustomFont("Pixelify Medium", "PixelifySans-Medium.ttf")
+        this.font = $.loadCustomFont("Pixelify Medium", "../engine/_buildtree/PixelifySans-Medium.ttf")
 
         // states
 

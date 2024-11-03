@@ -2,8 +2,8 @@ import { $ } from "../../lib/Pen.js";
 
 export class MainMenu {
     constructor() {
-        this.font = $.loadCustomFont("Pixelify Medium", "PixelifySans-Medium.ttf")
-        this.background = $.loadImage($.w / 2, $.h / 2, "menubackground.png")
+        this.font = $.loadCustomFont("Pixelify Medium", "../engine/_mainmenu/PixelifySans-Medium.ttf")
+        this.background = $.loadImage($.w / 2, $.h / 2, "../engine/_mainmenu/menubackground.png")
 
         // buttons
 

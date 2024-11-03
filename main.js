@@ -4,7 +4,7 @@ import { Factory } from "./engine/factory.js";
 import { Data } from "./engine/data.js";
 
 $.use(update);
-$.debug = true;
+$.debug = false;
 $.w = 800
 $.h = 800
 
