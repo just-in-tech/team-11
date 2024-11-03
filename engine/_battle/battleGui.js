@@ -77,12 +77,12 @@ export class BattleGui {
                     value: "ant",
                     playerSide: true
                 })
-                this.requests.push({    // fibre cost of 3
-                    type: "resource",
-                    action: "subtractValue",
-                    value: "fibre",
-                    amount: 3
-                })
+                // this.requests.push({    // fibre cost of 3
+                //     type: "resource",
+                //     action: "subtractValue",
+                //     value: "fibre",
+                //     amount: 3
+                // })
             }
         } else {
             this.antButton.background = "grey";
@@ -97,12 +97,12 @@ export class BattleGui {
                     value: "eagle",
                     playerSide: true
                 })
-                this.requests.push({    // fibre cost of 6
-                    type: "resource",
-                    action: "subtractValue",
-                    value: "fibre",
-                    amount: 6
-                })
+                // this.requests.push({    // fibre cost of 6
+                //     type: "resource",
+                //     action: "subtractValue",
+                //     value: "fibre",
+                //     amount: 6
+                // })
             }
         } else {
             this.eagleButton.background = "grey";
@@ -117,12 +117,12 @@ export class BattleGui {
                     value: "bear",
                     playerSide: true
                 })
-                this.requests.push({    // fibre cost of 6
-                    type: "resource",
-                    action: "subtractValue",
-                    value: "fibre",
-                    amount: 9
-                })
+                // this.requests.push({    // fibre cost of 6
+                //     type: "resource",
+                //     action: "subtractValue",
+                //     value: "fibre",
+                //     amount: 9
+                // })
             }
         } else {
             this.bearButton.background = "grey";

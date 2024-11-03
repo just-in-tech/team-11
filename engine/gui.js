@@ -6,11 +6,11 @@ import { BattleManager } from "./_battle/battleManager.js";
 import { treemenu } from "./_buildtree/treemenu.js";
 
 export class Gui {
-    constructor() {
+    constructor(data) {
         // p.s. can have "global UI" here
         this.mainMenu = new mainmenu();
         this.battleGui = new BattleGui();
-        this.battleManager = new BattleManager();
+        this.battleManager = new BattleManager(data);
         this.treeMenu = new treemenu();
     }
 

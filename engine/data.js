@@ -7,17 +7,17 @@ export class Data {
         this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
         
         this.playerAnimals = $.makeGroup();
-        this.enemyAnimals = $.makeGroup();
+        this.computerAnimals = $.makeGroup();
 
-        this.playerStats={
+        this.playerStats={  // PLAYER ANT IS GOOD
             ant:{
                 unlocked:1,   //bool true (1) is unlocked
                 damage: 3 , //damage to other animal
                 maxHealth: 10 , //
-                speed:  1, //speed the animal moves
-                attackintivel: 10, //how offen the animal attacks (in frames)
+                speed:  5, //speed the animal moves
+                acceleration: 1,
+                attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10 //price to put on the track
-                
             },
             eagle:{
                 unlocked: 0 ,   //bool true (1) is unlocked
@@ -35,9 +35,7 @@ export class Data {
                 speed:  3, //
                 priceInGame: 110
             },
-            treehealth:200
-            
-
+            treeHealth: 200
         };
 
         this.computerStats={
@@ -45,10 +43,10 @@ export class Data {
                 unlocked:1,   //bool true (1) is unlocked
                 damage: 3 , //damage to other animal
                 maxHealth: 10 , //
-                speed:  3, //speed the animal moves
-                attackintivel: 10, //how offen the animal attacks (in frames)
-                fibrecost: 10 //price to put on the track
-                
+                speed:  1, //speed the animal moves
+                acceleration: 1,
+                attackInterval: 200, //how offen the animal attacks (in frames)
+                priceInGame: 10 //price to put on the track
             },
             eagle:{
                 unlocked: 0 ,   //bool true (1) is unlocked
@@ -56,6 +54,7 @@ export class Data {
                 damage: 3 , //damage to other animal
                 maxHealth: 100 ,
                 speed:  3, //
+                attackInterval: 10,
                 fibreCost: 40 //
             },
             bear:{
@@ -64,34 +63,12 @@ export class Data {
                 damage: 3 , //damage to other animal
                 maxHealth: 5 , 
                 speed:  3, //
+                attackInterval: 10,
                 fibreCost: 100
             },
-            treehealth:200
-            
-
+            treeHealth: 200
         };
-
-
-        
-
-
-        
-        
-
-
-
-        // Branch Levels
-        // damage, 
-        // speed, 
-        // health, 
-        // troop unlock, 
-        // silk gen, 
-        // fibre gen
     }
-/*
-    if
-
-*/
 
 
 

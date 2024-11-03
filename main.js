@@ -8,9 +8,10 @@ $.debug = true;
 $.w = 800
 $.h = 800
 
-const gui = new Gui();
+
 const factory = new Factory();
 const data = new Data();
+const gui = new Gui(data);
 
 function update() {
     gui.update(data);

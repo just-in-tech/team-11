@@ -19,7 +19,7 @@ export class Resources {
     }
 
     // add a resource value
-   gain(resource, cost) {
+    gain(resource, cost) {
         if (request.value == "fibre") {
             this.fibre += request.value;
         } else if (request == "silk") {
