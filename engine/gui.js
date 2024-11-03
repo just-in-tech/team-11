@@ -18,7 +18,6 @@ export class Gui {
         if (data.gameState == "loading") {
             // draw loading
         } else if (data.gameState == "mainmenu") {
-            this.mainMenu.draw(data);
             this.mainMenu.draw();
             this.mainMenu.update(data)
         } else if (data.gameState == "treemenu") {

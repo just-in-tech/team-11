@@ -3,58 +3,58 @@ import { $ } from "../../lib/Pen.js";
 export class BuildTreeScene {
 
     constructor() {
-        this.treeimg = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialtrunk.png")
-        this.background = $.loadImage($.w / 2, $.h / 2, "../engine/_buildtree/scene.jpg")
+        this.treeimg = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialtrunk.png")
+        this.background = $.loadImage($.w / 2, $.h / 2, "./engine/_buildtree/scene.jpg")
 
         // branches
 
-        this.troopbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranchinitial.png")
-        this.troopbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranch2.png")
-        this.troopbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/troopbranch3.png")
+        this.troopbranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/troopbranchinitial.png")
+        this.troopbranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/troopbranch2.png")
+        this.troopbranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/troopbranch3.png")
 
-        this.healthbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialhealthbranch.png")
-        this.healthbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/healthbranch2.png")
-        this.healthbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/healthbranch3.png")
+        this.healthbranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialhealthbranch.png")
+        this.healthbranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/healthbranch2.png")
+        this.healthbranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/healthbranch3.png")
 
-        this.fibrebranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialfibrebranch.png")
-        this.fibrebranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/fibrebranch2.png")
-        this.fibrebranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/fibrebranch3.png")
+        this.fibrebranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialfibrebranch.png")
+        this.fibrebranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/fibrebranch2.png")
+        this.fibrebranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/fibrebranch3.png")
 
-        this.silkbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialsilkbranch.png")
-        this.silkbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/silkbranch2.png")
-        this.silkbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/silkbranch3.png")
+        this.silkbranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialsilkbranch.png")
+        this.silkbranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/silkbranch2.png")
+        this.silkbranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/silkbranch3.png")
 
-        this.speedbranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialspeedbranch.png")
-        this.speedbranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/speedbranch2.png")
-        this.speedbranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/speedbranch3.png")
+        this.speedbranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialspeedbranch.png")
+        this.speedbranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/speedbranch2.png")
+        this.speedbranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/speedbranch3.png")
 
-        this.damagebranchinitial = $.loadImage($.w / 2, 450, "../engine/_buildtree/initialdamagebranch.png")
-        this.damagebranchstage2 = $.loadImage($.w / 2, 450, "../engine/_buildtree/damagebranch2.png")
-        this.damagebranchstage3 = $.loadImage($.w / 2, 450, "../engine/_buildtree/damagebranch3.png")
+        this.damagebranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialdamagebranch.png")
+        this.damagebranchstage2 = $.loadImage($.w / 2, 450, "./engine/_buildtree/damagebranch2.png")
+        this.damagebranchstage3 = $.loadImage($.w / 2, 450, "./engine/_buildtree/damagebranch3.png")
 
         // buttons
 
-        this.troopbutton = $.loadImage(660, 315, "../engine/_buildtree/button1.png")
-        this.fibrebutton = $.loadImage(65, 430, "../engine/_buildtree/button1.png")
-        this.silkbutton = $.loadImage(740, 500, "../engine/_buildtree/button1.png")
-        this.healthbutton = $.loadImage(620, 190, "../engine/_buildtree/button1.png")
-        this.speedbutton = $.loadImage(120, 310, "../engine/_buildtree/button1.png")
-        this.damagebutton = $.loadImage(270, 200, "../engine/_buildtree/button1.png")
+        this.troopbutton = $.loadImage(660, 315, "./engine/_buildtree/button1.png")
+        this.fibrebutton = $.loadImage(65, 430, "./engine/_buildtree/button1.png")
+        this.silkbutton = $.loadImage(740, 500, "./engine/_buildtree/button1.png")
+        this.healthbutton = $.loadImage(620, 190, "./engine/_buildtree/button1.png")
+        this.speedbutton = $.loadImage(120, 310, "./engine/_buildtree/button1.png")
+        this.damagebutton = $.loadImage(270, 200, "./engine/_buildtree/button1.png")
 
-        this.troopbutton2 = $.loadImage(660, 315, "../engine/_buildtree/button2.png")
-        this.fibrebutton2 = $.loadImage(65, 430, "../engine/_buildtree/button2.png")
-        this.silkbutton2 = $.loadImage(740, 500, "../engine/_buildtree/button2.png")
-        this.healthbutton2 = $.loadImage(620, 190, "../engine/_buildtree/button2.png")
-        this.speedbutton2 = $.loadImage(120, 310, "../engine/_buildtree/button2.png")
-        this.damagebutton2 = $.loadImage(270, 200, "../engine/_buildtree/button2.png")
+        this.troopbutton2 = $.loadImage(660, 315, "./engine/_buildtree/button2.png")
+        this.fibrebutton2 = $.loadImage(65, 430, "./engine/_buildtree/button2.png")
+        this.silkbutton2 = $.loadImage(740, 500, "./engine/_buildtree/button2.png")
+        this.healthbutton2 = $.loadImage(620, 190, "./engine/_buildtree/button2.png")
+        this.speedbutton2 = $.loadImage(120, 310, "./engine/_buildtree/button2.png")
+        this.damagebutton2 = $.loadImage(270, 200, "./engine/_buildtree/button2.png")
 
         // pop-up box
 
-        this.popup = $.loadImage($.w / 2, 670, "../engine/_buildtree/popup.png")
+        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup.png")
 
         // font
 
-        this.font = $.loadCustomFont("Pixelify Medium", "../engine/_buildtree/PixelifySans-Medium.ttf")
+        this.font = $.loadCustomFont("Pixelify Medium", "./engine/_buildtree/PixelifySans-Medium.ttf")
 
         // states
 
@@ -205,8 +205,6 @@ export class BuildTreeScene {
             $.text.font = this.font
             $.text.print($.w / 2, 80, "BUILD YOUR TREE", 800)
         }
-
-
     }
 
     update(data) {
@@ -221,172 +219,172 @@ export class BuildTreeScene {
 
         // troop branch
 
-        if (($.mouse.x > scene.troopbutton.x - 20 && $.mouse.x < scene.troopbutton.x + 20) && ($.mouse.y > scene.troopbutton.y - 20 && $.mouse.y < scene.troopbutton.y + 20)) {
-            scene.troopbutton2.draw()
+        if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
+            this.troopbutton2.draw()
             this.popup.draw()
             $.text.size = 30
             $.colour.fill = "black"
             $.text.font = this.font
             $.text.print($.w / 2, 680, "BUY {TROOP} FOR {XXX} SILK?", 800)
             if ($.mouse.leftReleased) {
-                scene.troopbranchstate += 1
+                this.troopbranchstate += 1
             }
         }
 
-        if (scene.troopbranchstate == 2) {
-            scene.troopbranchstage2.draw()
-            scene.troopbutton.x = 680
-            scene.troopbutton.y = 320
+        if (this.troopbranchstate == 2) {
+            this.troopbranchstage2.draw()
+            this.troopbutton.x = 680
+            this.troopbutton.y = 320
 
-            scene.troopbutton2.x = 680
-            scene.troopbutton2.y = 320
+            this.troopbutton2.x = 680
+            this.troopbutton2.y = 320
         }
 
-        if (scene.troopbranchstate == 3 || scene.troopbranchstate > 3) {
-            scene.troopbranchstage3.draw()
-            scene.troopbutton.x = 730
-            scene.troopbutton.y = 280
+        if (this.troopbranchstate == 3 || this.troopbranchstate > 3) {
+            this.troopbranchstage3.draw()
+            this.troopbutton.x = 730
+            this.troopbutton.y = 280
 
-            scene.troopbutton2.x = 730
-            scene.troopbutton2.y = 280
+            this.troopbutton2.x = 730
+            this.troopbutton2.y = 280
         }
 
         // damage branch
 
-        if (($.mouse.x > scene.damagebutton.x - 20 && $.mouse.x < scene.damagebutton.x + 20) && ($.mouse.y > scene.damagebutton.y - 20 && $.mouse.y < scene.damagebutton.y + 20)) {
-            scene.damagebutton2.draw()
+        if (($.mouse.x > this.damagebutton.x - 20 && $.mouse.x < this.damagebutton.x + 20) && ($.mouse.y > this.damagebutton.y - 20 && $.mouse.y < this.damagebutton.y + 20)) {
+            this.damagebutton2.draw()
             if ($.mouse.leftReleased) {
-                scene.damagebranchstate += 1
+                this.damagebranchstate += 1
             }
         }
 
-        if (scene.damagebranchstate == 2) {
-            scene.damagebranchstage2.draw()
-            scene.damagebutton.x = 120
-            scene.damagebutton.y = 160
+        if (this.damagebranchstate == 2) {
+            this.damagebranchstage2.draw()
+            this.damagebutton.x = 120
+            this.damagebutton.y = 160
 
-            scene.damagebutton2.x = 120
-            scene.damagebutton2.y = 160
+            this.damagebutton2.x = 120
+            this.damagebutton2.y = 160
         }
 
-        if (scene.damagebranchstate == 3 || scene.damagebranchstate > 3) {
-            scene.damagebranchstage3.draw()
-            scene.damagebutton.x = 160
-            scene.damagebutton.y = 70
+        if (this.damagebranchstate == 3 || this.damagebranchstate > 3) {
+            this.damagebranchstage3.draw()
+            this.damagebutton.x = 160
+            this.damagebutton.y = 70
 
-            scene.damagebutton2.x = 160
-            scene.damagebutton2.y = 70
+            this.damagebutton2.x = 160
+            this.damagebutton2.y = 70
         }
 
 
         // speed branch
 
-        if (($.mouse.x > scene.speedbutton.x - 20 && $.mouse.x < scene.speedbutton.x + 20) && ($.mouse.y > scene.speedbutton.y - 20 && $.mouse.y < scene.speedbutton.y + 20)) {
-            scene.speedbutton2.draw()
+        if (($.mouse.x > this.speedbutton.x - 20 && $.mouse.x < this.speedbutton.x + 20) && ($.mouse.y > this.speedbutton.y - 20 && $.mouse.y < this.speedbutton.y + 20)) {
+            this.speedbutton2.draw()
             if ($.mouse.leftReleased) {
-                scene.speedbranchstate += 1
+                this.speedbranchstate += 1
             }
         }
 
-        if (scene.speedbranchstate == 2) {
-            scene.speedbranchstage2.draw()
-            scene.speedbutton.x = 100
-            scene.speedbutton.y = 310
+        if (this.speedbranchstate == 2) {
+            this.speedbranchstage2.draw()
+            this.speedbutton.x = 100
+            this.speedbutton.y = 310
 
-            scene.speedbutton2.x = 100
-            scene.speedbutton2.y = 310
+            this.speedbutton2.x = 100
+            this.speedbutton2.y = 310
         }
 
-        if (scene.speedbranchstate == 3 || scene.speedbranchstate > 3) {
-            scene.speedbranchstage3.draw()
-            scene.speedbutton.x = 70
-            scene.speedbutton.y = 270
+        if (this.speedbranchstate == 3 || this.speedbranchstate > 3) {
+            this.speedbranchstage3.draw()
+            this.speedbutton.x = 70
+            this.speedbutton.y = 270
 
-            scene.speedbutton2.x = 70
-            scene.speedbutton2.y = 270
+            this.speedbutton2.x = 70
+            this.speedbutton2.y = 270
         }
 
         // silk branch
 
-        if (($.mouse.x > scene.silkbutton.x - 20 && $.mouse.x < scene.silkbutton.x + 20) && ($.mouse.y > scene.silkbutton.y - 20 && $.mouse.y < scene.silkbutton.y + 20)) {
-            scene.silkbutton2.draw()
+        if (($.mouse.x > this.silkbutton.x - 20 && $.mouse.x < this.silkbutton.x + 20) && ($.mouse.y > this.silkbutton.y - 20 && $.mouse.y < this.silkbutton.y + 20)) {
+            this.silkbutton2.draw()
             if ($.mouse.leftReleased) {
-                scene.silkbranchstate += 1
+                this.silkbranchstate += 1
             }
         }
 
-        if (scene.silkbranchstate == 2) {
-            scene.silkbranchstage2.draw()
-            scene.silkbutton.x = 740
-            scene.silkbutton.y = 500
+        if (this.silkbranchstate == 2) {
+            this.silkbranchstage2.draw()
+            this.silkbutton.x = 740
+            this.silkbutton.y = 500
 
-            scene.silkbutton2.x = 740
-            scene.silkbutton2.y = 500
+            this.silkbutton2.x = 740
+            this.silkbutton2.y = 500
         }
 
-        if (scene.silkbranchstate == 3 || scene.silkbranchstate > 3) {
-            scene.silkbranchstage3.draw()
-            scene.silkbutton.x = 740
-            scene.silkbutton.y = 500
+        if (this.silkbranchstate == 3 || this.silkbranchstate > 3) {
+            this.silkbranchstage3.draw()
+            this.silkbutton.x = 740
+            this.silkbutton.y = 500
 
-            scene.silkbutton2.x = 740
-            scene.silkbutton2.y = 500
+            this.silkbutton2.x = 740
+            this.silkbutton2.y = 500
         }
 
 
         // fibre branch
 
-        if (($.mouse.x > scene.fibrebutton.x - 20 && $.mouse.x < scene.fibrebutton.x + 20) && ($.mouse.y > scene.fibrebutton.y - 20 && $.mouse.y < scene.fibrebutton.y + 20)) {
-            scene.fibrebutton2.draw()
+        if (($.mouse.x > this.fibrebutton.x - 20 && $.mouse.x < this.fibrebutton.x + 20) && ($.mouse.y > this.fibrebutton.y - 20 && $.mouse.y < this.fibrebutton.y + 20)) {
+            this.fibrebutton2.draw()
             if ($.mouse.leftReleased) {
-                scene.fibrebranchstate += 1
+                this.fibrebranchstate += 1
             }
         }
 
-        if (scene.fibrebranchstate == 2) {
-            scene.fibrebranchstage2.draw()
-            scene.fibrebutton.x = 65
-            scene.fibrebutton.y = 430
+        if (this.fibrebranchstate == 2) {
+            this.fibrebranchstage2.draw()
+            this.fibrebutton.x = 65
+            this.fibrebutton.y = 430
 
-            scene.fibrebutton2.x = 65
-            scene.fibrebutton2.y = 430
+            this.fibrebutton2.x = 65
+            this.fibrebutton2.y = 430
         }
 
-        if (scene.fibrebranchstate == 3 || scene.fibrebranchstate > 3) {
-            scene.fibrebranchstage3.draw()
-            scene.fibrebutton.x = 45
-            scene.fibrebutton.y = 380
+        if (this.fibrebranchstate == 3 || this.fibrebranchstate > 3) {
+            this.fibrebranchstage3.draw()
+            this.fibrebutton.x = 45
+            this.fibrebutton.y = 380
 
-            scene.fibrebutton2.x = 45
-            scene.fibrebutton2.y = 380
+            this.fibrebutton2.x = 45
+            this.fibrebutton2.y = 380
         }
 
 
         // health branch
 
-        if (($.mouse.x > scene.healthbutton.x - 20 && $.mouse.x < scene.healthbutton.x + 20) && ($.mouse.y > scene.healthbutton.y - 20 && $.mouse.y < scene.healthbutton.y + 20)) {
-            scene.healthbutton2.draw()
+        if (($.mouse.x > this.healthbutton.x - 20 && $.mouse.x < this.healthbutton.x + 20) && ($.mouse.y > this.healthbutton.y - 20 && $.mouse.y < this.healthbutton.y + 20)) {
+            this.healthbutton2.draw()
             if ($.mouse.leftReleased) {
-                scene.healthbranchstate += 1
+                this.healthbranchstate += 1
             }
         }
 
-        if (scene.healthbranchstate == 2) {
-            scene.healthbranchstage2.draw()
-            scene.healthbutton.x = 660
-            scene.healthbutton.y = 190
+        if (this.healthbranchstate == 2) {
+            this.healthbranchstage2.draw()
+            this.healthbutton.x = 660
+            this.healthbutton.y = 190
 
-            scene.healthbutton2.x = 660
-            scene.healthbutton2.y = 190
+            this.healthbutton2.x = 660
+            this.healthbutton2.y = 190
         }
 
-        if (scene.healthbranchstate == 3 || scene.healthbranchstate > 3) {
-            scene.healthbranchstage3.draw()
-            scene.healthbutton.x = 650
-            scene.healthbutton.y = 110
+        if (this.healthbranchstate == 3 || this.healthbranchstate > 3) {
+            this.healthbranchstage3.draw()
+            this.healthbutton.x = 650
+            this.healthbutton.y = 110
 
-            scene.healthbutton2.x = 650
-            scene.healthbutton2.y = 110
+            this.healthbutton2.x = 650
+            this.healthbutton2.y = 110
         }
 
     }

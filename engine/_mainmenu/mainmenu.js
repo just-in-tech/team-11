@@ -2,8 +2,8 @@ import { $ } from "../../lib/Pen.js";
 
 export class MainMenu {
     constructor() {
-        this.font = $.loadCustomFont("Pixelify Medium", "../engine/_mainmenu/PixelifySans-Medium.ttf")
-        this.background = $.loadImage($.w / 2, $.h / 2, "../engine/_mainmenu/menubackground.png")
+        this.font = $.loadCustomFont("Pixelify Medium", "./engine/_mainmenu/PixelifySans-Medium.ttf")
+        this.background = $.loadImage($.w / 2, $.h / 2, "./engine/_mainmenu/menubackground.png")
 
         // buttons
 
@@ -28,7 +28,6 @@ export class MainMenu {
         this.background.h = 1000
 
         $.text.size = 80
-        $.colour.fill = "white"
         $.text.font = this.font
 
         $.text.print($.w / 2, 120, "'TREE GAME'", 800)

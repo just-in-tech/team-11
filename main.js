@@ -8,7 +8,6 @@ $.debug = false;
 $.w = 800
 $.h = 800
 
-
 const factory = new Factory();
 const data = new Data();
 const gui = new Gui(data);
@@ -18,5 +17,6 @@ function update() {
     const requests = gui.getRequests(data);
     factory.processRequests(requests, data);
     data.update(requests);
-    $.drawColliders();
+    //$.drawColliders();
+
 }
