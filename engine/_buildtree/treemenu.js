@@ -48,6 +48,8 @@ export class BuildTreeScene {
         this.speedbutton2 = $.loadImage(120, 310, "./engine/_buildtree/button2.png")
         this.damagebutton2 = $.loadImage(270, 200, "./engine/_buildtree/button2.png")
 
+        this.battlebutton = $.makeButton(100, 750, 150, 50, "BATTLE")
+
         // pop-up box
 
         this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup.png")
@@ -169,6 +171,8 @@ export class BuildTreeScene {
         this.healthbutton.w = 60
         this.healthbutton.h = 60
 
+        this.battlebutton.draw()
+
 
         // hover/pressed state of buttons
 
@@ -211,9 +215,9 @@ export class BuildTreeScene {
 
         // check gamestate
 
-        // if(this.battlebtn.up){
-        //     data.gameState="battle";
-        //     }
+        if (this.battlebutton.up) {
+            data.gameState = "battle";
+        }
 
         // UPGRADE BRANCHES
 
