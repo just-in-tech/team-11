@@ -60,10 +60,7 @@ export class BuildTreeScene {
 
         this.font = $.loadCustomFont("Pixelify Medium", "./engine/_buildtree/PixelifySans-Medium.ttf")
 
-        //initail tree
-
-        this.treeimg.w = 600
-        this.treeimg.h = 600
+        
 
         // troop branch
 
@@ -159,6 +156,9 @@ export class BuildTreeScene {
             this.damagebranchcurrentstage.w = 600
             this.damagebranchcurrentstage.h = 600
 
+            this.treeimg.w = 600
+            this.treeimg.h = 600
+
             this.firstTime=0
         }
 
@@ -166,6 +166,8 @@ export class BuildTreeScene {
 
         //create background and initial tree
 
+
+        
         this.background.draw()
         this.treeimg.draw()
 
@@ -188,7 +190,7 @@ export class BuildTreeScene {
         //if ($.frameCount == this.currentframe || $.frameCount < this.currentframe + 1000) {
 
             $.text.size = 60
-            $.colour.fill = "white"
+            $.colour.fill = "blue"
             $.text.font = this.font
             $.text.print($.w / 2, 80, "BUILD YOUR TREE", 800)
         //}
@@ -208,6 +210,8 @@ export class BuildTreeScene {
 
         // troop branch
 
+        //$.math.distance()
+
         if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
             
             this.activebutton.x = this.troopbutton.x
@@ -222,10 +226,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.troopbranchstate += 1
                 if(this.troopbranchstate == 2){
-                    setnewstage(this.troopbranchcurrentstage,this.troopbranchstage2,600,600,this.troopbutton,680,320)
+                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage2,600,600,this.troopbutton,680,320)
                     
                 }else if (this.troopbranchstate == 3){
-                    setnewstage(this.troopbranchcurrentstage,this.troopbranchstage3,600,600,this.troopbutton,730,280)
+                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage3,600,600,this.troopbutton,730,280)
 
                 }
             }
@@ -243,10 +247,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.damagebranchstate += 1
                 if (this.damagebranchstate == 2) {
-                    setnewstage(this.damagebranchcurrentstage,this.damagebranchstage2,900,900,this.damagebutton,120,160)
+                    this.setnewstage("damagebranchcurrentstage",this.damagebranchcurrentstage,this.damagebranchstage2,900,900,this.damagebutton,120,160)
 
                 }else if (this.damagebranchstate == 3) {
-                    setnewstage(this.damagebranchcurrentstage,this.damagebranchstage3,900,900,this.damagebutton,160,70)
+                    this.setnewstage("damagebranchcurrentstage",this.damagebranchcurrentstage,this.damagebranchstage3,900,900,this.damagebutton,160,70)
                     
                 }
             }
@@ -266,10 +270,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.speedbranchstate += 1
                 if (this.speedbranchstate == 2) {
-                    setnewstage(this.speedbranchcurrentstage,this.speedbranchstage2,600,600,this.speedbutton,100,310)
+                    this.setnewstage("speedbranchcurrentstage",this.speedbranchcurrentstage,this.speedbranchstage2,600,600,this.speedbutton,100,310)
 
                 }else if (this.speedbranchstate == 3) {
-                    setnewstage(this.speedbranchcurrentstage,this.speedbranchstage3,600,600,this.speedbutton,70,270)
+                    this.setnewstage("speedbranchcurrentstage",this.speedbranchcurrentstage,this.speedbranchstage3,600,600,this.speedbutton,70,270)
 
                 }
             }
@@ -288,10 +292,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.silkbranchstate += 1
                 if (this.silkbranchstate == 2) {
-                    setnewstage(this.silkbranchcurrentstage,this.silkbranchstage2,600,600,this.silkbutton,740,500)
+                    this.setnewstage("silkbranchcurrentstage",this.silkbranchcurrentstage,this.silkbranchstage2,600,600,this.silkbutton,740,500)
 
                 }else if (this.silkbranchstate == 3) {
-                    setnewstage(this.silkbranchcurrentstage,this.silkbranchstage3,600,600,this.silkbutton,740,500)
+                    this.setnewstage("silkbranchcurrentstage",this.silkbranchcurrentstage,this.silkbranchstage3,600,600,this.silkbutton,740,500)
 
                 }
             }
@@ -308,10 +312,10 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.fibrebranchstate += 1
                 if (this.fibrebranchstate == 2) {
-                    setnewstage(this.fibrebranchcurrentstage,this.fibrebranchstage2,600,600,this.fibrebutton,65,430)
+                    this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage2,600,600,this.fibrebutton,65,430)
                    
                 }else if (this.fibrebranchstate == 3) {
-                    setnewstage(this.fibrebranchcurrentstage,this.fibrebranchstage3,900,900,this.fibrebutton,45,380)
+                    this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage3,900,900,this.fibrebutton,45,380)
                     
                 }
             }
@@ -329,26 +333,25 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 this.healthbranchstate += 1
                 if (this.healthbranchstate == 2) {
-                    setnewstage(this.healthbranchcurrentstage,this.healthbranchstage2,900,900,this.healthbutton,660,190)        
+                    this.setnewstage("healthbranchcurrentstage",this.healthbranchcurrentstage,this.healthbranchstage2,900,900,this.healthbutton,660,190)        
                     
                 }else if (this.healthbranchstate == 3 ) {
-                    setnewstage(this.healthbranchcurrentstage,this.healthbranchstage3,900,900,this.healthbutton,650,110) 
+                    this.setnewstage("healthbranchcurrentstage",this.healthbranchcurrentstage,this.healthbranchstage3,900,900,this.healthbutton,650,110) 
                 }
             }
         }
         this.healthbranchcurrentstage.draw()
-        
-
     }
 
-    setnewstage(currentBranchStage,newBranchStage,w,h,button,buttonx,buttony){
-        currentBranchStage=newBranchStage
+    setnewstage(currentBranchString,currentBranchStage,newBranchStage,w,h,button,buttonx,buttony){
+        console.log(currentBranchStage, newBranchStage)
+        //currentBranchStage=newBranchStage
+        this[currentBranchString]=newBranchStage
+        this[currentBranchString].w = w
+        this[currentBranchString].h = h
                     
-                    currentBranchStage.w = w
-                    currentBranchStage.h = h
-                    
-                    button.x = buttonx
-                    button.y = buttony
+        button.x = buttonx
+        button.y = buttony
     }
 
     getRequests() {
