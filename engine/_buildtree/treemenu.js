@@ -52,11 +52,12 @@ export class BuildTreeScene {
 
         // pop-up box
 
-        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup.png")
+        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup1.png")
 
         // font
 
         this.font = $.loadCustomFont("Pixelify Medium", "./engine/_buildtree/PixelifySans-Medium.ttf")
+        this.fonttitle = $.loadCustomFont("Hachiro Undertale Battle Font", "./engine/_buildtree/HachicroUndertaleBattleFontRegular-L3zlg.ttf")
 
         // states
 
@@ -197,16 +198,16 @@ export class BuildTreeScene {
         // popup
 
         //this.popup.draw()
-        this.popup.h = 150
-        //this.popup.w = 450
+        this.popup.h = 280
+        this.popup.w = 670
 
         // display opening text
 
         if ($.frameCount == this.currentframe || $.frameCount < this.currentframe + 1000) {
 
-            $.text.size = 60
+            $.text.size = 45
             $.colour.fill = "white"
-            $.text.font = this.font
+            $.text.font = this.fonttitle
             $.text.print($.w / 2, 80, "BUILD YOUR TREE", 800)
         }
     }
@@ -225,11 +226,18 @@ export class BuildTreeScene {
 
         if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
             this.troopbutton2.draw()
-            this.popup.draw()
-            $.text.size = 30
-            $.colour.fill = "black"
-            $.text.font = this.font
-            $.text.print($.w / 2, 680, "BUY {TROOP} FOR {XXX} SILK?", 800)
+            if (this.troopbranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "TROOP BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND BUY EAGLE FOR {XXX} SILK?", 800)
+            }
+
             if ($.mouse.leftReleased) {
                 this.troopbranchstate += 1
             }
@@ -242,6 +250,18 @@ export class BuildTreeScene {
 
             this.troopbutton2.x = 680
             this.troopbutton2.y = 320
+
+            if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "TROOP BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND BUY BEAR FOR {XXX} SILK?", 800)
+            }
         }
 
         if (this.troopbranchstate == 3 || this.troopbranchstate > 3) {
@@ -251,12 +271,36 @@ export class BuildTreeScene {
 
             this.troopbutton2.x = 730
             this.troopbutton2.y = 280
+
+            if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "TROOP BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 800)
+            }
         }
 
         // damage branch
 
         if (($.mouse.x > this.damagebutton.x - 20 && $.mouse.x < this.damagebutton.x + 20) && ($.mouse.y > this.damagebutton.y - 20 && $.mouse.y < this.damagebutton.y + 20)) {
             this.damagebutton2.draw()
+            if (this.damagebranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "DAMAGE BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TROOP DAMAGE BY {X}% FOR {XXX} SILK?", 450)
+            }
+
             if ($.mouse.leftReleased) {
                 this.damagebranchstate += 1
             }
@@ -269,6 +313,18 @@ export class BuildTreeScene {
 
             this.damagebutton2.x = 120
             this.damagebutton2.y = 160
+
+            if (($.mouse.x > this.damagebutton.x - 20 && $.mouse.x < this.damagebutton.x + 20) && ($.mouse.y > this.damagebutton.y - 20 && $.mouse.y < this.damagebutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "DAMAGE BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TROOP DAMAGE BY {X}% FOR {XXX} SILK?", 450)
+            }
         }
 
         if (this.damagebranchstate == 3 || this.damagebranchstate > 3) {
@@ -278,6 +334,18 @@ export class BuildTreeScene {
 
             this.damagebutton2.x = 160
             this.damagebutton2.y = 70
+
+            if (($.mouse.x > this.damagebutton.x - 20 && $.mouse.x < this.damagebutton.x + 20) && ($.mouse.y > this.damagebutton.y - 20 && $.mouse.y < this.damagebutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "DAMAGE BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 450)
+            }
         }
 
 
@@ -285,6 +353,18 @@ export class BuildTreeScene {
 
         if (($.mouse.x > this.speedbutton.x - 20 && $.mouse.x < this.speedbutton.x + 20) && ($.mouse.y > this.speedbutton.y - 20 && $.mouse.y < this.speedbutton.y + 20)) {
             this.speedbutton2.draw()
+            if (this.speedbranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SPEED BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TROOP SPEED BY {X}% FOR {XXX} SILK?", 450)
+            }
+
             if ($.mouse.leftReleased) {
                 this.speedbranchstate += 1
             }
@@ -297,6 +377,18 @@ export class BuildTreeScene {
 
             this.speedbutton2.x = 100
             this.speedbutton2.y = 310
+
+            if (($.mouse.x > this.speedbutton.x - 20 && $.mouse.x < this.speedbutton.x + 20) && ($.mouse.y > this.speedbutton.y - 20 && $.mouse.y < this.speedbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SPEED BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TROOP SPEED BY {X}% FOR {XXX} SILK?", 450)
+            }
         }
 
         if (this.speedbranchstate == 3 || this.speedbranchstate > 3) {
@@ -306,12 +398,35 @@ export class BuildTreeScene {
 
             this.speedbutton2.x = 70
             this.speedbutton2.y = 270
+
+            if (($.mouse.x > this.speedbutton.x - 20 && $.mouse.x < this.speedbutton.x + 20) && ($.mouse.y > this.speedbutton.y - 20 && $.mouse.y < this.speedbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SPEED BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 450)
+            }
         }
 
         // silk branch
 
         if (($.mouse.x > this.silkbutton.x - 20 && $.mouse.x < this.silkbutton.x + 20) && ($.mouse.y > this.silkbutton.y - 20 && $.mouse.y < this.silkbutton.y + 20)) {
             this.silkbutton2.draw()
+            if (this.silkbranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SILK BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 15
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE SILK PRODUCTION BY {X}% FOR {XXX} SILK?", 450)
+            }
             if ($.mouse.leftReleased) {
                 this.silkbranchstate += 1
             }
@@ -324,6 +439,18 @@ export class BuildTreeScene {
 
             this.silkbutton2.x = 740
             this.silkbutton2.y = 500
+
+            if (($.mouse.x > this.silkbutton.x - 20 && $.mouse.x < this.silkbutton.x + 20) && ($.mouse.y > this.silkbutton.y - 20 && $.mouse.y < this.silkbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SILK BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 15
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE SILK PRODUCTION BY {X}% FOR {XXX} SILK?", 450)
+            }
         }
 
         if (this.silkbranchstate == 3 || this.silkbranchstate > 3) {
@@ -333,6 +460,18 @@ export class BuildTreeScene {
 
             this.silkbutton2.x = 740
             this.silkbutton2.y = 500
+
+            if (($.mouse.x > this.silkbutton.x - 20 && $.mouse.x < this.silkbutton.x + 20) && ($.mouse.y > this.silkbutton.y - 20 && $.mouse.y < this.silkbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "SILK BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 450)
+            }
         }
 
 
@@ -340,6 +479,17 @@ export class BuildTreeScene {
 
         if (($.mouse.x > this.fibrebutton.x - 20 && $.mouse.x < this.fibrebutton.x + 20) && ($.mouse.y > this.fibrebutton.y - 20 && $.mouse.y < this.fibrebutton.y + 20)) {
             this.fibrebutton2.draw()
+            if (this.fibrebranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "FIBRE BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 15
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE FIBRE PRODUCTION BY {X}% FOR {XXX} SILK?", 450)
+            }
             if ($.mouse.leftReleased) {
                 this.fibrebranchstate += 1
             }
@@ -352,6 +502,18 @@ export class BuildTreeScene {
 
             this.fibrebutton2.x = 65
             this.fibrebutton2.y = 430
+
+            if (($.mouse.x > this.fibrebutton.x - 20 && $.mouse.x < this.fibrebutton.x + 20) && ($.mouse.y > this.fibrebutton.y - 20 && $.mouse.y < this.fibrebutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "FIBRE BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 15
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE FIBRE PRODUCTION BY {X}% FOR {XXX} SILK?", 450)
+            }
         }
 
         if (this.fibrebranchstate == 3 || this.fibrebranchstate > 3) {
@@ -361,6 +523,18 @@ export class BuildTreeScene {
 
             this.fibrebutton2.x = 45
             this.fibrebutton2.y = 380
+
+            if (($.mouse.x > this.fibrebutton.x - 20 && $.mouse.x < this.fibrebutton.x + 20) && ($.mouse.y > this.fibrebutton.y - 20 && $.mouse.y < this.fibrebutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "FIBRE BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 450)
+            }
         }
 
 
@@ -368,6 +542,17 @@ export class BuildTreeScene {
 
         if (($.mouse.x > this.healthbutton.x - 20 && $.mouse.x < this.healthbutton.x + 20) && ($.mouse.y > this.healthbutton.y - 20 && $.mouse.y < this.healthbutton.y + 20)) {
             this.healthbutton2.draw()
+            if (this.healthbranchstate == 1) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "HEALTH BRANCH LEVEL 1", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TREE HEALTH BY {X} FOR {XXX} SILK?", 450)
+            }
             if ($.mouse.leftReleased) {
                 this.healthbranchstate += 1
             }
@@ -380,6 +565,18 @@ export class BuildTreeScene {
 
             this.healthbutton2.x = 660
             this.healthbutton2.y = 190
+
+            if (($.mouse.x > this.healthbutton.x - 20 && $.mouse.x < this.healthbutton.x + 20) && ($.mouse.y > this.healthbutton.y - 20 && $.mouse.y < this.healthbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "HEALTH BRANCH LEVEL 2", 800)
+                $.text.font = this.font
+                $.text.size = 16
+                $.colour.fill = "green"
+                $.text.print($.w / 2, 675, "UPGRADE AND INCREASE TREE HEALTH BY {X} FOR {XXX} SILK?", 450)
+            }
         }
 
         if (this.healthbranchstate == 3 || this.healthbranchstate > 3) {
@@ -389,6 +586,18 @@ export class BuildTreeScene {
 
             this.healthbutton2.x = 650
             this.healthbutton2.y = 110
+
+            if (($.mouse.x > this.healthbutton.x - 20 && $.mouse.x < this.healthbutton.x + 20) && ($.mouse.y > this.healthbutton.y - 20 && $.mouse.y < this.healthbutton.y + 20)) {
+                this.popup.draw()
+                $.colour.fill = "black"
+                $.text.font = this.fonttitle
+                $.text.size = 20
+                $.text.print($.w / 2, 640, "HEALTH BRANCH LEVEL 3", 800)
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "red"
+                $.text.print($.w / 2, 675, "MAX LEVEL REACHED", 450)
+            }
         }
 
     }
