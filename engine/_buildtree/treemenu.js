@@ -49,6 +49,7 @@ export class BuildTreeScene {
         this.damagebutton2 = $.loadImage(270, 200, "./engine/_buildtree/button2.png")
 
         this.battlebutton = $.makeButton(100, 750, 150, 50, "BATTLE")
+        this.OP_treemenuButton = $.makeButton(250, 750, 150, 50, "OP_tree") //remove line when merging
 
         // pop-up box
 
@@ -173,6 +174,7 @@ export class BuildTreeScene {
         this.healthbutton.h = 60
 
         this.battlebutton.draw()
+        this.OP_treemenuButton.draw()
 
 
         // hover/pressed state of buttons
@@ -216,9 +218,12 @@ export class BuildTreeScene {
 
         // check gamestate
 
-        if (this.battlebutton.up) {
+        if (this.battlebutton.up) {      
             data.gameState = "battle";
         }
+        if(this.OP_treemenuButton.up){        //to be removed when hollys and justin's treemenus are merged
+            data.gameState = "treemenu_op"    //   ⮟
+        }                                     //_______
 
         // UPGRADE BRANCHES
 
