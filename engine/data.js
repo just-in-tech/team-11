@@ -53,7 +53,7 @@ export class Data {
                 unlockPrice: 200 ,
                 damage: 3 , //damage to other animal
                 maxHealth: 100 ,
-                speed:  3, //
+                speed:  5, //
                 attackInterval: 10,
                 fibreCost: 40 //
             },
@@ -68,6 +68,144 @@ export class Data {
             },
             treeHealth: 200
         };
+    }
+
+    statsUpgrades={
+        troopbranch:{
+            eagle:{
+                upgradecost:200,
+                
+            },
+            bear:{
+                upgradecost:350,
+                
+            },
+        },
+        damagebranch:{
+            
+            level2:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                
+                },
+                eagle:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                }
+            },
+            level3:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                },
+                eagle:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    damage:10,
+                    attackInterval:10,
+                }
+
+            },
+        },
+        speedbranch:{
+            level2:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    speed:10,
+                },
+                eagle:{
+                    newingamepirce:10,
+                    speed:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    speed:10,
+                }
+            },
+            level3:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    speed:10,
+                },
+                eagle:{
+                    newingamepirce:10,
+                    speed:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    speed:10,
+                }
+
+            },
+        },
+        silkbranch:{
+            
+            level2:{
+                upgradecost:200,
+            },
+            level3:{
+                upgradecost:200,
+            },
+        },
+        fibrebranch:{
+            
+            level2:{
+                upgradecost:200,
+            },
+            level3:{
+                upgradecost:200,
+            },
+        },
+        healthbranch:{
+            level2:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                },
+                eagle:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                }
+            },
+            level3:{
+                upgradecost:200,
+                ant:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                },
+                eagle:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                },
+                bear:{
+                    newingamepirce:10,
+                    maxHealth:10,
+                }
+
+            },
+        },
     }
 
 
