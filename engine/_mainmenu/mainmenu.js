@@ -12,7 +12,7 @@ export class MainMenu {
 
         // pop-up instructions
 
-        this.popupbackground = $.makeBoxCollider($.w / 2, $.h / 2 + 100, 700, 700)
+        //this.popupbackground = $.makeBoxCollider($.w / 2, $.h / 2 + 100, 700, 700)
         this.exitinstbutton = $.makeButton(720, 80, 30, 30, "X")
 
         // states
@@ -47,7 +47,8 @@ export class MainMenu {
             this.instructionstate = 1
         }
         if (this.instructionstate == 1) {
-            this.popupbackground.draw()
+            //this.popupbackground.draw()
+            $.shape.rectangle($.w / 2, $.h / 2 + 100, 700, 700)
             this.exitinstbutton.draw()
             if (this.exitinstbutton.down) {
                 this.instructionstate = 0
