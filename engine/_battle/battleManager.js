@@ -68,7 +68,7 @@ export class BattleManager {
         if ((group.speed + group.acceleration) > 5) {
             group.speed = 5;
         } else if (group.speed < 5) {
-            group.speed += 5/100;
+            group.speed += group.acceleration/100;
         }
     }
 
