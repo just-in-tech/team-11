@@ -54,12 +54,12 @@ export class BuildTreeScene {
         
         // pop-up box
 
-        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup.png")
+        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup1.png")
 
         // font
 
         this.font = $.loadCustomFont("Pixelify Medium", "./engine/_buildtree/PixelifySans-Medium.ttf")
-
+        this.fonttitle = $.loadCustomFont("Hachiro Undertale Battle Font", "./engine/_buildtree/HachicroUndertaleBattleFontRegular-L3zlg.ttf")
         
 
         // troop branch
@@ -89,31 +89,7 @@ export class BuildTreeScene {
         //create buttons
 
         
-        this.fibrebutton.w = 60
-        this.fibrebutton.h = 60
-
         
-        this.troopbutton.w = 60
-        this.troopbutton.h = 60
-
-        
-        this.silkbutton.w = 60
-        this.silkbutton.h = 60
-
-        
-        this.damagebutton.w = 60
-        this.damagebutton.h = 60
-
-        
-        this.speedbutton.w = 60
-        this.speedbutton.h = 60
-
-        
-        this.healthbutton.w = 60
-        this.healthbutton.h = 60
-
-        this.activebutton.w = 65
-        this.activebutton.h = 65
 
 
         
@@ -158,6 +134,32 @@ export class BuildTreeScene {
 
             this.treeimg.w = 600
             this.treeimg.h = 600
+
+            this.fibrebutton.w = 60
+        this.fibrebutton.h = 60
+
+        
+        this.troopbutton.w = 60
+        this.troopbutton.h = 60
+
+        
+        this.silkbutton.w = 60
+        this.silkbutton.h = 60
+
+        
+        this.damagebutton.w = 60
+        this.damagebutton.h = 60
+
+        
+        this.speedbutton.w = 60
+        this.speedbutton.h = 60
+
+        
+        this.healthbutton.w = 60
+        this.healthbutton.h = 60
+
+        this.activebutton.w = 65
+        this.activebutton.h = 65
 
             this.firstTime=0
         }
@@ -212,7 +214,7 @@ export class BuildTreeScene {
 
         //$.math.distance()
 
-        if (($.mouse.x > this.troopbutton.x - 20 && $.mouse.x < this.troopbutton.x + 20) && ($.mouse.y > this.troopbutton.y - 20 && $.mouse.y < this.troopbutton.y + 20)) {
+        if ($.math.distance(this.troopbutton.x,this.troopbutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.troopbutton.x
             this.activebutton.y = this.troopbutton.y
@@ -239,7 +241,7 @@ export class BuildTreeScene {
 
         // damage branch
 
-        if (($.mouse.x > this.damagebutton.x - 20 && $.mouse.x < this.damagebutton.x + 20) && ($.mouse.y > this.damagebutton.y - 20 && $.mouse.y < this.damagebutton.y + 20)) {
+        if ($.math.distance(this.damagebutton.x,this.damagebutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.damagebutton.x
             this.activebutton.y = this.damagebutton.y
@@ -262,7 +264,7 @@ export class BuildTreeScene {
 
         // speed branch
 
-        if (($.mouse.x > this.speedbutton.x - 20 && $.mouse.x < this.speedbutton.x + 20) && ($.mouse.y > this.speedbutton.y - 20 && $.mouse.y < this.speedbutton.y + 20)) {
+        if ($.math.distance(this.speedbutton.x,this.speedbutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.speedbutton.x
             this.activebutton.y = this.speedbutton.y
@@ -284,7 +286,7 @@ export class BuildTreeScene {
 
         // silk branch
 
-        if (($.mouse.x > this.silkbutton.x - 20 && $.mouse.x < this.silkbutton.x + 20) && ($.mouse.y > this.silkbutton.y - 20 && $.mouse.y < this.silkbutton.y + 20)) {
+        if ($.math.distance(this.silkbutton.x,this.silkbutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.silkbutton.x
             this.activebutton.y = this.silkbutton.y
@@ -303,8 +305,9 @@ export class BuildTreeScene {
         this.silkbranchcurrentstage.draw()
 
         // fibre branch
+        console.log($.math.distance(this.fibrebutton.x,this.fibrebutton.y,$.mouse.x,$.mouse.y)<=30)
 
-        if (($.mouse.x > this.fibrebutton.x - 20 && $.mouse.x < this.fibrebutton.x + 20) && ($.mouse.y > this.fibrebutton.y - 20 && $.mouse.y < this.fibrebutton.y + 20)) {
+        if ($.math.distance(this.fibrebutton.x,this.fibrebutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.fibrebutton.x
             this.activebutton.y = this.fibrebutton.y
@@ -313,7 +316,7 @@ export class BuildTreeScene {
                 this.fibrebranchstate += 1
                 if (this.fibrebranchstate == 2) {
                     this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage2,600,600,this.fibrebutton,65,430)
-                   
+                    
                 }else if (this.fibrebranchstate == 3) {
                     this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage3,900,900,this.fibrebutton,45,380)
                     
@@ -325,7 +328,7 @@ export class BuildTreeScene {
 
         // health branch
 
-        if (($.mouse.x > this.healthbutton.x - 20 && $.mouse.x < this.healthbutton.x + 20) && ($.mouse.y > this.healthbutton.y - 20 && $.mouse.y < this.healthbutton.y + 20)) {
+        if ($.math.distance(this.healthbutton.x,this.healthbutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.healthbutton.x
             this.activebutton.y = this.healthbutton.y
@@ -358,6 +361,96 @@ export class BuildTreeScene {
         const requestsToBeReturned = this.requests;
         this.requests = [];
         return requestsToBeReturned;
+    }
+    popupTemplate(heading,h,w){
+        this.popup.h = h
+        this.popup.w = 670
+
+        $.text.font = this.fonttitle
+        $.text.size = 20
+    }
+    
+    
+    popupManager(branchname,branchlevel,data){
+        notices={
+            troopbranch:{
+                display:"custom text", //options "customText",statstable
+                level2:{
+                    heading:"unlock eagle",
+                    description:"can attack at range, moves faster then the ant and also has more health",
+                },
+                level3:{
+                    heading:"unlock bear",
+                    discription:"moves slower then the eagle and faster then the ant but can do more damage and has more health",
+
+                },
+            },
+            damagebranch:{
+                display:"statstable", //options "customText",statstable
+                stat:"damage", //the name of the stat in the object playerStats
+                level2:{
+                    heading:"damage branch level 2",
+                },
+                level3:{
+                    heading:"damage branch level 3",
+
+                },
+            },
+            speedbranch:{
+                display:"statstable", //options "customText",statstable
+                stat:"speed", //the name of the stat in the object playerStats
+                level2:{
+                    heading:"speed branch level 2",
+                },
+                level3:{
+                    heading:"speed branch level 3",
+
+                },
+            },
+            silkbranch:{
+                level2:{
+
+                },
+                level3:{
+
+                },
+            },
+            fibrebranch:{
+                level2:{
+
+                },
+                level3:{
+
+                },
+            },
+            healthbranch:{
+                display:"statstable", //options "customText",statstable
+                stat:"maxhealth", //the name of the stat in the object playerStats
+                level2:{
+                    heading:"health branch level 2",
+                },
+                level3:{
+                    heading:"health branch level 3",
+
+                },
+            },
+        }
+        if(notices[branchname][branchlevel].display=="statstable"){
+            $.text.font = this.font
+            $.text.size = 15
+
+            this.popupTemplate(notices[branchname][branchlevel].heading,height,670)
+        }else if(notices[branchname][branchlevel].display=="custom text"){
+            $.text.font = this.font
+            $.text.size = 15
+            this.popupTemplate(notices[branchname][branchlevel].heading,height,$.w/2)
+
+        }
+        this.popupTemplate(notices[branchname][branchlevel].heading,280,670)
+        
+
+
+        
     }
 }
 
