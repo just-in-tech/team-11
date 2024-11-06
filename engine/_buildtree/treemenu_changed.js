@@ -1,4 +1,4 @@
-import { $ } from "../../lib/Pen.js";
+import { $, text } from "../../lib/Pen.js";
 
 
 
@@ -54,7 +54,7 @@ export class BuildTreeScene {
         
         // pop-up box
 
-        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup1.png")
+        this.popup = $.loadImage($.w / 2, 670, "./engine/_buildtree/popup2.png")
 
         // font
 
@@ -220,11 +220,7 @@ export class BuildTreeScene {
             this.activebutton.y = this.troopbutton.y
             this.activebutton.draw()
             
-            this.popup.draw()
-            $.text.size = 30
-            $.colour.fill = "black"
-            $.text.font = this.font
-            $.text.print($.w / 2, 680, "BUY {TROOP} FOR {XXX} SILK?", 800)
+            this.popupManager("troopbranch","level2",data);
             if ($.mouse.leftReleased) {
                 this.troopbranchstate += 1
                 if(this.troopbranchstate == 2){
@@ -246,6 +242,7 @@ export class BuildTreeScene {
             this.activebutton.x = this.damagebutton.x
             this.activebutton.y = this.damagebutton.y
             this.activebutton.draw()
+            this.popupManager("damagebranch","level2",data);
             if ($.mouse.leftReleased) {
                 this.damagebranchstate += 1
                 if (this.damagebranchstate == 2) {
@@ -362,17 +359,26 @@ export class BuildTreeScene {
         this.requests = [];
         return requestsToBeReturned;
     }
-    popupTemplate(heading,h,w){
-        this.popup.h = h
-        this.popup.w = 670
-
+    popupTemplate(heading,h,y){
+        let textpos=y+10
+        
+        this.popup.h=h
+        this.popup.w=$.w*0.65
+        
+        this.popup.y=y+h/2
+        this.popup.draw()
+        $.colour.fill = "black"
+        $.text.alignment.y="top"
         $.text.font = this.fonttitle
         $.text.size = 20
+        $.text.print($.w / 2, textpos, heading, 800);
+
+
     }
     
     
     popupManager(branchname,branchlevel,data){
-        notices={
+        this.notices={
             troopbranch:{
                 display:"custom text", //options "customText",statstable
                 level2:{
@@ -435,18 +441,24 @@ export class BuildTreeScene {
                 },
             },
         }
-        if(notices[branchname][branchlevel].display=="statstable"){
+        console.log(this.notices[branchname].stat,branchname,branchlevel);
+        if(this.notices[branchname].display==="statstable"){
+            this.popupTemplate(this.notices[branchname][branchlevel].heading,170,600)
             $.text.font = this.font
             $.text.size = 15
+            $.text.print($.w/2,600+40,"upgrade "+branchname+" to "+data.statsUpgrades[branchname][branchlevel].ant[this.notices[branchname].stat])
+            
+            
+        }else if(this.notices[branchname][branchlevel].display=="custom text"){
+            $.text.font = this.font
+            $.text.size = 15
+            
 
-            this.popupTemplate(notices[branchname][branchlevel].heading,height,670)
-        }else if(notices[branchname][branchlevel].display=="custom text"){
-            $.text.font = this.font
-            $.text.size = 15
-            this.popupTemplate(notices[branchname][branchlevel].heading,height,$.w/2)
+
+            this.popupTemplate(this.notices[branchname].heading,height,600)
 
         }
-        this.popupTemplate(notices[branchname][branchlevel].heading,280,670)
+        
         
 
 
