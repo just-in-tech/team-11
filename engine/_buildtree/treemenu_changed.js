@@ -114,28 +114,28 @@ export class BuildTreeScene {
 
     draw() {
         if(this.firstTime==1){
-            this.troopbranchcurrentstage.w = 600
-            this.troopbranchcurrentstage.h = 600
+        this.troopbranchcurrentstage.w = 600
+        this.troopbranchcurrentstage.h = 600
 
-            this.healthbranchcurrentstage.w = 600
-            this.healthbranchcurrentstage.h = 600
+        this.healthbranchcurrentstage.w = 600
+        this.healthbranchcurrentstage.h = 600
 
-            this.fibrebranchcurrentstage.w = 600
-            this.fibrebranchcurrentstage.h = 600
+        this.fibrebranchcurrentstage.w = 600
+        this.fibrebranchcurrentstage.h = 600
 
-            this.silkbranchcurrentstage.w = 600
-            this.silkbranchcurrentstage.h = 600
+        this.silkbranchcurrentstage.w = 600
+        this.silkbranchcurrentstage.h = 600
 
-            this.speedbranchcurrentstage.w = 600
-            this.speedbranchcurrentstage.h = 600
+        this.speedbranchcurrentstage.w = 600
+        this.speedbranchcurrentstage.h = 600
 
-            this.damagebranchcurrentstage.w = 600
-            this.damagebranchcurrentstage.h = 600
+        this.damagebranchcurrentstage.w = 600
+        this.damagebranchcurrentstage.h = 600
 
-            this.treeimg.w = 600
-            this.treeimg.h = 600
+        this.treeimg.w = 600
+        this.treeimg.h = 600
 
-            this.fibrebutton.w = 60
+        this.fibrebutton.w = 60
         this.fibrebutton.h = 60
 
         
@@ -220,7 +220,7 @@ export class BuildTreeScene {
             this.activebutton.y = this.troopbutton.y
             this.activebutton.draw()
             
-            this.popupManager("troopbranch","level2",data);
+            //this.popupManager("troop",this.troopbranchstate,data);
             if ($.mouse.leftReleased) {
                 this.troopbranchstate += 1
                 if(this.troopbranchstate == 2){
@@ -242,7 +242,7 @@ export class BuildTreeScene {
             this.activebutton.x = this.damagebutton.x
             this.activebutton.y = this.damagebutton.y
             this.activebutton.draw()
-            this.popupManager("damagebranch","level2",data);
+            this.popupManager("damage",this.damagebranchstate,data);
             if ($.mouse.leftReleased) {
                 this.damagebranchstate += 1
                 if (this.damagebranchstate == 2) {
@@ -266,6 +266,8 @@ export class BuildTreeScene {
             this.activebutton.x = this.speedbutton.x
             this.activebutton.y = this.speedbutton.y
             this.activebutton.draw()
+
+            this.popupManager("speed",this.speedbranchstate,data);
             if ($.mouse.leftReleased) {
                 this.speedbranchstate += 1
                 if (this.speedbranchstate == 2) {
@@ -330,6 +332,8 @@ export class BuildTreeScene {
             this.activebutton.x = this.healthbutton.x
             this.activebutton.y = this.healthbutton.y
             this.activebutton.draw()
+
+            this.popupManager("health",this.healthbranchstate,data);
             if ($.mouse.leftReleased) {
                 this.healthbranchstate += 1
                 if (this.healthbranchstate == 2) {
@@ -371,7 +375,7 @@ export class BuildTreeScene {
         $.text.alignment.y="top"
         $.text.font = this.fonttitle
         $.text.size = 20
-        $.text.print($.w / 2, textpos, heading, 800);
+        $.text.print($.w / 2, textpos, heading, this.popup.w);
 
 
     }
@@ -394,24 +398,10 @@ export class BuildTreeScene {
             damagebranch:{
                 display:"statstable", //options "customText",statstable
                 stat:"damage", //the name of the stat in the object playerStats
-                level2:{
-                    heading:"damage branch level 2",
-                },
-                level3:{
-                    heading:"damage branch level 3",
-
-                },
             },
             speedbranch:{
                 display:"statstable", //options "customText",statstable
                 stat:"speed", //the name of the stat in the object playerStats
-                level2:{
-                    heading:"speed branch level 2",
-                },
-                level3:{
-                    heading:"speed branch level 3",
-
-                },
             },
             silkbranch:{
                 level2:{
@@ -432,30 +422,59 @@ export class BuildTreeScene {
             healthbranch:{
                 display:"statstable", //options "customText",statstable
                 stat:"maxhealth", //the name of the stat in the object playerStats
-                level2:{
-                    heading:"health branch level 2",
-                },
-                level3:{
-                    heading:"health branch level 3",
-
-                },
             },
         }
-        console.log(this.notices[branchname].stat,branchname,branchlevel);
-        if(this.notices[branchname].display==="statstable"){
-            this.popupTemplate(this.notices[branchname][branchlevel].heading,170,600)
-            $.text.font = this.font
-            $.text.size = 15
-            $.text.print($.w/2,600+40,"upgrade "+branchname+" to "+data.statsUpgrades[branchname][branchlevel].ant[this.notices[branchname].stat])
+
+        let varbranchname=branchname+"branch";
+            console.log(varbranchname)
+            let nextbranchlevel=branchlevel+1
+            let varbranchlevel="level"+nextbranchlevel
+            console.log(varbranchlevel)
+        console.log(this.notices[varbranchname].stat,branchname,branchlevel);
+        if(this.notices[varbranchname].display==="statstable"){
+
+
             
             
-        }else if(this.notices[branchname][branchlevel].display=="custom text"){
+            
+            let textposition=600
+            if(branchlevel<3){
+                this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
+                textposition+=80
+                $.text.font = this.font
+                $.text.size = 15
+                $.text.print($.w/2,textposition,"upgrade ant "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].ant[this.notices[varbranchname].stat]+" from "+data.playerStats.ant[this.notices[varbranchname].stat])
+                textposition+=18
+                $.text.print($.w/2,textposition,"upgrade eagle "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].eagle[this.notices[varbranchname].stat]+" from "+data.playerStats.eagle[this.notices[varbranchname].stat])
+                textposition+=18
+                $.text.print($.w/2,textposition,"upgrade bear "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].bear[this.notices[varbranchname].stat]+" from "+data.playerStats.bear[this.notices[varbranchname].stat])
+                textposition+=18
+                if(1){
+                    $.colour.fill = "green"
+                    $.text.print($.w/2,textposition,"use .... silk to purchurse")
+                }else{
+                    $.colour.fill = "red"
+                    $.text.print($.w/2,textposition,"you require .... silk to purchuse")
+                }
+
+            }else if(branchlevel>=3){
+                textposition=700
+                this.popupTemplate(branchname+" branch is fully upgraded",70,textposition)
+                textposition+=40
+                $.text.font = this.font
+                $.text.size = 20
+                $.colour.fill = "green"
+                $.text.print($.w/2,textposition,"fully upgraded")
+            }
+            
+            
+        }else if(this.notices[varbranchname][varbranchlevel].display=="custom text"){
             $.text.font = this.font
             $.text.size = 15
             
 
 
-            this.popupTemplate(this.notices[branchname].heading,height,600)
+            this.popupTemplate(this.notices[varbranchname].heading,height,600)
 
         }
         
