@@ -1,10 +1,12 @@
 import { $ } from "../lib/Pen.js";
+import { Resources } from "./resources.js";
+
 
 
 export class Data {
     constructor() {
-        
-        this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
+        this.resources = new Resources();
+        this.gameState = "battle"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
         
         this.playerAnimals = $.makeGroup();
         this.computerAnimals = $.makeGroup();
@@ -12,6 +14,7 @@ export class Data {
         this.playerStats={  // PLAYER ANT IS GOOD
             ant:{
                 unlocked:1,   //bool true (1) is unlocked
+                unlockPrice: 0,
                 damage: 3 , //damage to other animal
                 maxHealth: 10 , //
                 speed:  5, //speed the animal moves
@@ -26,6 +29,8 @@ export class Data {
                 damage: 4 , //damage to other animal
                 maxHealth: 20 ,
                 speed:  9, //
+                acceleration: 1,
+                attackInterval: 200,
                 priceInGame: 50, //
                 silkfromkill: 10,
             },
@@ -35,6 +40,8 @@ export class Data {
                 damage: 10 , //damage to other animal
                 maxHealth: 60 , 
                 speed:  3, //
+                acceleration: 1,
+                attackInterval: 200,
                 priceInGame: 110,
                 silkfromkill:20
             },
@@ -47,7 +54,7 @@ export class Data {
                 unlocked:1,   //bool true (1) is unlocked
                 damage: 3 , //damage to other animal
                 maxHealth: 10 , //
-                speed:  2, //speed the animal moves
+                speed:  5, //speed the animal moves
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10, //price to put on the track
@@ -55,22 +62,22 @@ export class Data {
             },
             eagle:{
                 unlocked: 0 ,   //bool true (1) is unlocked
-                unlockPrice: 200 ,
                 damage: 3 , //damage to other animal
                 maxHealth: 100 ,
-                speed:  5, //
-                attackInterval: 10,
-                fibreCost: 40, //
+                speed:  9, //
+                acceleration: 1,
+                attackInterval: 200,
+                priceInGame: 40, //
                 silkfromkill: 10,
             },
             bear:{
                 unlocked:0,   //bool true (1) is unlocked
-                unlockPrice: 500,
                 damage: 3 , //damage to other animal
                 maxHealth: 5 , 
                 speed:  3, //
+                acceleration: 1,
                 attackInterval: 10,
-                fibreCost: 100,
+                priceInGame: 100,
                 silkfromkill: 10,
             },
             treeHealth: 200,
@@ -81,11 +88,9 @@ export class Data {
             troopbranch:{
                 eagle:{
                     upgradecost:200,
-                    
                 },
                 bear:{
                     upgradecost:350,
-                    
                 },
             },
             damagebranch:{
@@ -96,7 +101,6 @@ export class Data {
                         newingamepirce:10,
                         damage:10,
                         attackInterval:10,
-                    
                     },
                     eagle:{
                         newingamepirce:10,
@@ -126,7 +130,6 @@ export class Data {
                         damage:10,
                         attackInterval:10,
                     }
-    
                 },
             },
             speedbranch:{
@@ -159,11 +162,9 @@ export class Data {
                         newingamepirce:10,
                         speed:10,
                     }
-    
                 },
             },
             silkbranch:{
-                
                 level2:{
                     upgradecost:200,
                     ant:{
@@ -201,7 +202,6 @@ export class Data {
                 },
             },
             fibrebranch:{
-                
                 level2:{
                     upgradecost:200,
 
@@ -241,17 +241,11 @@ export class Data {
                         newingamepirce:10,
                         maxHealth:10,
                     }
-    
                 },
             },
         };
     }
 
-    
-
-
-
     update(requests) {
-
     }
 }

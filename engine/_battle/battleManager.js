@@ -11,12 +11,15 @@ export class BattleManager {
         this.playerTree = $.makeBoxCollider(0, $.h/2, $.w/8, $.h/2);
         this.playerTree.static = true;
         this.playerTree.fill = "green";
-        this.playerTree.treeHealth = data.playerStats.treeHealth;
+        this.playerTree.currentHealth = data.playerStats.treeHealth;
+        this.playerTree.maxHealth = data.playerStats.treeHealth;
+
         // Enemy Tree
         this.computerTree = $.makeBoxCollider($.w, $.h/2, $.w/8, $.h/2);
         this.computerTree.static = true;
         this.computerTree.fill = "brown";
-        this.computerTree.health = data.computerStats.treeHealth;
+        this.computerTree.currentHealth = data.computerStats.treeHealth;
+        this.computerTree.maxHealth = data.computerStats.treeHealth;
     }
 
     battleUpdate(data) {
@@ -40,6 +43,8 @@ export class BattleManager {
 
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
+
+        this.drawTree(this.playerTree, "#00FF3A", "#C7FFD4");
     }
 
     drawHP(group, healthColour, backgroundColour) {
@@ -64,6 +69,22 @@ export class BattleManager {
         }
     }
 
+    drawTree(whichTree, healthColour, backgroundColour) {
+        let barHeight = $.h * (10/100);
+        let barWidth = $.w * (30/100);
+        let barX = $.w * (5/100);
+        let barY = $.h * (20/100);
+        // draw a health bar
+        $.shape.alignment.x = "left";
+        $.colour.stroke = "black";
+        $.colour.fill = backgroundColour;
+        $.shape.rectangle(barX, barY, barWidth, barHeight);
+        if (whichTree.currentHealth > 0) {
+            $.colour.fill = healthColour;
+            $.shape.rectangle(barX, barY, barWidth * (whichTree.currentHealth / whichTree.maxHealth), barHeight);
+        }
+    }
+
     accelerate(group) {
         if ((group.speed + group.acceleration) > 5) {
             group.speed = 5;
@@ -74,13 +95,12 @@ export class BattleManager {
 
     seekTarget(data, attacker, defender, defenderBase) {
         // Player Animals Seeking Target
+        
         for (let i = 0; i < attacker.length; i++) {   // for every player animal (i)
             // have target "computerTree" by default & set it as the "closest target"
             let minDistance = $.math.distance(attacker[i].x, attacker[i].y, defenderBase.x, defenderBase.y);
             let target = defenderBase;
-            // let treeHitWidth = (defenderBase.w + attacker[i].w)/2;  // "can player hit tree?"
             this.accelerate(attacker[i]);
-            // console.log(attacker[i].speed);
             if (defender.length > 0) {
                 for (let j = 0; j < defender.length; j++) {
                     // check distance & if they are closer then set a new minimum
@@ -107,24 +127,19 @@ export class BattleManager {
 
     attack(attacker, defender) {
         // if defender == Tree ??    -- we will first try 'static' for Tree as well..
+
+        // when attack is ready, the defender takes damage or dies accordingly
         if (attacker.attackCooldown == 0) {
-            let damageDealt = attacker.damage;
-            // if the defender will die: assign a short lifespan & "knock back" with "attacker size"
-            if (defender.currentHealth <= damageDealt) {
+            if (defender.currentHealth <= attacker.damage) {
                 defender.remove();
-                // defender.lifespan = 20;
-                // defender.speed -= 20; 
-                // this.enemyDies(+silk);
-            } else if (defender.currentHealth > damageDealt) {
-                defender.currentHealth -= damageDealt;
-                console.log(defender, " took a hit!");
+                // *TODO* PUSH REQUEST: UNIT KILL
+            } else if (defender.currentHealth > attacker.damage) {
+                defender.currentHealth -= attacker.damage;
             }
-            defender.speed -= 40;   // "knockback"
-            console.log(defender, " was knocked back");
+            // reset the attack cooldown
             attacker.attackCooldown = attacker.attackInterval;
         } else if (attacker.attackCooldown > 0) {
             attacker.attackCooldown -= 1;
-            // console.log(attacker.attackCooldown);
         }
     }
 
