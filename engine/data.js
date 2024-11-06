@@ -213,15 +213,6 @@ export class Data {
 
 
     update(requests) {
-        for (const request of requests) {
-            if (request.type == "resource") {
 
-                this.resources.processRequest(request);
-            }
-        }
-        // update resources
-        this.resources.update();
-        
     }
-    
 }

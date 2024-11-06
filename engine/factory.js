@@ -1,5 +1,4 @@
 import { $ } from "../lib/Pen.js";
-import { Resources } from "./resources.js";
 
 export class Factory {
     constructor() {
@@ -123,21 +122,13 @@ export class Factory {
                 }
                 // will be one per branch
                 if (request.action == "damageBranch") {
-                    if (request.value == "level 1") {
+                    if (request.value == "level 2") {
                         data.playerStats.ant.damage=5
                         data.playerStats.eagle.damage=5
                         data.playerStats.bear.damage= 15
                         data.playerStats.ant.fibreCost+= 5
                         data.playerStats.eagle.fibreCost+= 15
                         data.playerStats.bear.fibreCost+= 30
-                    } else if (request.value == "level 2") {
-                        data.playerStats.ant.damage=8
-                        data.playerStats.eagle.damage=12
-                        data.playerStats.bear.damage= 25
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
                     } else if (request.value == "level 3") {
                         data.playerStats.ant.damage=8
                         data.playerStats.eagle.damage=12
@@ -145,17 +136,11 @@ export class Factory {
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
+                        
                     }
                 }
                 if (request.action == "speedBranch") {
-                    if (request.value == "level 1") {
-                        data.playerStats.ant.speed=2
-                        data.playerStats.eagle.speed=15
-                        data.playerStats.bear.speed=4
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                    } else if (request.value == "level 2") {
+                    if (request.value == "level 2") {
                         data.playerStats.ant.speed=2
                         data.playerStats.eagle.speed=15
                         data.playerStats.bear.speed=4
@@ -172,15 +157,10 @@ export class Factory {
                     }
                 }
                 if (request.action == "silkBranch") {
-                    if (request.value == "level 1") {
+                    if (request.value == "level 2") {
                         data.playerStats.ant.
                         data.playerStats.eagle.
                         data.playerStats.bear.
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                    } else if (request.value == "level 2") {
-                        
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
@@ -192,33 +172,22 @@ export class Factory {
                     }
                 }
                 if (request.action == "damageBranch") {
-                    if (request.value == "level 1") {
-
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
-                    } else if (request.value == "level 2") {
+                    if (request.value == "level 2") {
 
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         
                     } else if (request.value == "level 3") {
-                        
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                    }
-                }
-                if (request.action == "healthBranch") {
-                    if (request.value == "level 1") {
 
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
                         
-                    } else if (request.value == "level 2") {
+                    }
+                }
+                if (request.action == "upgradeHealthBranch") {
+                    if (request.value == "level 2") {
 
                         data.playerStats.ant.fibreCost+=10
                         data.playerStats.ant.fibreCost+=10
