@@ -17,6 +17,5 @@ function update() {
     const requests = gui.getRequests(data);
     factory.processRequests(requests, data);
     data.update(requests);
-    $.drawColliders();
-
+    // $.drawColliders();
 }

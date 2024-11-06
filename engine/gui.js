@@ -10,7 +10,7 @@ export class Gui {
     constructor(data) {
         // p.s. can have "global UI" here
         this.mainMenu = new MainMenu()
-        this.battleGui = new BattleGui();
+        this.battleGui = new BattleGui(data);
         this.battleManager = new BattleManager(data);
         this.treeMenu = new BuildTreeScene();
         this.treeMenu_op = new treemenu();
