@@ -203,6 +203,13 @@ export class BuildTreeScene {
         this.popup.h = 280
         this.popup.w = 670
 
+        // silk display
+
+        this.silkvariable = 0
+        $.text.size = 25
+        $.text.font = this.font
+        this.silktext = $.text.print(650, 750, "SILK: " + this.silkvariable, 200)
+
         // display opening text
 
         if ($.frameCount == this.currentframe || $.frameCount < this.currentframe + 1000) {
@@ -218,10 +225,10 @@ export class BuildTreeScene {
 
         // check gamestate
 
-        if (this.battlebutton.up) {      
+        if (this.battlebutton.up) {
             data.gameState = "battle";
         }
-        if(this.OP_treemenuButton.up){        //to be removed when hollys and justin's treemenus are merged
+        if (this.OP_treemenuButton.up) {        //to be removed when hollys and justin's treemenus are merged
             data.gameState = "treemenu_op"    //   ⮟
         }                                     //_______
 
