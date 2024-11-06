@@ -3,28 +3,26 @@ import { $ } from "../../lib/Pen.js";
 let currentFibre;
 
 export class BattleGui {
-    constructor() {
-        this.unitButtonY = $.h * (80/100);
+    constructor(data) {
+        this.unitButtonY = $.h * (80/100);  // baseline button sizes
         this.unitButtonX = $.w * (20/100);
-
-        // Unit Buttons
+        // make buttons for user to purchase units
         this.antButton = $.makeButton(this.unitButtonX*2, this.unitButtonY, 100, 150);
-        this.antButton.label = "Buy Ant \n Cost: 3"; // this.cost
+        this.antButton.label = "Buy    AntXX \n Cost: " + data.playerStats.ant.priceInGame;
         this.antButton.border = "black";
 
         this.eagleButton = $.makeButton(this.unitButtonX*3, this.unitButtonY, 100, 150);
-        this.eagleButton.label = "Buy Eagle \n Cost: 6"; // this.cost
+        this.eagleButton.label = "Buy Eagle \n Cost: " + data.playerStats.eagle.priceInGame;
         this.eagleButton.border = "black";
 
         this.bearButton = $.makeButton(this.unitButtonX*4, this.unitButtonY, 100, 150);
-        this.bearButton.label = "Buy Bear \n Cost: 9"; // this.cost
+        this.bearButton.label = "Buy BearX \n Cost: " + data.playerStats.bear.priceInGame;
         this.bearButton.border = "black";
-        // treemenu button
+        // surrender button during battle
         this.treeMenuButton = $.makeButton(100, 100, 100, 60);
         this.treeMenuButton.label = "Surrender";
         
         this.requests = [];
-
         this.battleTimer = 0;
     }
 

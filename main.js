@@ -20,6 +20,5 @@ function update() {
     factory.processRequests(requests, data);
     resources.processRequests(requests,data);
     data.update(requests);
-    $.drawColliders();
-
+    // $.drawColliders();
 }
