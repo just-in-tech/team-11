@@ -40,7 +40,6 @@ export class BattleGui {
         // Update battleTimer
         this.battleTimer += 1;
         if (this.battleTimer%60 == 0) {
-            console.log(this.battleTimer/60);
             if (this.battleTimer%600 == 0) {
                 this.enemySpawn(0);
             }
