@@ -1,9 +1,9 @@
 import { $ } from "../lib/Pen.js";
-import { Resources } from "./resources.js";
+
 
 export class Data {
     constructor() {
-        this.resources = new Resources();
+        
         this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
         
         this.playerAnimals = $.makeGroup();
@@ -43,7 +43,7 @@ export class Data {
                 unlocked:1,   //bool true (1) is unlocked
                 damage: 3 , //damage to other animal
                 maxHealth: 10 , //
-                speed:  1, //speed the animal moves
+                speed:  2, //speed the animal moves
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10 //price to put on the track
@@ -68,145 +68,147 @@ export class Data {
             },
             treeHealth: 200
         };
+
+        this.statsUpgrades={
+            troopbranch:{
+                eagle:{
+                    upgradecost:200,
+                    
+                },
+                bear:{
+                    upgradecost:350,
+                    
+                },
+            },
+            damagebranch:{
+                
+                level2:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    }
+                },
+                level3:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        damage:10,
+                        attackInterval:10,
+                    }
+    
+                },
+            },
+            speedbranch:{
+                level2:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        speed:10,
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        speed:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        speed:10,
+                    }
+                },
+                level3:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        speed:10,
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        speed:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        speed:10,
+                    }
+    
+                },
+            },
+            silkbranch:{
+                
+                level2:{
+                    upgradecost:200,
+                },
+                level3:{
+                    upgradecost:200,
+                },
+            },
+            fibrebranch:{
+                
+                level2:{
+                    upgradecost:200,
+                },
+                level3:{
+                    upgradecost:200,
+                },
+            },
+            healthbranch:{
+                level2:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    }
+                },
+                level3:{
+                    upgradecost:200,
+                    ant:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    },
+                    eagle:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    },
+                    bear:{
+                        newingamepirce:10,
+                        maxHealth:10,
+                    }
+    
+                },
+            },
+        };
     }
 
-    statsUpgrades={
-        troopbranch:{
-            eagle:{
-                upgradecost:200,
-                
-            },
-            bear:{
-                upgradecost:350,
-                
-            },
-        },
-        damagebranch:{
-            
-            level2:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                
-                },
-                eagle:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                }
-            },
-            level3:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                },
-                eagle:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    damage:10,
-                    attackInterval:10,
-                }
-
-            },
-        },
-        speedbranch:{
-            level2:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    speed:10,
-                },
-                eagle:{
-                    newingamepirce:10,
-                    speed:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    speed:10,
-                }
-            },
-            level3:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    speed:10,
-                },
-                eagle:{
-                    newingamepirce:10,
-                    speed:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    speed:10,
-                }
-
-            },
-        },
-        silkbranch:{
-            
-            level2:{
-                upgradecost:200,
-            },
-            level3:{
-                upgradecost:200,
-            },
-        },
-        fibrebranch:{
-            
-            level2:{
-                upgradecost:200,
-            },
-            level3:{
-                upgradecost:200,
-            },
-        },
-        healthbranch:{
-            level2:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                },
-                eagle:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                }
-            },
-            level3:{
-                upgradecost:200,
-                ant:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                },
-                eagle:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                },
-                bear:{
-                    newingamepirce:10,
-                    maxHealth:10,
-                }
-
-            },
-        },
-    }
+    
 
 
 

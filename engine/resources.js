@@ -37,6 +37,48 @@ export class Resources {
 
 
 
+    processRequests(requests, data) {
+        for (const request of requests) {
+            if (request.type == "resources") {
+                    if (request.action == "playerkilledcomputer") {
+                        if (request.value == "ant") {
+                            
+                        } else if (request.value == "eagle") {
+                            
+                        } else if (request.value == "bear") {
+
+                        }else if (request.value == "tree") {
+
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    } else if (request.action == "computerkilledplayer") {
+                        if (request.value == "ant") {
+                            
+                        } else if (request.value == "eagle") {
+                            
+                        } else if (request.value == "bear") {
+
+                        }else if (request.value == "tree") {
+
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    }else{
+                        throw new Error("request action dosen't exist")
+                    }
+                    // we can simplify these to include: "request.playerSide" and "request.value" 
+                
+                // to unlock animal on the treemenu
+                
+                // will be one per branch
+                
+            }
+        }
+    
+
+    }
+
 
 }
 
