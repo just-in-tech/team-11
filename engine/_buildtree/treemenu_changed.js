@@ -431,7 +431,7 @@ export class BuildTreeScene {
             let varbranchlevel="level"+nextbranchlevel
             console.log(varbranchlevel)
         console.log(this.notices[varbranchname].stat,branchname,branchlevel);
-        if(this.notices[varbranchname].display==="statstable"){
+        
 
 
             
@@ -439,22 +439,38 @@ export class BuildTreeScene {
             
             let textposition=600
             if(branchlevel<3){
-                this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
-                textposition+=80
-                $.text.font = this.font
-                $.text.size = 15
-                $.text.print($.w/2,textposition,"upgrade ant "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].ant[this.notices[varbranchname].stat]+" from "+data.playerStats.ant[this.notices[varbranchname].stat])
-                textposition+=18
-                $.text.print($.w/2,textposition,"upgrade eagle "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].eagle[this.notices[varbranchname].stat]+" from "+data.playerStats.eagle[this.notices[varbranchname].stat])
-                textposition+=18
-                $.text.print($.w/2,textposition,"upgrade bear "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].bear[this.notices[varbranchname].stat]+" from "+data.playerStats.bear[this.notices[varbranchname].stat])
-                textposition+=18
-                if(1){
-                    $.colour.fill = "green"
-                    $.text.print($.w/2,textposition,"use .... silk to purchurse")
+                if(this.notices[varbranchname].display==="statstable"){
+
+                    this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
+                    textposition+=80
+                    $.text.font = this.font
+                    $.text.size = 15
+                    $.text.print($.w/2,textposition,"upgrade ant "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].ant[this.notices[varbranchname].stat]+" from "+data.playerStats.ant[this.notices[varbranchname].stat])
+                    textposition+=18
+                    $.text.print($.w/2,textposition,"upgrade eagle "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].eagle[this.notices[varbranchname].stat]+" from "+data.playerStats.eagle[this.notices[varbranchname].stat])
+                    textposition+=18
+                    $.text.print($.w/2,textposition,"upgrade bear "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].bear[this.notices[varbranchname].stat]+" from "+data.playerStats.bear[this.notices[varbranchname].stat])
+                    textposition+=18
+                    if(1){
+                        $.colour.fill = "green"
+                        $.text.print($.w/2,textposition,"use .... silk to purchurse")
+                    }else{
+                        $.colour.fill = "red"
+                        $.text.print($.w/2,textposition,"you require .... silk to purchuse")
+                    }
+
+                }else if(this.notices[varbranchname].display=="currencystats"){
+                    $.text.font = this.font
+                    $.text.size = 15
+            
+
+
+            this.popupTemplate(this.notices[varbranchname].heading,height,600)
+
+                }else if(this.notices[varbranchname].display=="custom text"){
+
                 }else{
-                    $.colour.fill = "red"
-                    $.text.print($.w/2,textposition,"you require .... silk to purchuse")
+
                 }
 
             }else if(branchlevel>=3){
@@ -468,13 +484,8 @@ export class BuildTreeScene {
             }
             
             
-        }else if(this.notices[varbranchname][varbranchlevel].display=="custom text"){
-            $.text.font = this.font
-            $.text.size = 15
+        
             
-
-
-            this.popupTemplate(this.notices[varbranchname].heading,height,600)
 
         }
         
@@ -483,7 +494,7 @@ export class BuildTreeScene {
 
         
     }
-}
+
 
 
 
