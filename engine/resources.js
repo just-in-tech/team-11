@@ -3,21 +3,22 @@ import { $ } from "../lib/Pen.js";
 export class Resources {
     constructor() { 
         this.silk = 0;
+        this.silkFromBattle=0;
         this.fibre={
             fibre:40,
             fibreInterval:60,
             fibrePerInterval:20,
-            }
+        }
     }
 
     // 'frame-based' resource generation
-    update(gameState) {
-        if (gameState == "battle") {
-            if ($.frameCount % this.fibreInterval === 0) {
-                this.fibre += this.fibrePerInterval;
-                // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
-            }
+    genrateFibre() {
+    
+        if ($.frameCount % this.fibre.fibreInterval === 0) {
+            this.fibre.fibre += this.fibre.fibrePerInterval;
+            // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
         }
+        
     }
 
     // add a resource value
@@ -37,43 +38,43 @@ export class Resources {
     }
 
 
-
-
     processRequests(requests, data) {
         for (const request of requests) {
             if (request.type == "resources") {
-                    if (request.action == "playerkilledcomputer") {
-                        if (request.value == "ant") {
-                            
-                        } else if (request.value == "eagle") {
-                            
-                        } else if (request.value == "bear") {
+                if(request.action=="endTheGame"){
+                    this.silk+=this.silkFromBattle
+                }
+                if (request.action == "playerkilledcomputer") {
+                    if (request.value == "ant") {
+                        this.silkFromBattle+=data.playerStats.ant.silkFromKill
+                    } else if (request.value == "eagle") {
+                        this.silkFromBattle+=data.playerStats.eagle.silkFromKill
+                    } else if (request.value == "bear") {
+                        this.silkFromBattle+=data.playerStats.bear.silkFromKill
+                    }else if (request.value == "tree") {
+                        this.silkFromBattle+=data.playerStats.silkFromTreeKill
+                        this.silk+=this.silkFromBattle
 
-                        }else if (request.value == "tree") {
-
-                        }else{
-                            throw new Error("request value dosen't exist")
-                        }
-                    } else if (request.action == "computerkilledplayer") {
-                        if (request.value == "ant") {
-                            
-                        } else if (request.value == "eagle") {
-                            
-                        } else if (request.value == "bear") {
-
-                        }else if (request.value == "tree") {
-
-                        }else{
-                            throw new Error("request value dosen't exist")
-                        }
                     }else{
-                        throw new Error("request action dosen't exist")
+                        throw new Error("request value dosen't exist")
                     }
-                    // we can simplify these to include: "request.playerSide" and "request.value" 
-                
-                // to unlock animal on the treemenu
-                
-                // will be one per branch
+                } else if (request.action == "computerkilledplayer") {
+                    if (request.value == "ant") {
+                        
+                    } else if (request.value == "eagle") {
+                        
+                    } else if (request.value == "bear") {
+
+                    }else if (request.value == "tree") {
+                        this.silk+=this.silkFromBattle
+
+                    }else{
+                        throw new Error("request value dosen't exist")
+                    }
+                }else{
+                    throw new Error("request action dosen't exist")
+                }
+                    
                 
             }
         }

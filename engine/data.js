@@ -28,7 +28,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 50, //
-                silkfromkill: 10,
+                silkFromKill: 10,
             },
             bear:{
                 unlocked:0,   //bool true (1) is unlocked
@@ -39,10 +39,10 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 110,
-                silkfromkill:20
+                silkfromKill:20
             },
             treeHealth: 200,
-            silkfromtreekill:50,
+            silkFromTreekill:50,
         };
 
         this.computerStats={
@@ -54,7 +54,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10, //price to put on the track
-                silkfromkill: 10,
+                silkFromKill: 10,
             },
             eagle:{
                 unlocked: 0 ,   //bool true (1) is unlocked
@@ -64,7 +64,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 40, //
-                silkfromkill: 10,
+                silkFromKill: 10,
             },
             bear:{
                 unlocked:0,   //bool true (1) is unlocked
@@ -74,7 +74,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 10,
                 priceInGame: 100,
-                silkfromkill: 10,
+                silkFromKill: 10,
             },
             treeHealth: 200,
             silkfromtreekill:50,
@@ -164,15 +164,15 @@ export class Data {
                 level2:{
                     upgradecost:200,
                     ant:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth:10,
                     },
                     eagle:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth:10,
                     },
                     bear:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth:10,
                     }
 
@@ -180,15 +180,15 @@ export class Data {
                 level3:{
                     upgradecost:200,
                     ant:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth: 10,
                     },
                     eagle:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth:10,
                     },
                     bear:{
-                        silkfromkill: 10,
+                        silkFromKill: 10,
                         maxHealth:10,
                     },
                     tree:{
