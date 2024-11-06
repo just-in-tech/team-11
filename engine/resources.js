@@ -1,11 +1,13 @@
 import { $ } from "../lib/Pen.js";
 
 export class Resources {
-    constructor() {
-        this.fibre = 40; 
+    constructor() { 
         this.silk = 0;
-        this.fibrePerInterval=1
-        this.fibreInterval=30
+        this.fibre={
+            fibre:40,
+            fibreInterval:60,
+            fibrePerInterval:20,
+            }
     }
 
     // 'frame-based' resource generation
