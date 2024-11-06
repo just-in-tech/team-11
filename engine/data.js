@@ -1,12 +1,8 @@
 import { $ } from "../lib/Pen.js";
-import { Resources } from "./resources.js";
-
-
 
 export class Data {
     constructor() {
-        this.resources = new Resources();
-        this.gameState = "battle"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
+        this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
         
         this.playerAnimals = $.makeGroup();
         this.computerAnimals = $.makeGroup();
