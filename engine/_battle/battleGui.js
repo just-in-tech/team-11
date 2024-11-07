@@ -9,7 +9,7 @@ let currentWave = 0;
 export class BattleGui {
     constructor(data) {
         // asset loading
-        this.battleBackgroundImage = $.loadImage($.w/2, $.h/3, "./engine/_battle/spritesheet/battleBackground.png");
+        this.battleBackgroundImage = $.loadImage($.w/2, $.h/3, "./engine/_battle/spritesheet/battlebackground.png");
 
         this.unitButtonY = $.h * (90/100);  // baseline button sizes
         this.unitButtonX = $.w * (20/100);
