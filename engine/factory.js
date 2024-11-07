@@ -5,9 +5,18 @@ export class Factory {
         //this.playerSide = $.w * 0.1;  old spawn point co-ords
         //this.enemySide = $.w * 0.9;
         // note: asset -- holds image
+        this.antSprite = $.loadImage(10, 10, "./engine/animals/ant/ant1.png");
+        this.enemyAntSprite = $.loadImage(10, 10, "./engine/animals/ant/enemyAnt1.png");
     }
     makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval) {   // (feed values like "speed" from data later)
         const ant = $.makeCircleCollider(x, y, size);
+        if (direction == 270) {
+            ant.asset = this.enemyAntSprite;
+        } else if (direction == 90) {
+            ant.asset = this.antSprite;
+        }
+        ant.asset.w = 30;
+        ant.asset.h = 30;
         ant.bounciness = 0;
         ant.fill = "green"; // "no fill" possible?
         //ant.friction = 0;
@@ -61,61 +70,64 @@ export class Factory {
         for (const request of requests) {
             if (request.type == "factory") {
                 if (request.action == "makeAnimal") {
-                    // give all units a "y" and "speed" value
-                    let y = this.spawnHeight();
-                    let speed = 6;
-                    if (request.playerSide == true) {
-                        // spawn player units on the left side moving right
-                        let x = 0;
-                        let direction = 90;
-                        if (request.value == "ant") {   // ANT GOOD
-                            let size = 10;
-                            data.playerAnimals.push(this.makeAnt(x, y, direction, size,
-                                data.playerStats.ant.damage,
-                                data.playerStats.ant.maxHealth,
-                                data.playerStats.ant.speed, 
-                                data.playerStats.ant.acceleration,
-                                data.playerStats.ant.attackInterval));
-                        } else if (request.value == "eagle") {
-                            let size = 20;
-                            data.playerAnimals.push(this.makeEagle(x, y, direction, size,
-                                data.playerStats.eagle.damage,
-                                data.playerStats.eagle.maxHealth,
-                                data.playerStats.eagle.speed, 
-                                data.playerStats.eagle.acceleration,
-                                data.playerStats.eagle.attackInterval));
-                        } else if (request.value == "bear") {
-                            let size = 40;
-                            data.playerAnimals.push(this.makeBear(x, y, direction, size,
-                                data.playerStats.bear.damage,
-                                data.playerStats.bear.maxHealth,
-                                data.playerStats.bear.speed, 
-                                data.playerStats.bear.acceleration,
-                                data.playerStats.bear.attackInterval));
-                        }   
-                    } else if (request.playerSide == false) {
-                        // enemy units on the right moving left
-                        let x = $.w;
-                        let direction = 270;
-                        if (request.value == "ant") {   // ANT GOOD
-                            let size = 10;
-                            data.computerAnimals.push(this.makeAnt(x, y, direction, size,
-                                data.computerStats.ant.damage,
-                                data.computerStats.ant.maxHealth,
-                                data.computerStats.ant.speed, 
-                                data.computerStats.ant.acceleration,
-                                data.computerStats.ant.attackInterval));
-                        } else if (request.value == "eagle") {
-                            let attackSpeed = 200;
-                            let size = 20;
-                            data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size));
-                        } else if (request.value == "bear") {
-                            let attackSpeed = 200;
-                            let size = 40;
-                            data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size));
+                    for (let i = 0; i < request.amount; i++) {
+                        // give all units a "y" and "speed" value
+                        let y = this.spawnHeight();
+                        let speed = 6;
+                        if (request.playerSide == true) {
+                            // spawn player units on the left side moving right
+                            let x = 0;
+                            let direction = 90;
+                            if (request.value == "ant") {   // ANT GOOD
+                                let size = 10;
+                                data.playerAnimals.push(this.makeAnt(x, y, direction, size,
+                                    data.playerStats.ant.damage,
+                                    data.playerStats.ant.maxHealth,
+                                    data.playerStats.ant.speed, 
+                                    data.playerStats.ant.acceleration,
+                                    data.playerStats.ant.attackInterval));
+                            } else if (request.value == "eagle") {
+                                let size = 20;
+                                data.playerAnimals.push(this.makeEagle(x, y, direction, size,
+                                    data.playerStats.eagle.damage,
+                                    data.playerStats.eagle.maxHealth,
+                                    data.playerStats.eagle.speed, 
+                                    data.playerStats.eagle.acceleration,
+                                    data.playerStats.eagle.attackInterval));
+                            } else if (request.value == "bear") {
+                                let size = 40;
+                                data.playerAnimals.push(this.makeBear(x, y, direction, size,
+                                    data.playerStats.bear.damage,
+                                    data.playerStats.bear.maxHealth,
+                                    data.playerStats.bear.speed, 
+                                    data.playerStats.bear.acceleration,
+                                    data.playerStats.bear.attackInterval));
+                            }   
+                        } else if (request.playerSide == false) {
+                            // enemy units on the right moving left
+                            let x = $.w;
+                            let direction = 270;
+                            if (request.value == "ant") {   // ANT GOOD
+                                let size = 10;
+                                data.computerAnimals.push(this.makeAnt(x, y, direction, size,
+                                    data.computerStats.ant.damage,
+                                    data.computerStats.ant.maxHealth,
+                                    data.computerStats.ant.speed, 
+                                    data.computerStats.ant.acceleration,
+                                    data.computerStats.ant.attackInterval));
+                            } else if (request.value == "eagle") {
+                                let attackSpeed = 200;
+                                let size = 20;
+                                data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size));
+                            } else if (request.value == "bear") {
+                                let attackSpeed = 200;
+                                let size = 40;
+                                data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size));
+                            }
                         }
-                    }
                     // we can simplify these to include: "request.playerSide" and "request.value" 
+                    }
+                    
                 }
                 // to unlock animal on the treemenu
                 if (request.action == "upgrade branch"){

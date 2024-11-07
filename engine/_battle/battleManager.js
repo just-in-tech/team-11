@@ -1,45 +1,63 @@
 import { $ } from "../../lib/Pen.js";
+import { Resources } from "../resources.js";
+
+const resources = new Resources();
 
 export class BattleManager {
     constructor(data) {
+        // Load assets
+        this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/playerTree.png");
+        this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+
         // "Lane Walls"
         this.topWall = $.makeBoxCollider($.w/2, $.h/3, $.w, 2);
         this.topWall.static = true;
         this.bottomWall = $.makeBoxCollider($.w/2, ($.h * 2/3), $.w, 2);
         this.bottomWall.static = true;
         // Player Tree
-        this.playerTree = $.makeBoxCollider(0, $.h/2, $.w/8, $.h/2);
+        this.playerTree = $.makeBoxCollider($.w * 1/8, $.h/2, $.w/8, $.h/8);
+        // this.playerTree.asset = this.playerTreeImage;
         this.playerTree.static = true;
         this.playerTree.fill = "green";
-        this.playerTree.currentHealth = data.playerStats.treeHealth;
-        this.playerTree.maxHealth = data.playerStats.treeHealth;
+        this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
+        this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
 
         // Enemy Tree
-        this.computerTree = $.makeBoxCollider($.w, $.h/2, $.w/8, $.h/2);
+        this.computerTree = $.makeBoxCollider($.w * 7/8, $.h/2, $.w/8, $.h/8);
+        this.computerTree.asset = this.enemyTreeImage;
+        this.computerTree.asset.w = 20;
+        this.computerTree.asset.h = 20;
         this.computerTree.static = true;
         this.computerTree.fill = "brown";
-        this.computerTree.currentHealth = data.computerStats.treeHealth;
-        this.computerTree.maxHealth = data.computerStats.treeHealth;
+        this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
+        this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
     }
 
     battleUpdate(data) {
-        // establish collider rules exist
-        this.bottomWall.static = $.collide
-        data.playerAnimals.collides(data.playerAnimals);
-
+        if (this.playerTree.currentHealth == 0 || this.computerTree.currentHealth == 0) {
+            data.battleOver = true;
+        }
+        // we say that both unit groups with their enemy and the boundaries
         data.playerAnimals.collides(data.computerAnimals);
         data.playerAnimals.collides(this.topWall);
         data.playerAnimals.collides(this.bottomWall);
         data.playerAnimals.collides(this.computerTree);
-        // enemy animal colliding rules
+        // enemy animal colliding rules in the same way
         data.computerAnimals.collides(data.playerAnimals);
-        data.computerAnimals.collides(data.computerAnimals);
         data.computerAnimals.collides(this.topWall);
         data.computerAnimals.collides(this.bottomWall);
         data.computerAnimals.collides(this.playerTree);
-        // Animals Seek A Target
-        this.seekTarget(data, data.playerAnimals, data.computerAnimals, this.computerTree);  
-        this.seekTarget(data, data.computerAnimals, data.playerAnimals, this.playerTree);
+
+        // *bug: units colliding within their own group "stop moving"
+        //data.playerAnimals.collides(data.playerAnimals);
+        //data.computerAnimals.collides(data.computerAnimals);
+
+        // Handles animal movement & "pathing"
+        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, resources);
+        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, resources);
+        // Update attackCooldown values
+        this.updateCooldown(data.playerAnimals);
+        this.updateCooldown(data.computerAnimals);
 
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
@@ -89,67 +107,59 @@ export class BattleManager {
             $.colour.fill = healthColour;
             $.shape.rectangle(barX, barY, barWidth * (whichTree.currentHealth / whichTree.maxHealth), barHeight);
         }
+        console.log(this.computerTree.currentHealth);
     }
 
-    accelerate(group) {
-        if ((group.speed + group.acceleration) > 5) {
-            group.speed = 5;
-        } else if (group.speed < 5) {
-            group.speed += group.acceleration/100;
-        }
-    }
-
-    seekTarget(data, attacker, defender, defenderBase) {
-        // Player Animals Seeking Target
-        
-        for (let i = 0; i < attacker.length; i++) {   // for every player animal (i)
-            // have target "computerTree" by default & set it as the "closest target"
-            let minDistance = $.math.distance(attacker[i].x, attacker[i].y, defenderBase.x, defenderBase.y);
-            let target = defenderBase;
-            this.accelerate(attacker[i]);
-            if (defender.length > 0) {
-                for (let j = 0; j < defender.length; j++) {
-                    // check distance & if they are closer then set a new minimum
-                    let newMinDistance = $.math.distance(attacker[i].x, attacker[i].y, defender[j].x, defender[j].y);
-                    if (newMinDistance < minDistance) {
-                        target = defender[j];
-                        minDistance = newMinDistance;
-                    }
-                    // use closest target as the direction
-                    attacker[i].direction = attacker[i].getAngleToPoint(target.x, target.y);
-                    // console.log(minDistance, attacker[i].range);
-                    if (attacker[i].collides(target)) {
-                        this.attack(attacker[i], target);
-                    } else {
-                        this.accelerate(attacker[i]); // otherwise, return speed to "5"   -- maybe we do acceleration instead
-                    }
-                }
-            } else if (attacker[i].collides(defenderBase)) {
-                this.attack(attacker[i], defenderBase);
-                console.log("Tree Hit!");
-            }
-            
-            if (attacker[i].overlaps(attacker)) {
-                //attacker[i].direction += attacker.direction;
+    updateCooldown(group) {
+        // unit's attacks cool-down passively
+        for (let i = 0; i < group.length; i++) {
+            if (group[i].attackCooldown > 0) {
+                group[i].attackCooldown -= 1;
             }
         }
     }
 
-    attack(attacker, defender) {
-        // if defender == Tree ??    -- we will first try 'static' for Tree as well..
-
+    attack(attacker, defender, resources) {
         // when attack is ready, the defender takes damage or dies accordingly
         if (attacker.attackCooldown == 0) {
             if (defender.currentHealth <= attacker.damage) {
+                defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
+                resources.silkFromBattle += defender.silkFromKill;
+                console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
+                     "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
                 defender.currentHealth -= attacker.damage;
             }
             // reset the attack cooldown
             attacker.attackCooldown = attacker.attackInterval;
-        } else if (attacker.attackCooldown > 0) {
-            attacker.attackCooldown -= 1;
+            console.log("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
+        }
+    }
+
+
+    seekTarget(attacker, defender, defenderBase, resources) {
+        for (let i = 0; i < attacker.length; i++) {
+            // make the enemy base the default target
+            let minDistance = $.math.distance(attacker[i].x, attacker[i].y, defenderBase.x, defenderBase.y);
+            let target = defenderBase;
+            // but if enemies exist, we check if they are closer than the opponent's base
+            if (defender.length > 0) {
+                for (let j = 0; j < defender.length; j++) {
+                    let newMinDistance = $.math.distance(attacker[i].x, attacker[i].y, defender[j].x, defender[j].y);
+                    // when they are, we make them the new target
+                    if (newMinDistance < minDistance) {
+                        target = defender[j];
+                        minDistance = newMinDistance;
+                    }
+                }
+            } 
+            // move towards their closest target & attack() when they collide
+            attacker[i].direction = attacker[i].getAngleToPoint(target.x, target.y);
+            if (attacker[i].collides(target)) {
+                this.attack(attacker[i], target, resources);
+            }
         }
     }
 
@@ -162,15 +172,37 @@ export class BattleManager {
         // for animals maybe "lean back" sprite
     }
 
-    // enemyDies() {
-    // Generate
-        // if (defender "was in" computerAnimals()): ++ silk
-                    // if "this.enemydata.#" == "bear" 
-                        // this.requests.push({
-                        //     type: "animal",
-                        //     acton: "died", 
-                        //     value: "eagle",
-                        //     playerSide: true
-                        // })
-    //}
+
+
+
+    /* OLD FUNCTION(S):
+
+    * "accelerating" for after colliding etc.
+    movement(group) {
+        // have each unit accelerate up to it's speed level
+        for (let i = 0; i < group.length; i++) {
+            let acceleration = group[i].speed / 100;
+            if ((group[i].speed + acceleration) > group[i].speed) {
+                group[i].speed = 5;
+            } else if (group[i].speed < 5) {
+                group[i].speed += acceleration;
+            }
+            console.log("ant #", group[i].id, "speed: ", group[i].speed, "& direction: ", group[i].direction);
+        }
+    }
+
+    * example of resource ticket push on unit death
+    enemyDies() {
+    Generate
+        if (defender "was in" computerAnimals()): ++ silk
+                    if "this.enemydata.#" == "bear" 
+                        this.requests.push({
+                            type: "animal",
+                            acton: "died", 
+                            value: "eagle",
+                            playerSide: true
+                        })
+    }
+
+    */
 }

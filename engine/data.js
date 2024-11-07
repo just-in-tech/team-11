@@ -6,6 +6,7 @@ export class Data {
         
         this.playerAnimals = $.makeGroup();
         this.computerAnimals = $.makeGroup();
+        this.battleOver = false;
 
         this.playerStats={  // PLAYER ANT IS GOOD
             ant:{
@@ -17,7 +18,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10, //price to put on the track
-                silkFromKill: 5,
+                silkFromKill: 0,
             },
             eagle:{
                 unlocked: 0 ,   //bool true (1) is unlocked
@@ -28,7 +29,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 50, //
-                silkFromKill: 10,
+                silkFromKill: 0,
             },
             bear:{
                 unlocked:0,   //bool true (1) is unlocked
@@ -39,10 +40,12 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 110,
-                silkFromKill:20
+                silkFromKill:0,
             },
-            treeHealth: 200,
-            silkFromTreekill:50,
+            tree:{
+                treeHealth: 200,
+                silkFromTreeKill: 50,
+            }
         };
 
         this.computerStats={
@@ -72,12 +75,14 @@ export class Data {
                 maxHealth: 5 , 
                 speed:  3, //
                 acceleration: 1,
-                attackInterval: 10,
+                attackInterval: 200,
                 priceInGame: 100,
                 silkFromKill: 10,
             },
-            treeHealth: 200,
-            silkfromtreekill:50,
+            tree:{
+                treeHealth: 200,
+                silkFromKill: 50,
+            }
         };
 
         this.statsUpgrades={
