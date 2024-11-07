@@ -205,10 +205,14 @@ export class Data {
             fibrebranch:{
                 level2:{
                     upgradecost:200,
+                    fibrePerInterval:10,
+                    fibreInterval:60,
                     
                 },
                 level3:{
                     upgradecost:200,
+                    fibrePerInterval:10,
+                    fibreInterval:30,
 
 
                 },

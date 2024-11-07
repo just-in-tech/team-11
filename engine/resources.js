@@ -2,11 +2,11 @@ import { $ } from "../lib/Pen.js";
 
 export class Resources {
     constructor() { 
-        this.silk = 0;
+        this.silk = 400;
         this.silkFromBattle=0;
         this.fibre={
             fibre:40,
-            fibreInterval:60,
+            fibreInterval:120,
             fibrePerInterval:20,
         }
     }
