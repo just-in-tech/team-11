@@ -16,7 +16,7 @@ export class Gui {
         this.treeMenu_op = new treemenu();
     }
 
-    update(data) {
+    update(data, resources) {
         if (data.gameState == "loading") {
             // draw loading
         } else if (data.gameState == "mainmenu") {
@@ -24,7 +24,7 @@ export class Gui {
             this.mainMenu.update(data)
         } else if (data.gameState == "treemenu") {
             this.treeMenu.draw()
-            this.treeMenu.update(data)
+            this.treeMenu.update(data, resources)
         }else if(data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
             this.treeMenu_op.draw()                    //  ⮟
             this.treeMenu_op.update(data)              //_______

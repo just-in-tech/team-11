@@ -198,7 +198,7 @@ export class BuildTreeScene {
         //}
     }
 
-    update(data) {
+    update(data, resources) {
 
         // check gamestate
 
@@ -267,7 +267,7 @@ export class BuildTreeScene {
             this.activebutton.y = this.speedbutton.y
             this.activebutton.draw()
 
-            this.popupManager("speed",this.speedbranchstate,data);
+            this.popupManager("speed",this.speedbranchstate,data,resources);
             if ($.mouse.leftReleased) {
                 this.speedbranchstate += 1
                 if (this.speedbranchstate == 2) {
@@ -381,7 +381,7 @@ export class BuildTreeScene {
     }
     
     
-    popupManager(branchname,branchlevel,data){
+    popupManager(branchname,branchlevel,data,resources){
         this.notices={
             troopbranch:{
                 display:"custom text", //options "customText",statstable
@@ -459,10 +459,26 @@ export class BuildTreeScene {
                         $.text.print($.w/2,textposition,"you require .... silk to purchuse")
                     }
 
-                }else if(this.notices[varbranchname].display=="currencystats"){
+                }else if(this.notices[varbranchname].display=="silkstats"){
+
                     $.text.font = this.font
                     $.text.size = 15
-            
+                    $.text.print($.w/2,textposition,"upgrade silk production per ant kill from "+ data.playerStats.ant.silkFromKill +" to "+ data.StatsUpgrades[varbranchlevel].ant.silkFromKill)
+                    textposition+=18
+                    $.text.print($.w/2,textposition,"upgrade silk production per eagle kill from "+ data.playerStats.eagle.silkFromKill +" to "+ data.StatsUpgrades[varbranchlevel].eagle.silkFromKill)
+                    textposition+=18
+                    $.text.print($.w/2,textposition,"upgrade silk production per bear kill from "+ data.playerStats.bear.silkFromKill +" to "+ data.StatsUpgrades[varbranchlevel].bear.silkFromKill)
+                    
+
+
+            this.popupTemplate(this.notices[varbranchname].heading,height,600)
+
+                }else if(this.notices[varbranchname].display=="fibrestats"){
+
+                    $.text.font = this.font
+                    $.text.size = 15
+                    $.text.print($.w/2,textposition,"upgrade fibre production to " +" to ")
+                    
 
 
             this.popupTemplate(this.notices[varbranchname].heading,height,600)
