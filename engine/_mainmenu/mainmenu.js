@@ -12,7 +12,7 @@ export class MainMenu {
 
         // pop-up instructions
 
-        //this.popupbackground = $.makeBoxCollider($.w / 2, $.h / 2 + 100, 700, 700)
+        //this.popupbackground = $.loadImage($.w / 2, $.h / 2, "./engine/_mainmenu/pixelborder.png")
         this.exitinstbutton = $.makeButton(720, 80, 30, 30, "X")
 
         // states
@@ -34,12 +34,15 @@ export class MainMenu {
 
         this.playbutton.draw()
         this.instructionsbutton.draw()
+
+        // this.popupbackground.h = 700
+        // this.popupbackground.w = 700
     }
 
     update(data) {
         if (this.playbutton.down) {
             // change to tree build gamestate
-            data.gameState="treemenu";
+            data.gameState = "treemenu";
         }
 
         if (this.instructionsbutton.down) {
@@ -47,8 +50,21 @@ export class MainMenu {
             this.instructionstate = 1
         }
         if (this.instructionstate == 1) {
+            $.colour.fill = "#e8e8e8"
+            $.shape.rectangle($.w / 2, $.h / 2, 700, 700)
             //this.popupbackground.draw()
-            $.shape.rectangle($.w / 2, $.h / 2 + 100, 700, 700)
+            $.colour.fill = "#d1d1d1"
+            $.shape.rectangle(250, 250, 295, 270)
+            $.shape.rectangle(550, 250, 295, 270)
+            $.shape.rectangle(250, 525, 295, 270)
+            $.shape.rectangle(550, 525, 295, 270)
+            $.colour.fill = "black"
+            $.text.size = 15
+            $.text.print(250, 260, "Images to be added here later", 285)
+            $.text.print(250, 160, "1. Use silk to upgrade tree branches to increase your chances of beating the enemy in battle", 285)
+            $.text.print(550, 160, "2. Head to battle - use fibre to spawn the best combination of allies to defeat the enemy", 285)
+            $.text.print(250, 435, "3. Lost? Use silk won in battle to continue upgrading tree", 285)
+            $.text.print(550, 435, "4. Keep strategising and upgrading until you defeat the enemy", 285)
             this.exitinstbutton.draw()
             if (this.exitinstbutton.down) {
                 this.instructionstate = 0
@@ -62,86 +78,3 @@ export class MainMenu {
         return requestsToBeReturned;
     }
 }
-
-// export class mainmenu{
-//     constructor(){
-//         this.btnpositions=$.h/2
-//         this.playbtn = $.makeButton($.w/2,this.btnpositions,100,50,"play");
-//         this.playbtn.background = "green";
-
-//         this.btnpositions+=80;
-//         this.creditsbtn = $.makeButton($.w/2,this.btnpositions,100,50,"instructions");
-//         this.creditsbtn.background = "white";
-
-//         this.btnpositions+=80;
-//         this.creditsbtn = $.makeButton($.w/2,this.btnpositions,100,50,"credits");
-//         this.creditsbtn.background = "white";
-//         this.popupState="none"
-        
-        
-//         this.requests=[];
-//     }
-
-//      draw(data){
-    
-//     this.playbtn.draw()
-//     if(this.playbtn.up){
-//         data.gameState="treemenu";
-//     }
-
-//     this.creditsbtn.draw()
-//     if(this.creditsbtn.up){
-//         this.popupState="credits";
-//         }
-    
-//     this.popupManager();
-
-//     }
-
-
-
-
-
-// creditsPopup(){
-//     let spaceround=50
-
-//     this.popuptemplate(spaceround,spaceround,$.h-spaceround*2,$.w-spaceround*2,"Credits")
-
-// }
-
-// popupManager(){
-//     if (this.popupState == "instructions") {
-        
-
-        
-//     } else if (this.popupState == "credits") {
-//         this.creditsPopup()
-//     }
-//  }
-
-//  popuptemplate(x,y,h,w,title){
-//     $.shape.roundedRectangle(x,y,w,h,10)
-//     this.closebtnWidth=35
-//     this.closebtnHeight=35
-
-
-
-//     this.closebtn = $.makeButton(w+x-this.closebtnWidth/2-10,y+this.closebtnHeight/2+10,this.closebtnWidth,this.closebtnHeight,"X");
-//     this.closebtn.background="red"
-//     this.closebtn.border="red"
-//     this.closebtn.draw();
-//     if(this.closebtn.up){
-//         this.popupState="none";
-//     }
-//     $.colour.fill="black"
-//     $.text.print(w/2+x,y+20,title,);
-    
-
-//  }
-
-// getRequests() {
-//     const requestsToBeReturned = this.requests;
-//     this.requests = [];
-//     return requestsToBeReturned;
-// }
-// }
