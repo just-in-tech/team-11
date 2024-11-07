@@ -39,7 +39,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 110,
-                silkfromKill:20
+                silkFromKill:20
             },
             treeHealth: 200,
             silkFromTreekill:50,
@@ -200,10 +200,11 @@ export class Data {
             fibrebranch:{
                 level2:{
                     upgradecost:200,
-
+                    
                 },
                 level3:{
                     upgradecost:200,
+
 
                 },
             },
