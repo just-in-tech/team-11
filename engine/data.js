@@ -72,7 +72,7 @@ export class Data {
                 maxHealth: 5 , 
                 speed:  3, //
                 acceleration: 1,
-                attackInterval: 10,
+                attackInterval: 200,
                 priceInGame: 100,
                 silkFromKill: 10,
             },

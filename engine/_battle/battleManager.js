@@ -40,6 +40,9 @@ export class BattleManager {
         // Animals Seek A Target
         this.seekTarget(data, data.playerAnimals, data.computerAnimals, this.computerTree);  
         this.seekTarget(data, data.computerAnimals, data.playerAnimals, this.playerTree);
+        // Update attackCooldown values
+        this.updateCooldown(data.playerAnimals);
+        this.updateCooldown(data.computerAnimals);
 
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
@@ -98,6 +101,27 @@ export class BattleManager {
             group.speed += group.acceleration/100;
         }
     }
+    updateCooldown(group) {
+        for (let i = 0; i < group.length; i++) {
+            group[i].attackCooldown -= 1;
+            console.log(group[i].attackCooldown);
+        }
+    }
+    attack(attacker, defender) {
+        // when attack is ready, the defender takes damage or dies accordingly
+        if (attacker.attackCooldown == 0) {
+            if (defender.currentHealth <= attacker.damage) {
+                defender.remove();
+                // *TODO* PUSH REQUEST: UNIT KILL
+            } else if (defender.currentHealth > attacker.damage) {
+                defender.currentHealth -= attacker.damage;
+            }
+            // reset the attack cooldown
+            attacker.attackCooldown = attacker.attackInterval;
+            console.log("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
+        }
+    }
+
 
     seekTarget(data, attacker, defender, defenderBase) {
         // Player Animals Seeking Target
@@ -135,23 +159,7 @@ export class BattleManager {
         }
     }
 
-    attack(attacker, defender) {
-        // if defender == Tree ??    -- we will first try 'static' for Tree as well..
-
-        // when attack is ready, the defender takes damage or dies accordingly
-        if (attacker.attackCooldown == 0) {
-            if (defender.currentHealth <= attacker.damage) {
-                defender.remove();
-                // *TODO* PUSH REQUEST: UNIT KILL
-            } else if (defender.currentHealth > attacker.damage) {
-                defender.currentHealth -= attacker.damage;
-            }
-            // reset the attack cooldown
-            attacker.attackCooldown = attacker.attackInterval;
-        } else if (attacker.attackCooldown > 0) {
-            attacker.attackCooldown -= 1;
-        }
-    }
+    
 
     attackingAnimation() {
         // sprite move back, then lunge

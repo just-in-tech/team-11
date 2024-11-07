@@ -3,7 +3,7 @@ import { Resources } from "../resources.js";
 
 const resources = new Resources();
 let currentFibre;
-
+let currentWave = 0;
 
 export class BattleGui {
     constructor(data) {
@@ -34,7 +34,7 @@ export class BattleGui {
             type: "factory",
             action: "makeAnimal",
             value: "ant",
-            amount: (1 + currentWave/2),
+            amount: (1 + currentWave),
             playerSide: false
         })
     }
@@ -43,8 +43,9 @@ export class BattleGui {
         // Update battleTimer
         this.battleTimer += 1;
         if (this.battleTimer%60 == 0) {
-            if (this.battleTimer%600 == 0) {
-                this.enemySpawn(0);
+            if (this.battleTimer%1200 == 0) {
+                this.enemySpawn(currentWave);
+                currentWave++;
             }
         }
         resources.generateFibre();
@@ -58,7 +59,7 @@ export class BattleGui {
 
         $.shape.rectangle(this.unitButtonX, this.unitButtonY, 150, 140, 15);
         currentFibre = String(resources.fibre.fibre);
-        $.text.size = 28;
+        $.text.size = 24;
         $.colour.fill = "black";
         $.text.print(this.unitButtonX, this.unitButtonY - 20, "Fibre", 140);
         $.text.print(this.unitButtonX, this.unitButtonY + 20, currentFibre, 140);
@@ -78,6 +79,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "ant",
+                    amount: 1,
                     playerSide: true
                 })
                 resources.fibre.fibre -= data.playerStats.ant.priceInGame;
@@ -93,6 +95,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "eagle",
+                    amount: 1,
                     playerSide: true
                 })
                 resources.fibre.fibre -= data.playerStats.eagle.priceInGame;
@@ -108,6 +111,7 @@ export class BattleGui {
                     type: "factory",
                     action: "makeAnimal",
                     value: "bear",
+                    amount: 1,
                     playerSide: true
                 })
                 resources.fibre.fibre -= data.playerStats.bear.priceInGame;
