@@ -111,96 +111,109 @@ export class Factory {
                 }
                 // to unlock animal on the treemenu
                 if (request.action == "upgrade branch"){
-                if (request.action == "unlockAnimalBranch"){
-                    if (request.value == "eagle") {
-                        data.player.eagle.unlocked=1
-                        
-                    } else if (request.value == "bear") {
-                        data.player.bear.unlocked=1
-                        
+                    if (request.action == "unlockAnimalBranch"){
+                        if (request.value == "eagle") {
+                            data.player.eagle.unlocked=1
+                            
+                        } else if (request.value == "bear") {
+                            data.player.bear.unlocked=1
+                            
+                        }
                     }
-                }
-                // will be one per branch
-                if (request.action == "damageBranch") {
-                    if (request.value == "level 2") {
-                        data.playerStats.ant.damage=5
-                        data.playerStats.eagle.damage=5
-                        data.playerStats.bear.damage= 15
-                        data.playerStats.ant.fibreCost+= 5
-                        data.playerStats.eagle.fibreCost+= 15
-                        data.playerStats.bear.fibreCost+= 30
-                    } else if (request.value == "level 3") {
-                        data.playerStats.ant.damage=8
-                        data.playerStats.eagle.damage=12
-                        data.playerStats.bear.damage= 25
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
+                    // will be one per branch
+                    if (request.action == "damageBranch") {
+                        if (request.value == "level2") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damagebranch[request.value]ant.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damagebranch[request.value]eagle.damage
+                            data.playerStats.bear.damage=data.statsUpgrades.damagebranch[request.value]bear.damage
+                            //data.playerStats.ant.fibreCost+= 5
+                            //data.playerStats.eagle.fibreCost+= 15
+                            //data.playerStats.bear.fibreCost+= 30
+                        } else if (request.value == "level3") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damagebranch[request.value]bear.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damagebranch[request.value]bear.damage
+                            data.playerStats.bear.damage= data.statsUpgrades.damagebranch[request.value]bear.damage
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        }
                     }
-                }
-                if (request.action == "speedBranch") {
-                    if (request.value == "level 2") {
-                        data.playerStats.ant.speed=2
-                        data.playerStats.eagle.speed=15
-                        data.playerStats.bear.speed=4
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                    } else if (request.value == "level 3") {
-                        data.playerStats.ant.speed=2
-                        data.playerStats.eagle.speed=15
-                        data.playerStats.bear.speed=4
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
+                    if (request.action == "speedBranch") {
+                        if (request.value == "level 2") {
+                            data.playerStats.ant.speed=data.statsUpgrades.speedbranch[request.value]bear.speed
+                            data.playerStats.eagle.speed=data.statsUpgrades.speedbranch[request.value]bear.speed
+                            data.playerStats.bear.speed=data.statsUpgrades.speedbranch[request.value]bear.speed
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        } else if (request.value == "level 3") {
+                            data.playerStats.ant.speed=2
+                            data.playerStats.eagle.speed=15
+                            data.playerStats.bear.speed=4
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        }
                     }
-                }
-                if (request.action == "silkBranch") {
-                    if (request.value == "level 2") {
-                        data.playerStats.ant.
-                        data.playerStats.eagle.
-                        data.playerStats.bear.
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                    } else if (request.value == "level 3") {
-                        
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
+                    if (request.action == "silkBranch") {
+                        if (request.value == "level 2") {
+                            data.playerStats.ant.silkFromKill=data.statsUpgrades.silkBranch[request.value]ant.silkFromKill
+                            data.playerStats.eagle.silkFromKill=data.statsUpgrades.silkBranch[request.value]eagle.silkFromKill
+                            data.playerStats.bear.silkFromKill=data.statsUpgrades.silkBranch[request.value]bear.silkFromKill
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        } else if (request.value == "level 3") {
+                            data.playerStats.ant.silkFromKill=data.statsUpgrades.silkBranch[request.value]ant.silkFromKill
+                            data.playerStats.eagle.silkFromKill=data.statsUpgrades.silkBranch[request.value]eagle.silkFromKill
+                            data.playerStats.bear.silkFromKill=data.statsUpgrades.silkBranch[request.value]bear.silkFromKill
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        }
                     }
-                }
-                if (request.action == "damageBranch") {
-                    if (request.value == "level 2") {
+                    if (request.action == "damageBranch") {
+                        if (request.value == "level 2") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damagebranch[request.value]ant.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damagebranch[request.value]eagle.damage
+                            data.playerStats.bear.damage=data.statsUpgrades.damagebranch[request.value]bear.damage
 
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
-                    } else if (request.value == "level 3") {
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        } else if (request.value == "level 3") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damagebranch[request.value]ant.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damagebranch[request.value]eagle.damage
+                            data.playerStats.bear.damage=data.statsUpgrades.damagebranch[request.value]bear.damage
 
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        }
                     }
-                }
-                if (request.action == "upgradeHealthBranch") {
-                    if (request.value == "level 2") {
+                    if (request.action == "upgradeHealthBranch") {
+                        if (request.value == "level 2") {
+                            data.playerStats.healthbranch.ant.maxHealth=data.statsUpgrades.healthbranch[request.value]ant.maxHealth
+                            data.playerStats.healthbranch.eagle.maxHealth=data.statsUpgrades.healthbranch[request.value]eagle.maxHealth
+                            data.playerStats.healthbranch.bear.maxHealth=data.statsUpgrades.healthbranch[request.value]bear.maxHealth
 
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
-                    } else if (request.value == "level 3") {
-
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        data.playerStats.ant.fibreCost+=10
-                        
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        } else if (request.value == "level 3") {
+                            data.playerStats.healthbranch.ant.maxHealth=data.statsUpgrades.healthbranch[request.value]ant.maxHealth
+                            data.playerStats.healthbranch.eagle.maxHealth=data.statsUpgrades.healthbranch[request.value]eagle.maxHealth
+                            data.playerStats.healthbranch.bear.maxHealth=data.statsUpgrades.healthbranch[request.value]bear.maxHealth
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        }
                     }
-                }
             }
             }
         }
