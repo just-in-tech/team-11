@@ -24,10 +24,10 @@ export class Gui {
             this.mainMenu.update(data)
         } else if (data.gameState == "treemenu") {
             this.treeMenu.draw()
-            this.treeMenu.update(data, resources)
+            this.treeMenu.update(data)
         }else if(data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
             this.treeMenu_op.draw()                    //  ⮟
-            this.treeMenu_op.update(data)              //_______
+            this.treeMenu_op.update(data, resources)              //_______
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);

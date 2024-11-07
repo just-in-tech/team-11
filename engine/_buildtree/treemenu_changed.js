@@ -213,7 +213,7 @@ export class BuildTreeScene {
         // troop branch
 
         //$.math.distance()
-
+        console.log(resources)
         if ($.math.distance(this.troopbutton.x,this.troopbutton.y,$.mouse.x,$.mouse.y)<=30) {
             
             this.activebutton.x = this.troopbutton.x
@@ -222,14 +222,17 @@ export class BuildTreeScene {
             
             //this.popupManager("troop",this.troopbranchstate,data);
             if ($.mouse.leftReleased) {
-                this.troopbranchstate += 1
-                if(this.troopbranchstate == 2){
-                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage2,600,600,this.troopbutton,680,320)
-                    
-                }else if (this.troopbranchstate == 3){
-                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage3,600,600,this.troopbutton,730,280)
+                
+                if(this.troopbranchstate == 2-1 && resources.silk>data.statsUpgrades.troopbranch.level2.upgradecost){
 
+                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage2,600,600,this.troopbutton,680,320)
+                    this.troopbranchstate += 1
+                }else if (this.troopbranchstate == 3-1 && resources.silk>data.statsUpgrades.troopbranch.level3.upgradecost){
+
+                    this.setnewstage("troopbranchcurrentstage",this.troopbranchcurrentstage,this.troopbranchstage3,600,600,this.troopbutton,730,280)
+                    this.troopbranchstate += 1
                 }
+                
             }
         }
         
@@ -242,15 +245,15 @@ export class BuildTreeScene {
             this.activebutton.x = this.damagebutton.x
             this.activebutton.y = this.damagebutton.y
             this.activebutton.draw()
-            this.popupManager("damage",this.damagebranchstate,data);
+            this.popupManager("damage",this.damagebranchstate,data,resources);
             if ($.mouse.leftReleased) {
-                this.damagebranchstate += 1
-                if (this.damagebranchstate == 2) {
+                
+                if (this.damagebranchstate == 2 && resources.silk>data.statsUpgrades.damagebranch.level2.upgradecost) {
                     this.setnewstage("damagebranchcurrentstage",this.damagebranchcurrentstage,this.damagebranchstage2,900,900,this.damagebutton,120,160)
-
-                }else if (this.damagebranchstate == 3) {
+                    this.damagebranchstate += 1
+                }else if (this.damagebranchstate == 3 && resources.silk>data.statsUpgrades.damagebranch.level3.upgradecost) {
                     this.setnewstage("damagebranchcurrentstage",this.damagebranchcurrentstage,this.damagebranchstage3,900,900,this.damagebutton,160,70)
-                    
+                    this.damagebranchstate += 1
                 }
             }
         }
@@ -269,13 +272,13 @@ export class BuildTreeScene {
 
             this.popupManager("speed",this.speedbranchstate,data,resources);
             if ($.mouse.leftReleased) {
-                this.speedbranchstate += 1
-                if (this.speedbranchstate == 2) {
+                
+                if (this.speedbranchstate == 2 && resources.silk>data.statsUpgrades.speedbranch.level2.upgradecost) {
                     this.setnewstage("speedbranchcurrentstage",this.speedbranchcurrentstage,this.speedbranchstage2,600,600,this.speedbutton,100,310)
-
-                }else if (this.speedbranchstate == 3) {
+                    this.speedbranchstate += 1
+                }else if (this.speedbranchstate == 3 && resources.silk>data.statsUpgrades.speedbranch.level3.upgradecost) {
                     this.setnewstage("speedbranchcurrentstage",this.speedbranchcurrentstage,this.speedbranchstage3,600,600,this.speedbutton,70,270)
-
+                    this.speedbranchstate += 1
                 }
             }
         }
@@ -291,20 +294,20 @@ export class BuildTreeScene {
             this.activebutton.y = this.silkbutton.y
             this.activebutton.draw()
             if ($.mouse.leftReleased) {
-                this.silkbranchstate += 1
-                if (this.silkbranchstate == 2) {
+                
+                if (this.silkbranchstate == 2 && resources.silk>data.statsUpgrades.silkbranch.level2.upgradecost) {
                     this.setnewstage("silkbranchcurrentstage",this.silkbranchcurrentstage,this.silkbranchstage2,600,600,this.silkbutton,740,500)
-
-                }else if (this.silkbranchstate == 3) {
+                    this.silkbranchstate += 1
+                }else if (this.silkbranchstate == 3 && resources.silk>data.statsUpgrades.silkbranch.level3.upgradecost) {
                     this.setnewstage("silkbranchcurrentstage",this.silkbranchcurrentstage,this.silkbranchstage3,600,600,this.silkbutton,740,500)
-
+                    this.silkbranchstate += 1
                 }
             }
         }
         this.silkbranchcurrentstage.draw()
 
         // fibre branch
-        console.log($.math.distance(this.fibrebutton.x,this.fibrebutton.y,$.mouse.x,$.mouse.y)<=30)
+        //console.log($.math.distance(this.fibrebutton.x,this.fibrebutton.y,$.mouse.x,$.mouse.y)<=30)
 
         if ($.math.distance(this.fibrebutton.x,this.fibrebutton.y,$.mouse.x,$.mouse.y)<=30) {
             
@@ -312,13 +315,13 @@ export class BuildTreeScene {
             this.activebutton.y = this.fibrebutton.y
             this.activebutton.draw()
             if ($.mouse.leftReleased) {
-                this.fibrebranchstate += 1
-                if (this.fibrebranchstate == 2) {
+                
+                if (this.fibrebranchstate == 2 && resources.silk>data.statsUpgrades.fibrebranch.level2.upgradecost) {
                     this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage2,600,600,this.fibrebutton,65,430)
-                    
-                }else if (this.fibrebranchstate == 3) {
+                    this.fibrebranchstate += 1
+                }else if (this.fibrebranchstate == 3 && resources.silk>data.statsUpgrades.fibrebranch.level3.upgradecost) {
                     this.setnewstage("fibrebranchcurrentstage",this.fibrebranchcurrentstage,this.fibrebranchstage3,900,900,this.fibrebutton,45,380)
-                    
+                    this.fibrebranchstate += 1
                 }
             }
         }
@@ -333,15 +336,18 @@ export class BuildTreeScene {
             this.activebutton.y = this.healthbutton.y
             this.activebutton.draw()
 
-            this.popupManager("health",this.healthbranchstate,data);
+            this.popupManager("health",this.healthbranchstate,data,resources);
+
             if ($.mouse.leftReleased) {
-                this.healthbranchstate += 1
-                if (this.healthbranchstate == 2) {
+                
+                if (this.healthbranchstate == 2 && resources.silk>data.statsUpgrades.healthbranch.level2.upgradecost) {
                     this.setnewstage("healthbranchcurrentstage",this.healthbranchcurrentstage,this.healthbranchstage2,900,900,this.healthbutton,660,190)        
-                    
+                    this.healthbranchstate += 1
                 }else if (this.healthbranchstate == 3 ) {
                     this.setnewstage("healthbranchcurrentstage",this.healthbranchcurrentstage,this.healthbranchstage3,900,900,this.healthbutton,650,110) 
+                    this.healthbranchstate += 1
                 }
+
             }
         }
         this.healthbranchcurrentstage.draw()
@@ -382,6 +388,7 @@ export class BuildTreeScene {
     
     
     popupManager(branchname,branchlevel,data,resources){
+        console.log(resources)
         this.notices={
             troopbranch:{
                 display:"custom text", //options "customText",statstable
@@ -404,6 +411,8 @@ export class BuildTreeScene {
                 stat:"speed", //the name of the stat in the object playerStats
             },
             silkbranch:{
+                display:"silkstats",
+                stat: "silkFromKill",
                 level2:{
 
                 },
@@ -412,6 +421,7 @@ export class BuildTreeScene {
                 },
             },
             fibrebranch:{
+                display:"fibrestats",
                 level2:{
 
                 },
@@ -421,7 +431,7 @@ export class BuildTreeScene {
             },
             healthbranch:{
                 display:"statstable", //options "customText",statstable
-                stat:"maxhealth", //the name of the stat in the object playerStats
+                stat:"maxHealth", //the name of the stat in the object playerStats
             },
         }
 
@@ -440,7 +450,7 @@ export class BuildTreeScene {
             let textposition=600
             if(branchlevel<3){
                 if(this.notices[varbranchname].display==="statstable"){
-
+                    console.log(varbranchlevel, varbranchname, data.statsUpgrades[varbranchname][varbranchlevel].ant,this.notices[varbranchname].stat)
                     this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
                     textposition+=80
                     $.text.font = this.font
@@ -451,15 +461,16 @@ export class BuildTreeScene {
                     textposition+=18
                     $.text.print($.w/2,textposition,"upgrade bear "+branchname+" to "+data.statsUpgrades[varbranchname][varbranchlevel].bear[this.notices[varbranchname].stat]+" from "+data.playerStats.bear[this.notices[varbranchname].stat])
                     textposition+=18
-                    if(1){
+                    if(resources.silk>data.statsUpgrades[varbranchname][varbranchlevel].upgradecost){
                         $.colour.fill = "green"
-                        $.text.print($.w/2,textposition,"use .... silk to purchurse")
+                        $.text.print($.w/2,textposition,"use"+ data.statsUpgrades[varbranchname][varbranchlevel].upgradecost +"silk to purchurse")
                     }else{
                         $.colour.fill = "red"
-                        $.text.print($.w/2,textposition,"you require .... silk to purchuse")
+                        $.text.print($.w/2,textposition,"you require "+ data.statsUpgrades[varbranchname][varbranchlevel].upgradecost + " silk to purchuse")
                     }
 
                 }else if(this.notices[varbranchname].display=="silkstats"){
+                    this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
 
                     $.text.font = this.font
                     $.text.size = 15
@@ -474,7 +485,7 @@ export class BuildTreeScene {
             this.popupTemplate(this.notices[varbranchname].heading,height,600)
 
                 }else if(this.notices[varbranchname].display=="fibrestats"){
-
+                    this.popupTemplate("upgrade " +branchname+" branch to level "+nextbranchlevel,170,textposition)
                     $.text.font = this.font
                     $.text.size = 15
                     $.text.print($.w/2,textposition,"upgrade fibre production to " +" to ")
@@ -492,7 +503,7 @@ export class BuildTreeScene {
             }else if(branchlevel>=3){
                 textposition=700
                 this.popupTemplate(branchname+" branch is fully upgraded",70,textposition)
-                textposition+=40
+                textposition+=80
                 $.text.font = this.font
                 $.text.size = 20
                 $.colour.fill = "green"
