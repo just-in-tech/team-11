@@ -77,13 +77,21 @@ export class Factory {
                                 data.playerStats.ant.acceleration,
                                 data.playerStats.ant.attackInterval));
                         } else if (request.value == "eagle") {
-                            let attackSpeed = 120;
                             let size = 20;
-                            data.playerAnimals.push(this.makeEagle(x, y, data.playerStats.eagle.speed, direction, attackSpeed, size));
+                            data.playerAnimals.push(this.makeEagle(x, y, direction, size,
+                                data.playerStats.eagle.damage,
+                                data.playerStats.eagle.maxHealth,
+                                data.playerStats.eagle.speed, 
+                                data.playerStats.eagle.acceleration,
+                                data.playerStats.eagle.attackInterval));
                         } else if (request.value == "bear") {
-                            let attackSpeed = 200;
                             let size = 40;
-                            data.playerAnimals.push(this.makeBear(x, y, data.playerStats.bear.speed, direction, attackSpeed, size));
+                            data.playerAnimals.push(this.makeBear(x, y, direction, size,
+                                data.playerStats.bear.damage,
+                                data.playerStats.bear.maxHealth,
+                                data.playerStats.bear.speed, 
+                                data.playerStats.bear.acceleration,
+                                data.playerStats.bear.attackInterval));
                         }   
                     } else if (request.playerSide == false) {
                         // enemy units on the right moving left

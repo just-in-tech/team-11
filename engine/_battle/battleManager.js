@@ -44,7 +44,9 @@ export class BattleManager {
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
 
-        this.drawTree(this.playerTree, "#00FF3A", "#C7FFD4");
+        // drawing tree/bases with: which tree, health colour, empty colour, "is tree playerTree?"
+        this.drawTree(this.playerTree, "#00FF3A", "#C7FFD4", true);
+        this.drawTree(this.computerTree, "#FF0000", "#FFC7C7", false);
     }
 
     drawHP(group, healthColour, backgroundColour) {
@@ -69,15 +71,19 @@ export class BattleManager {
         }
     }
 
-    drawTree(whichTree, healthColour, backgroundColour) {
-        let barHeight = $.h * (10/100);
-        let barWidth = $.w * (30/100);
+    drawTree(whichTree, healthColour, backgroundColour, player) {
+        let barHeight = $.h * (5/100);
+        let barWidth = $.w * (15/100);
         let barX = $.w * (5/100);
         let barY = $.h * (20/100);
         // draw a health bar
         $.shape.alignment.x = "left";
         $.colour.stroke = "black";
-        $.colour.fill = backgroundColour;
+        $.colour.fill = backgroundColour
+        if (player == false) {
+            $.shape.alignment.x = "right";
+            barX = $.w - barX;
+        }
         $.shape.rectangle(barX, barY, barWidth, barHeight);
         if (whichTree.currentHealth > 0) {
             $.colour.fill = healthColour;
@@ -118,7 +124,11 @@ export class BattleManager {
                         this.accelerate(attacker[i]); // otherwise, return speed to "5"   -- maybe we do acceleration instead
                     }
                 }
+            } else if (attacker[i].collides(defenderBase)) {
+                this.attack(attacker[i], defenderBase);
+                console.log("Tree Hit!");
             }
+            
             if (attacker[i].overlaps(attacker)) {
                 //attacker[i].direction += attacker.direction;
             }

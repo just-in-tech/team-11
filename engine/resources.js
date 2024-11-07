@@ -12,13 +12,11 @@ export class Resources {
     }
 
     // 'frame-based' resource generation
-    genrateFibre() {
-    
+    generateFibre() {
         if ($.frameCount % this.fibre.fibreInterval === 0) {
             this.fibre.fibre += this.fibre.fibrePerInterval;
             // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
         }
-        
     }
 
     // add a resource value
