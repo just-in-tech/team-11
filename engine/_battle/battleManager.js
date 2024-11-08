@@ -21,6 +21,8 @@ export class BattleManager {
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
         this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
+        this.playerTree.players=1
+        this.playerTree.tree=1
 
         // Enemy Tree
         this.computerTree = $.makeBoxCollider($.w * 7/8, $.h/2, $.w/8, $.h/8);
@@ -31,6 +33,8 @@ export class BattleManager {
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
+        this.computerTree.players=0
+        this.computerTree.tree=1
     }
 
     battleUpdate(data) {
@@ -128,28 +132,40 @@ export class BattleManager {
                     if(defender.animaltype=="ant"){
                         this.requests.push({
                             type: "resources",
-                            action: "silkBranch",
+                            action: "playerkilledcomputer",
                             value: "ant",
                         })
                     }else if(defender.animaltype=="eagle"){
                         this.requests.push({
                             type: "resources",
-                            action: "silkBranch",
+                            action: "playerkilledcomputer",
                             value: "eagle",
                         })
                     }else if(defender.animaltype=="bear"){
                         this.requests.push({
                             type: "resources",
-                            action: "silkBranch",
+                            action: "playerkilledcomputer",
+                            value: "bear",
+                        })
+                    }else if(defender.tree==1){
+                        this.requests.push({
+                            type: "resources",
+                            action: "playerkilledcomputer",
                             value: "bear",
                         })
                     }else{
-
+                        throw new Error("contact justin error in battle manager")
                     }
                 }else if(defender.players==1){
-
+                    if(defender.tree=1){
+                        this.requests.push({
+                            type: "resources",
+                            action: "computerkilledplayer",
+                            value: "tree",
+                        })
+                    }
                 }else{
-
+                    throw new Error("contact justin error in battle manager")
                 }//Justin to here
                 defender.currentHealth = 0;
                 defender.remove();
