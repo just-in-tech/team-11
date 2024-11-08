@@ -89,7 +89,7 @@ export class BattleGui {
         $.shape.alignment.y = "center";
         $.colour.fill = "white";
         $.shape.rectangle(this.unitButtonX, this.unitButtonY, 150, 140, 15);
-        currentFibre = String(resources.fibre.fibre);
+        currentFibre = String(resources.fibre);
         $.text.size = 24;
         $.colour.fill = "black";
         $.text.print(this.unitButtonX, this.unitButtonY - 20, "Fibre", 140);
@@ -115,7 +115,7 @@ export class BattleGui {
         // Buy Animal Buttons
         this.antButton.draw();
         // show a white version if a unit can be bought (grey if not)
-        if (resources.fibre.fibre >= data.playerStats.ant.priceInGame) {
+        if (resources.fibre >= data.playerStats.ant.priceInGame) {
             this.antButton.background = "white";
             // clicking will remove some fibre and spawn a unit for the player
             if (this.antButton.up) {
@@ -126,7 +126,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre.fibre -= data.playerStats.ant.priceInGame;
+                resources.fibre -= data.playerStats.ant.priceInGame;
             }
         } else {
             this.antButton.background = "grey";
@@ -134,7 +134,7 @@ export class BattleGui {
         if (data.playerStats.eagle.unlocked == 1) {
             this.eagleButton.draw();
         }
-        if (resources.fibre.fibre >= data.playerStats.eagle.priceInGame) {
+        if (resources.fibre >= data.playerStats.eagle.priceInGame) {
             this.eagleButton.background = "white";
             if (this.eagleButton.up) {
                 this.requests.push({    // request a player eagle
@@ -144,7 +144,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre.fibre -= data.playerStats.eagle.priceInGame;
+                resources.fibre -= data.playerStats.eagle.priceInGame;
             }
         } else {
             this.eagleButton.background = "grey";
@@ -152,7 +152,7 @@ export class BattleGui {
         if (data.playerStats.bear.unlocked == 1) {
             this.bearButton.draw();
         }
-        if (resources.fibre.fibre >= data.playerStats.bear.priceInGame) {
+        if (resources.fibre >= data.playerStats.bear.priceInGame) {
             this.bearButton.background = "white";
             if (this.bearButton.up) {
                 this.requests.push({    // request a player bear
@@ -162,7 +162,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre.fibre -= data.playerStats.bear.priceInGame;
+                resources.fibre -= data.playerStats.bear.priceInGame;
             }
         } else {
             this.bearButton.background = "grey";
@@ -195,7 +195,7 @@ export class BattleGui {
         }
         // Reset battle values
         this.battleTime = 0;
-        resources.fibre.fibre = 0;
+        resources.fibre = 0;
         // Confirm/End Button
         this.endButton.draw();
         if (this.endButton.up) {
