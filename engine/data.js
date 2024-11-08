@@ -86,7 +86,7 @@ export class Data {
         };
 
         this.statsUpgrades={
-            troopbranch:{
+            troopBranch:{
                 eagle:{
                     upgradecost:200,
                 },
@@ -94,7 +94,7 @@ export class Data {
                     upgradecost:350,
                 },
             },
-            damagebranch:{
+            damageBranch:{
                 
                 level2:{
                     upgradecost:200,
@@ -133,7 +133,7 @@ export class Data {
                     }
                 },
             },
-            speedbranch:{
+            speedBranch:{
                 level2:{
                     upgradecost:200,
                     ant:{
@@ -165,7 +165,7 @@ export class Data {
                     }
                 },
             },
-            silkbranch:{
+            silkBranch:{
                 level2:{
                     upgradecost:200,
                     ant:{
@@ -202,7 +202,7 @@ export class Data {
 
                 },
             },
-            fibrebranch:{
+            fibreBranch:{
                 level2:{
                     upgradecost:200,
                     fibrePerInterval:10,
@@ -217,7 +217,7 @@ export class Data {
 
                 },
             },
-            healthbranch:{
+            healthBranch:{
                 level2:{
                     upgradecost:200,
                     ant:{

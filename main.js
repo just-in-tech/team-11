@@ -17,7 +17,7 @@ const resources = new Resources();
 function update() {
     gui.update(data, resources);
     const requests = gui.getRequests(data);
-    factory.processRequests(requests, data);
+    factory.processRequests(requests, data,resources);
     resources.processRequests(requests,data);
     data.update(requests);
 }
