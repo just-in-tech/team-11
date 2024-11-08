@@ -4,11 +4,8 @@ export class Resources {
     constructor() { 
         this.silk = 400;
         this.silkFromBattle=0;
-        this.fibre={
-            fibre:40,
-            fibreInterval:120,
-            fibrePerInterval:20,
-        }
+        this.fibre=40;
+            
     }
 
     // 'frame-based' resource generation

@@ -45,7 +45,12 @@ export class Data {
             tree:{
                 treeHealth: 200,
                 silkFromTreeKill: 50,
+            },
+            fibre:{
+                fibrePerInterval:10,
+                fibreInterval:120
             }
+
         };
 
         this.computerStats={
