@@ -5,6 +5,7 @@ const resources = new Resources();
 
 export class BattleManager {
     constructor(data) {
+        this.requests=[]
         // Load assets
         this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/playerTree.png");
         this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
@@ -128,6 +129,7 @@ export class BattleManager {
         if (attacker.attackCooldown == 0) {
             if (defender.currentHealth <= attacker.damage) {
                 //justin from here
+                /*
                 if(defender.players==0){
                     if(defender.animaltype=="ant"){
                         this.requests.push({
@@ -166,7 +168,7 @@ export class BattleManager {
                     }
                 }else{
                     throw new Error("contact justin error in battle manager")
-                }//Justin to here
+                }*/ //Justin to here
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
@@ -249,4 +251,9 @@ export class BattleManager {
     }
 
     */
+    getRequests() {
+        const requestsToBeReturned = this.requests;
+        this.requests = [];
+        return requestsToBeReturned;
+    }
 }
