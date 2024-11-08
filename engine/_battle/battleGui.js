@@ -131,7 +131,9 @@ export class BattleGui {
         } else {
             this.antButton.background = "grey";
         }
-        this.eagleButton.draw();
+        if (data.playerStats.eagle.unlocked == 1) {
+            this.eagleButton.draw();
+        }
         if (resources.fibre.fibre >= data.playerStats.eagle.priceInGame) {
             this.eagleButton.background = "white";
             if (this.eagleButton.up) {
@@ -147,7 +149,9 @@ export class BattleGui {
         } else {
             this.eagleButton.background = "grey";
         }
-        this.bearButton.draw();
+        if (data.playerStats.bear.unlocked == 1) {
+            this.bearButton.draw();
+        }
         if (resources.fibre.fibre >= data.playerStats.bear.priceInGame) {
             this.bearButton.background = "white";
             if (this.bearButton.up) {
