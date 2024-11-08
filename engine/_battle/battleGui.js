@@ -168,6 +168,7 @@ export class BattleGui {
     
 
     endBattle(data, resources) {
+//Justin maybe
         $.colour.fill = "white";
         $.colour.stroke = "black";
         $.shape.rectangle($.w/2, $.h/3, $.w/4, $.h/4);
@@ -198,6 +199,12 @@ export class BattleGui {
             resources.silkFromBattle = 0;
             data.gameState = "treemenu";
             data.battleOver = false;
+            //Justin
+            this.requests.push({
+                type: "resources",
+                action: "endTheGame",
+            })
+            //to here is justin
         }
     }
 

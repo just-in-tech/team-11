@@ -123,6 +123,34 @@ export class BattleManager {
         // when attack is ready, the defender takes damage or dies accordingly
         if (attacker.attackCooldown == 0) {
             if (defender.currentHealth <= attacker.damage) {
+                //justin from here
+                if(defender.players==0){
+                    if(defender.animaltype=="ant"){
+                        this.requests.push({
+                            type: "resources",
+                            action: "silkBranch",
+                            value: "ant",
+                        })
+                    }else if(defender.animaltype=="eagle"){
+                        this.requests.push({
+                            type: "resources",
+                            action: "silkBranch",
+                            value: "eagle",
+                        })
+                    }else if(defender.animaltype=="bear"){
+                        this.requests.push({
+                            type: "resources",
+                            action: "silkBranch",
+                            value: "bear",
+                        })
+                    }else{
+
+                    }
+                }else if(defender.players==1){
+
+                }else{
+
+                }//Justin to here
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL

@@ -1,5 +1,4 @@
 import { $ } from "../lib/Pen.js";
-import { Resources } from "./resources.js";
 
 export class Factory {
     constructor() {
@@ -9,7 +8,7 @@ export class Factory {
         this.antSprite = $.loadImage(10, 10, "./engine/animals/ant/ant1.png");
         this.enemyAntSprite = $.loadImage(10, 10, "./engine/animals/ant/enemyAnt1.png");
     }
-    makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval) {   // (feed values like "speed" from data later)
+    makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const ant = $.makeCircleCollider(x, y, size);
         if (direction == 270) {
             ant.asset = this.enemyAntSprite;
@@ -29,9 +28,11 @@ export class Factory {
         ant.currentHealth = ant.maxHealth;
         ant.attackInterval = attackInterval;
         ant.attackCooldown = ant.attackInterval;
+        ant.animaltype = "ant"
+        ant.players=playerSide
         return ant;
     }
-    makeEagle(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval) {   // (feed values like "speed" from data later)
+    makeEagle(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const eagle = $.makeCircleCollider(x, y, size);
         eagle.bounciness = 0;
         eagle.fill = "green"; // "no fill" possible?
@@ -44,9 +45,11 @@ export class Factory {
         eagle.currentHealth = eagle.maxHealth;
         eagle.attackInterval = attackInterval;
         eagle.attackCooldown = eagle.attackInterval;
+        eagle.animaltype = "eagle"
+        eagle.players=playerSide
         return eagle;
     }
-    makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval) {   // (feed values like "speed" from data later)
+    makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const bear = $.makeCircleCollider(x, y, size);
         bear.bounciness = 0;
         bear.fill = "green"; // "no fill" possible?
@@ -59,6 +62,8 @@ export class Factory {
         bear.currentHealth = bear.maxHealth;
         bear.attackInterval = attackInterval;
         bear.attackCooldown = bear.attackInterval;
+        bear.animaltype = "bear"
+        bear.players=playerSide
         return bear;
     }
 
@@ -86,7 +91,8 @@ export class Factory {
                                     data.playerStats.ant.maxHealth,
                                     data.playerStats.ant.speed, 
                                     data.playerStats.ant.acceleration,
-                                    data.playerStats.ant.attackInterval));
+                                    data.playerStats.ant.attackInterval,
+                                    request.playerSide));
                             } else if (request.value == "eagle") {
                                 let size = 20;
                                 data.playerAnimals.push(this.makeEagle(x, y, direction, size,
@@ -94,7 +100,8 @@ export class Factory {
                                     data.playerStats.eagle.maxHealth,
                                     data.playerStats.eagle.speed, 
                                     data.playerStats.eagle.acceleration,
-                                    data.playerStats.eagle.attackInterval));
+                                    data.playerStats.eagle.attackInterval,
+                                    request.playerSide));
                             } else if (request.value == "bear") {
                                 let size = 40;
                                 data.playerAnimals.push(this.makeBear(x, y, direction, size,
@@ -102,7 +109,8 @@ export class Factory {
                                     data.playerStats.bear.maxHealth,
                                     data.playerStats.bear.speed, 
                                     data.playerStats.bear.acceleration,
-                                    data.playerStats.bear.attackInterval));
+                                    data.playerStats.bear.attackInterval,
+                                    request.playerSide));
                             }   
                         } else if (request.playerSide == false) {
                             // enemy units on the right moving left
@@ -115,15 +123,18 @@ export class Factory {
                                     data.computerStats.ant.maxHealth,
                                     data.computerStats.ant.speed, 
                                     data.computerStats.ant.acceleration,
-                                    data.computerStats.ant.attackInterval));
+                                    data.computerStats.ant.attackInterval,
+                                    request.playerSide));
                             } else if (request.value == "eagle") {
                                 let attackSpeed = 200;
                                 let size = 20;
-                                data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size));
+                                data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size,
+                                    request.playerSide));
                             } else if (request.value == "bear") {
                                 let attackSpeed = 200;
                                 let size = 40;
-                                data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size));
+                                data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size,
+                                    request.playerSide));
                             }
                         }
                     // we can simplify these to include: "request.playerSide" and "request.value" 
