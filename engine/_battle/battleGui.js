@@ -67,7 +67,9 @@ export class BattleGui {
         if (this.battleTime % 60 == 0) {
             if (this.battleTime % 600 == 0) {
                 this.enemySpawn(currentWave);
-                currentWave++;
+                if (currentWave < 26) {
+                    currentWave++;
+                }
             }
         }
     }
@@ -84,14 +86,14 @@ export class BattleGui {
             type: "factory",
             action: "makeAnimal",
             value: "eagle",
-            amount: (currentWave % 4),
+            amount: (Math.floor(currentWave%26/3)) % 3,
             playerSide: false
         })
         this.requests.push({
             type: "factory",
             action: "makeAnimal",
             value: "bear",
-            amount: (currentWave % 5),
+            amount: (Math.floor(currentWave%26/9)) % 3,
             playerSide: false
         })
     }

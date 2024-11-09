@@ -36,13 +36,14 @@ export class BattleManager {
         this.computerTree.players = 0
         this.computerTree.tree = 1
 
-        this.battleTime = 0;
         this.requests = []
     }
 
     battleUpdate(data) {
         if (this.playerTree.currentHealth == 0 || this.computerTree.currentHealth == 0) {
             data.battleOver = true;
+            this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
+            this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         }
         
         // we say that both unit groups with their enemy and the boundaries
@@ -157,14 +158,14 @@ export class BattleManager {
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
-                console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
-                    "added with silkFromKill: ", defender.silkFromKill)
+                // console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
+                    // "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
                 defender.currentHealth -= attacker.damage;
             }
             // reset the attack cooldown
             attacker.attackCooldown = attacker.attackInterval;
-            console.log("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
+            // ("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
         }
     }
 
