@@ -337,7 +337,7 @@ export class BuildTreeScene {
             this.popupManager("troop", this.troopbranchstate, data, resources);
             if ($.mouse.leftReleased) {
 
-                if (this.troopbranchstate == 2 - 1 && resources.silk > data.statsUpgrades.troopBranch.eagle.upgradecost) {
+                if (this.troopbranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.troopBranch.eagle.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "unlockAnimalBranch",
@@ -345,7 +345,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("troopbranchcurrentstage", this.troopbranchcurrentstage, this.troopbranchstage2, 600, 600, this.troopbutton, 680, 320)
                     this.troopbranchstate += 1
-                } else if (this.troopbranchstate == 3 - 1 && resources.silk > data.statsUpgrades.troopBranch.bear.upgradecost) {
+                } else if (this.troopbranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.troopBranch.bear.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "unlockAnimalBranch",
@@ -370,7 +370,7 @@ export class BuildTreeScene {
             this.popupManager("damage", this.damagebranchstate, data, resources);
             if ($.mouse.leftReleased) {
 
-                if (this.damagebranchstate == 2 - 1 && resources.silk > data.statsUpgrades.damageBranch.level2.upgradecost) {
+                if (this.damagebranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.damageBranch.level2.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "damageBranch",
@@ -378,7 +378,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("damagebranchcurrentstage", this.damagebranchcurrentstage, this.damagebranchstage2, 900, 900, this.damagebutton, 120, 160)
                     this.damagebranchstate += 1
-                } else if (this.damagebranchstate == 3 - 1 && resources.silk > data.statsUpgrades.damageBranch.level3.upgradecost) {
+                } else if (this.damagebranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.damageBranch.level3.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "damageBranch",
@@ -405,7 +405,7 @@ export class BuildTreeScene {
             this.popupManager("speed", this.speedbranchstate, data, resources);
             if ($.mouse.leftReleased) {
 
-                if (this.speedbranchstate == 2 - 1 && resources.silk > data.statsUpgrades.speedBranch.level2.upgradecost) {
+                if (this.speedbranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.speedBranch.level2.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "speedBranch",
@@ -413,7 +413,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("speedbranchcurrentstage", this.speedbranchcurrentstage, this.speedbranchstage2, 600, 600, this.speedbutton, 100, 310)
                     this.speedbranchstate += 1
-                } else if (this.speedbranchstate == 3 - 1 && resources.silk > data.statsUpgrades.speedBranch.level3.upgradecost) {
+                } else if (this.speedbranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.speedBranch.level3.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "speedBranch",
@@ -438,7 +438,7 @@ export class BuildTreeScene {
             this.popupManager("silk", this.silkbranchstate, data, resources);
             if ($.mouse.leftReleased) {
 
-                if (this.silkbranchstate == 2 - 1 && resources.silk > data.statsUpgrades.silkBranch.level2.upgradecost) {
+                if (this.silkbranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.silkBranch.level2.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "silkBranch",
@@ -446,7 +446,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("silkbranchcurrentstage", this.silkbranchcurrentstage, this.silkbranchstage2, 600, 600, this.silkbutton, 740, 500)
                     this.silkbranchstate += 1
-                } else if (this.silkbranchstate == 3 - 1 && resources.silk > data.statsUpgrades.silkBranch.level3.upgradecost) {
+                } else if (this.silkbranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.silkBranch.level3.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "silkBranch",
@@ -472,7 +472,7 @@ export class BuildTreeScene {
             if ($.mouse.leftReleased) {
                 //console.log(data.statsUpgrades.fibreBranch.level2.upgradecost)
 
-                if (this.fibrebranchstate == 2 - 1 && resources.silk > data.statsUpgrades.fibreBranch.level2.upgradecost) {
+                if (this.fibrebranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.fibreBranch.level2.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "fibreBranch",
@@ -480,7 +480,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("fibrebranchcurrentstage", this.fibrebranchcurrentstage, this.fibrebranchstage2, 600, 600, this.fibrebutton, 65, 430)
                     this.fibrebranchstate += 1
-                } else if (this.fibrebranchstate == 3 - 1 && resources.silk > data.statsUpgrades.fibreBranch.level3.upgradecost) {
+                } else if (this.fibrebranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.fibreBranch.level3.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "fibreBranch",
@@ -506,7 +506,7 @@ export class BuildTreeScene {
 
             if ($.mouse.leftReleased) {
 
-                if (this.healthbranchstate == 2 - 1 && resources.silk > data.statsUpgrades.healthBranch.level2.upgradecost) {
+                if (this.healthbranchstate == 2 - 1 && resources.silk >= data.statsUpgrades.healthBranch.level2.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "healthBranch",
@@ -514,7 +514,7 @@ export class BuildTreeScene {
                     })
                     this.setnewstage("healthbranchcurrentstage", this.healthbranchcurrentstage, this.healthbranchstage2, 900, 900, this.healthbutton, 660, 190)
                     this.healthbranchstate += 1
-                } else if (this.healthbranchstate == 3 - 1 && resources.silk > data.statsUpgrades.healthBranch.level3.upgradecost) {
+                } else if (this.healthbranchstate == 3 - 1 && resources.silk >= data.statsUpgrades.healthBranch.level3.upgradecost) {
                     this.requests.push({
                         type: "upgrade branch",
                         action: "healthBranch",
@@ -808,7 +808,7 @@ export class BuildTreeScene {
                 $.text.print($.w / 2, textposition, "Upgrade bear " + branchname + " to " + data.statsUpgrades[varbranchname][varbranchlevel].bear[this.notices[varbranchname].stat] + " from " + data.playerStats.bear[this.notices[varbranchname].stat])
                 textposition += 23
                 $.text.size = 17
-                if (resources.silk > data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
+                if (resources.silk >= data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
                     $.colour.fill = "green"
                     $.text.print($.w / 2, textposition, "Use " + data.statsUpgrades[varbranchname][varbranchlevel].upgradecost + " silk to purchase?")
                 } else {
@@ -829,7 +829,7 @@ export class BuildTreeScene {
                 $.text.print($.w / 2, textposition, "Upgrade silk production per bear kill from " + data.playerStats.bear.silkFromKill + " to " + data.statsUpgrades[varbranchname][varbranchlevel].bear.silkFromKill)
                 textposition += 23
                 $.text.size = 17
-                if (resources.silk > data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
+                if (resources.silk >= data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
                     $.colour.fill = "green"
                     $.text.print($.w / 2, textposition, "Use " + data.statsUpgrades[varbranchname][varbranchlevel].upgradecost + " silk to purchase?")
                 } else {
@@ -850,7 +850,7 @@ export class BuildTreeScene {
 
                 textposition += 23
                 $.text.size = 17
-                if (resources.silk > data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
+                if (resources.silk >= data.statsUpgrades[varbranchname][varbranchlevel].upgradecost) {
                     $.colour.fill = "green"
                     $.text.print($.w / 2, textposition, "Use " + data.statsUpgrades[varbranchname][varbranchlevel].upgradecost + " silk to purchase?")
                 } else {
@@ -871,7 +871,7 @@ export class BuildTreeScene {
                 $.text.print($.w / 2, textposition, this.notices[varbranchname][this.notices[varbranchname][varbranchlevel]].secondline)
                 textposition += 23
                 $.text.size = 17
-                if (resources.silk > data.statsUpgrades[varbranchname][this.notices[varbranchname][varbranchlevel]].upgradecost) {
+                if (resources.silk >= data.statsUpgrades[varbranchname][this.notices[varbranchname][varbranchlevel]].upgradecost) {
                     $.colour.fill = "green"
                     $.text.print($.w / 2, textposition, "Use " + data.statsUpgrades[varbranchname][this.notices[varbranchname][varbranchlevel]].upgradecost + " silk to purchase")
                 } else {
