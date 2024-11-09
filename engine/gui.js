@@ -25,12 +25,13 @@ export class Gui {
         } else if (data.gameState == "treemenu") {
             this.treeMenu.draw()
             this.treeMenu.update(data)
-        }else if(data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
+        } else if (data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
             this.treeMenu_op.draw()                    //  ⮟
             this.treeMenu_op.update(data, resources)              //_______
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);
+            this.treeMenu.drawBattleTree()
         } else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
         } else if (data.gameState == "    ") {
@@ -53,7 +54,7 @@ export class Gui {
             return this.requests = this.mainMenu.getRequests()
         } else if (data.gameState == "battle") {
             return this.requests = this.battleGui.getRequests();
-        }else if(data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
+        } else if (data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
             return this.requests = this.treeMenu_op.getRequests();              //_______
         } else {
             throw new Error("incorrect gamestate set")

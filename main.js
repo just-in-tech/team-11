@@ -11,13 +11,13 @@ $.h = 800
 
 const factory = new Factory();
 const data = new Data();
-const gui = new Gui(data);
+export const gui = new Gui(data);
 const resources = new Resources();
 
 function update() {
     gui.update(data, resources);
     const requests = gui.getRequests(data);
-    factory.processRequests(requests, data,resources);
-    resources.processRequests(requests,data);
+    factory.processRequests(requests, data, resources);
+    resources.processRequests(requests, data);
     data.update(requests);
 }

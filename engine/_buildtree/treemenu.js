@@ -176,6 +176,31 @@ export class BuildTreeScene {
         this.battlebutton.draw()
         this.OP_treemenuButton.draw()
 
+        // x,y locations
+
+        this.troopbranchinitial.x = $.w / 2
+        this.troopbranchstage2.x = $.w / 2
+        this.troopbranchstage3.x = $.w / 2
+
+        this.speedbranchinitial.x = $.w / 2
+        this.speedbranchstage2.x = $.w / 2
+        this.speedbranchstage3.x = $.w / 2
+
+        this.healthbranchinitial.x = $.w / 2
+        this.healthbranchstage2.x = $.w / 2
+        this.healthbranchstage3.x = $.w / 2
+
+        this.silkbranchinitial.x = $.w / 2
+        this.silkbranchstage2.x = $.w / 2
+        this.silkbranchstage3.x = $.w / 2
+
+        this.damagebranchinitial.x = $.w / 2
+        this.damagebranchstage2.x = $.w / 2
+        this.damagebranchstage3.x = $.w / 2
+
+        this.fibrebranchinitial.x = $.w / 2
+        this.fibrebranchstage2.x = $.w / 2
+        this.fibrebranchstage3.x = $.w / 2
 
         // hover/pressed state of buttons
 
@@ -612,6 +637,181 @@ export class BuildTreeScene {
             }
         }
 
+    }
+
+    drawBattleTree() {
+
+        // trunk
+
+        // this.treeimg.draw()
+        // this.treeimg.w = 270
+        // this.treeimg.h = 270
+        // this.treeimg.x = 60
+        // this.treeimg.y = 450
+
+        //  this.computerTree = $.makeBoxCollider($.w - 20, $.h * 1 / 2, $.w / 8, $.h / 8);
+
+        // troop branch
+
+        this.troopbranchinitial.x = 60
+        this.troopbranchstage2.x = 60
+        this.troopbranchstage3.x = 60
+
+        this.troopbranchinitial.w = 270
+        this.troopbranchinitial.h = 270
+        this.troopbranchstage2.w = 270
+        this.troopbranchstage2.h = 270
+        this.troopbranchstage3.w = 270
+        this.troopbranchstage3.h = 270
+
+        // health branch
+
+        this.healthbranchinitial.x = 60
+        this.healthbranchstage2.x = 60
+        this.healthbranchstage3.x = 60
+
+        this.healthbranchinitial.w = 270
+        this.healthbranchinitial.h = 270
+        this.healthbranchstage2.w = 405
+        this.healthbranchstage2.h = 405
+        this.healthbranchstage3.w = 405
+        this.healthbranchstage3.h = 405
+
+        // fibre branch
+
+        this.fibrebranchinitial.x = 60
+        this.fibrebranchstage2.x = 60
+        this.fibrebranchstage3.x = 60
+
+        this.fibrebranchinitial.w = 270
+        this.fibrebranchinitial.h = 270
+        this.fibrebranchstage2.w = 270
+        this.fibrebranchstage2.h = 270
+        this.fibrebranchstage3.w = 405
+        this.fibrebranchstage3.h = 405
+
+        // silk branch
+
+        this.silkbranchinitial.x = 60
+        this.silkbranchstage2.x = 60
+        this.silkbranchstage3.x = 60
+
+        this.silkbranchinitial.w = 270
+        this.silkbranchinitial.h = 270
+        this.silkbranchstage2.w = 270
+        this.silkbranchstage2.h = 270
+        this.silkbranchstage3.w = 270
+        this.silkbranchstage3.h = 270
+
+        // speed branch
+
+        this.speedbranchinitial.x = 63
+        this.speedbranchstage2.x = 63
+        this.speedbranchstage3.x = 63
+
+        this.speedbranchinitial.w = 270
+        this.speedbranchinitial.h = 270
+        this.speedbranchstage2.w = 270
+        this.speedbranchstage2.h = 270
+        this.speedbranchstage3.w = 270
+        this.speedbranchstage3.h = 270
+
+        // damage branch
+
+        this.damagebranchinitial.x = 60
+        this.damagebranchstage2.x = 60
+        this.damagebranchstage3.x = 60
+
+        this.damagebranchinitial.w = 270
+        this.damagebranchinitial.h = 270
+        this.damagebranchstage2.w = 405
+        this.damagebranchstage2.h = 405
+        this.damagebranchstage3.w = 405
+        this.damagebranchstage3.h = 405
+
+        // damage branch checker
+
+        if (this.damagebranchstate == 1) {
+            this.damagebranchinitial.draw()
+        }
+
+        if (this.damagebranchstate == 2) {
+            this.damagebranchstage2.draw()
+        }
+
+        if (this.damagebranchstate == 3) {
+            this.damagebranchstage3.draw()
+        }
+
+        // health branch checker
+
+        if (this.healthbranchstate == 1) {
+            this.healthbranchinitial.draw()
+        }
+
+        if (this.healthbranchstate == 2) {
+            this.healthbranchstage2.draw()
+        }
+
+        if (this.healthbranchstate == 3) {
+            this.healthbranchstage3.draw()
+        }
+
+        // silk branch checker
+
+        if (this.silkbranchstate == 1) {
+            this.silkbranchinitial.draw()
+        }
+
+        if (this.silkbranchstate == 2) {
+            this.silkbranchstage2.draw()
+        }
+
+        if (this.silkbranchstate == 3) {
+            this.silkbranchstage3.draw()
+        }
+
+        // fibre branch checker
+
+        if (this.fibrebranchstate == 1) {
+            this.fibrebranchinitial.draw()
+        }
+
+        if (this.fibrebranchstate == 2) {
+            this.fibrebranchstage2.draw()
+        }
+
+        if (this.fibrebranchstate == 3) {
+            this.fibrebranchstage3.draw()
+        }
+
+        // speed branch checker
+
+        if (this.speedbranchstate == 1) {
+            this.speedbranchinitial.draw()
+        }
+
+        if (this.speedbranchstate == 2) {
+            this.speedbranchstage2.draw()
+        }
+
+        if (this.speedbranchstate == 3) {
+            this.speedbranchstage3.draw()
+        }
+
+        // troop branch checker
+
+        if (this.troopbranchstate == 1) {
+            this.troopbranchinitial.draw()
+        }
+
+        if (this.troopbranchstate == 2) {
+            this.troopbranchstage2.draw()
+        }
+
+        if (this.troopbranchstate == 3) {
+            this.troopbranchstage3.draw()
+        }
     }
 
     getRequests() {

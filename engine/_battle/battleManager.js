@@ -7,8 +7,8 @@ export class BattleManager {
     constructor(data) {
         this.requests = []
         // Load assets
-        this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/playerTree.png");
-        this.enemyTreeImage = $.loadImage(700, 400, "./engine/_battle/spritesheet/enemyTree.png");
+        this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
+        this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
 
         // "Lane Walls"
         this.topWall = $.makeBoxCollider($.w / 2, $.h / 3, $.w, 2);
@@ -16,8 +16,8 @@ export class BattleManager {
         this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * 2 / 3), $.w, 2);
         this.bottomWall.static = true;
         // Player Tree
-        this.playerTree = $.makeBoxCollider($.w * 1 / 8, $.h / 2, $.w / 8, $.h / 8);
-        // this.playerTree.asset = this.playerTreeImage;
+        this.playerTree = $.makeBoxCollider(60, 450, 270, 270);
+        this.playerTree.asset = this.playerTreeImage;
         this.playerTree.static = true;
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
