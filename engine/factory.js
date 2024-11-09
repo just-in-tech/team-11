@@ -7,6 +7,10 @@ export class Factory {
         // note: asset -- holds image
         this.antSprite = $.loadImage(10, 10, "./engine/animals/ant/ant1.png");
         this.enemyAntSprite = $.loadImage(10, 10, "./engine/animals/ant/enemyAnt1.png");
+        this.eagleSprite = $.loadImage(10, 10, "./engine/animals/eagle/eagle.png");
+        this.enemyEagleSprite = $.loadImage(10, 10, "./engine/animals/eagle/enemyEagle.png");
+        this.bearSprite = $.loadImage(10, 10, "./engine/animals/bear/bear.png");
+        this.enemyBearSprite = $.loadImage(10, 10, "./engine/animals/bear/enemyBear.png");
     }
     makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const ant = $.makeCircleCollider(x, y, size);
@@ -34,6 +38,11 @@ export class Factory {
     }
     makeEagle(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const eagle = $.makeCircleCollider(x, y, size);
+        if (direction == 270) {
+            eagle.asset = this.enemyEagleSprite;
+        } else if (direction == 90) {
+            eagle.asset = this.eagleSprite;
+        }
         eagle.bounciness = 0;
         eagle.fill = "green"; // "no fill" possible?
         // eagle.friction = 0;
@@ -51,6 +60,11 @@ export class Factory {
     }
     makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval,playerSide) {   // (feed values like "speed" from data later)
         const bear = $.makeCircleCollider(x, y, size);
+        if (direction == 270) {
+            bear.asset = this.enemyBearSprite;
+        } else if (direction == 90) {
+            bear.asset = this.bearSprite;
+        }
         bear.bounciness = 0;
         bear.fill = "green"; // "no fill" possible?
         //bear.friction = 0;
