@@ -36,6 +36,7 @@ export class BattleManager {
         this.computerTree.players = 0
         this.computerTree.tree = 1
 
+        this.battleTime = 0;
         this.requests = []
     }
 
@@ -43,10 +44,7 @@ export class BattleManager {
         if (this.playerTree.currentHealth == 0 || this.computerTree.currentHealth == 0) {
             data.battleOver = true;
         }
-
-        this.battleTimer();
         
-
         // we say that both unit groups with their enemy and the boundaries
         data.playerAnimals.collides(data.computerAnimals);
         data.playerAnimals.collides(this.topWall);
@@ -77,26 +75,7 @@ export class BattleManager {
         this.drawTree(this.computerTree, "#FF0000", "#FFC7C7", false);
     }
 
-    // keep track of time for battle "events" like enemy spawn
-    battleTimer() {
-        this.battleTime += 1;
-        if (this.battleTime % 60 == 0) {
-            if (this.battleTime % 1200 == 0) {
-                this.enemySpawn(currentWave);
-                currentWave++;
-            }
-        }
-    }
-    // spawn enemy waves periodically here
-    enemySpawn(currentWave) {
-        this.requests.push({
-            type: "factory",
-            action: "makeAnimal",
-            value: "ant",
-            amount: (1 + currentWave % 3),
-            playerSide: false
-        })
-    }
+
 
     drawHP(group, healthColour, backgroundColour) {
         let barHeight = $.h * (1 / 100);

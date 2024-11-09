@@ -2,6 +2,7 @@ import { $ } from "../../lib/Pen.js";
 import { Resources } from "../resources.js";
 
 const resources = new Resources();
+let currentWave = 0;
 
 export class BattleGui {
     constructor(data) {
@@ -38,13 +39,14 @@ export class BattleGui {
 
         // continue drawing the battle until "battleOver" state is true from a lose state
         if (data.battleOver == true) {
-            this.endBattle(data, data.resources);
+            this.endBattle(data, resources);
         } else if (data.battleOver == false) {
-            this.silkPanel(data);
-            data.resources.generateFibre(data);
+            this.battleTimer();
+            this.silkPanel();
+            resources.generateFibre(data);
         }
         // Draw GUI Elements
-        this.fibrePanel(data);
+        this.fibrePanel();
         this.unitButtons(data);
 
         // surrender button
@@ -59,7 +61,42 @@ export class BattleGui {
         //$.drawColliders();    // for debugging
     }
 
-    fibrePanel(data) {
+    // keep track of time for battle "events" like enemy spawn
+    battleTimer() {
+        this.battleTime += 1;
+        if (this.battleTime % 60 == 0) {
+            if (this.battleTime % 600 == 0) {
+                this.enemySpawn(currentWave);
+                currentWave++;
+            }
+        }
+    }
+    // spawn enemy waves periodically here
+    enemySpawn(currentWave) {
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "ant",
+            amount: (1 + currentWave % 3),
+            playerSide: false
+        })
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "eagle",
+            amount: (currentWave % 4),
+            playerSide: false
+        })
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "bear",
+            amount: (currentWave % 5),
+            playerSide: false
+        })
+    }
+
+    fibrePanel() {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
         $.text.alignment.y = "center";
@@ -71,10 +108,10 @@ export class BattleGui {
         $.colour.fill = "black";
         $.text.print(this.unitButtonX, this.unitButtonY - 40, "Fibre", 140);
         this.fibreIcon.draw();
-        $.text.print(this.unitButtonX, this.unitButtonY + 40, String(data.resources.fibre), 140);
+        $.text.print(this.unitButtonX, this.unitButtonY + 40, String(resources.fibre), 140);
     }
 
-    silkPanel(data) {
+    silkPanel() {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
         $.text.alignment.y = "center";
@@ -87,14 +124,14 @@ export class BattleGui {
         $.colour.fill = "black";
         $.text.print($.w / 2, $.h / 6 - 40, "Collected Silk", 160);
         this.silkIcon.draw();
-        $.text.print($.w / 2, $.h / 6 + 45, String(data.resources.silkFromBattle), 140);
+        $.text.print($.w / 2, $.h / 6 + 45, String(resources.silkFromBattle), 140);
     }
 
     unitButtons(data) {
         // Buy Animal Buttons
         this.antButton.draw();
         // show a white version if a unit can be bought (grey if not)
-        if (data.resources.fibre >= data.playerStats.ant.priceInGame) {
+        if (resources.fibre >= data.playerStats.ant.priceInGame) {
             this.antButton.background = "white";
             // clicking will remove some fibre and spawn a unit for the player
             if (this.antButton.up) {
@@ -105,7 +142,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                data.resources.fibre -= data.playerStats.ant.priceInGame;
+                resources.fibre -= data.playerStats.ant.priceInGame;
             }
         } else {
             this.antButton.background = "grey";
@@ -113,7 +150,7 @@ export class BattleGui {
         if (data.playerStats.eagle.unlocked == 1) {
             this.eagleButton.draw();
         }
-        if (data.resources.fibre >= data.playerStats.eagle.priceInGame) {
+        if (resources.fibre >= data.playerStats.eagle.priceInGame) {
             this.eagleButton.background = "white";
             if (this.eagleButton.up) {
                 this.requests.push({    // request a player eagle
@@ -131,7 +168,7 @@ export class BattleGui {
         if (data.playerStats.bear.unlocked == 1) {
             this.bearButton.draw();
         }
-        if (data.resources.fibre >= data.playerStats.bear.priceInGame) {
+        if (resources.fibre >= data.playerStats.bear.priceInGame) {
             this.bearButton.background = "white";
             if (this.bearButton.up) {
                 this.requests.push({    // request a player bear
@@ -141,7 +178,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                data.resources.fibre -= data.playerStats.bear.priceInGame;
+                resources.fibre -= data.playerStats.bear.priceInGame;
             }
         } else {
             this.bearButton.background = "grey";
@@ -173,13 +210,13 @@ export class BattleGui {
         }
         // Reset battle values
         this.battleTime = 0;
-        data.resources.fibre = 0;
+        resources.fibre = 0;
         // Confirm/Continue Button
         $.text.size = 12;
         this.endButton.draw();
         if (this.endButton.up) {
-            data.resources.silk = data.resources.silkFromBattle;
-            data.resources.silkFromBattle = 0;
+            resources.silk = resources.silkFromBattle;
+            resources.silkFromBattle = 0;
             data.gameState = "treemenu";
             data.battleOver = false;
             //Justin
