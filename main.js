@@ -2,7 +2,6 @@ import { $ } from "./lib/Pen.js";
 import { Gui } from "./engine/gui.js";
 import { Factory } from "./engine/factory.js";
 import { Data } from "./engine/data.js";
-import { Resources } from "./engine/resources.js";
 
 $.use(update);
 $.debug = false;
@@ -12,7 +11,6 @@ $.h = 800
 const factory = new Factory();
 const data = new Data();
 export const gui = new Gui(data);
-const resources = new Resources();
 
 function update() {
     gui.update(data, data.resources);
