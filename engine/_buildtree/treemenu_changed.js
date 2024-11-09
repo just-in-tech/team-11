@@ -50,6 +50,7 @@ export class BuildTreeScene {
         this.healthbutton = $.loadImage(620, 190, "./engine/_buildtree/button1.png")
         this.speedbutton = $.loadImage(120, 310, "./engine/_buildtree/button1.png")
         this.damagebutton = $.loadImage(270, 200, "./engine/_buildtree/button1.png")
+        this.battlebutton = $.makeButton(100, 750, 150, 50, "BATTLE")
 
         
         // pop-up box
@@ -162,6 +163,8 @@ export class BuildTreeScene {
         this.activebutton.h = 65
 
             this.firstTime=0
+            this.firstframe=$.frameCount;
+            console.log($.frameCount)
         }
 
 
@@ -169,7 +172,7 @@ export class BuildTreeScene {
         //create background and initial tree
 
 
-        
+        this.battlebutton.draw()
         this.background.draw()
         this.treeimg.draw()
 
@@ -189,13 +192,14 @@ export class BuildTreeScene {
 
         // display opening text
 
-        //if ($.frameCount == this.currentframe || $.frameCount < this.currentframe + 1000) {
+        if (this.firstframe <= this.firstframe+600) {
+            console.log(this.firstTime)
 
             $.text.size = 60
             $.colour.fill = "blue"
             $.text.font = this.font
             $.text.print($.w / 2, 80, "BUILD YOUR TREE", 800)
-        //}
+        }
     }
 
     update(data, resources) {

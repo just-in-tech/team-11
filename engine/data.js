@@ -20,7 +20,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10, //price to put on the track
-                silkFromKill: 0,
+                silkFromKill: 10,
             },
             eagle: {
                 unlocked: 0,   //bool true (1) is unlocked
@@ -31,7 +31,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 50, //
-                silkFromKill: 0,
+                silkFromKill: 10,
             },
             bear: {
                 unlocked: 0,   //bool true (1) is unlocked
@@ -42,7 +42,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 110,
-                silkFromKill: 0,
+                silkFromKill: 10,
             },
             tree: {
                 treeHealth: 200,

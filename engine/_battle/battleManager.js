@@ -63,8 +63,8 @@ export class BattleManager {
         //data.computerAnimals.collides(data.computerAnimals);
 
         // Handles animal movement & "pathing"
-        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, data.resources);
-        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, data.resources);
+        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, data.resources,data);
+        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, data.resources,data);
         // Update attackCooldown values
         this.updateCooldown(data.playerAnimals);
         this.updateCooldown(data.computerAnimals);
@@ -149,55 +149,36 @@ export class BattleManager {
         }
     }
 
-    attack(attacker, defender, resources) {
+    attack(attacker, defender, resources,data) {
         // when attack is ready, the defender takes damage or dies accordingly
         if (attacker.attackCooldown == 0) {
             if (defender.currentHealth <= attacker.damage) {
                 //justin from here
-                /*
                 if(defender.players==0){
                     if(defender.animaltype=="ant"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "ant",
-                        })
+                        resources.silkFromBattle+=data.playerStats.ant.silkFromKill
                     }else if(defender.animaltype=="eagle"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "eagle",
-                        })
+                        resources.silkFromBattle+=data.playerStats.eagle.silkFromKill
                     }else if(defender.animaltype=="bear"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "bear",
-                        })
-                    }else if(defender.tree==1){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "bear",
-                        })
+                        resources.silkFromBattle+=data.playerStats.bear.silkFromKill
+                    }else if(defender.tree=1){
+                        resources.silkFromBattle+=data.playerStats.tree.silkFromTreeKill
+                        resources.silk+=data.resources.silkFromBattle
                     }else{
                         throw new Error("contact justin error in battle manager")
                     }
+                    
                 }else if(defender.players==1){
-                    if(defender.tree=1){
-                        this.requests.push({
-                            type: "resources",
-                            action: "computerkilledplayer",
-                            value: "tree",
-                        })
+                    if(defender.tree==1){
+                        resources.silk+=resources.silkFromBattle
                     }
                 }else{
                     throw new Error("contact justin error in battle manager")
-                }*/ //Justin to here
+                } //Justin to here
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
-                resources.silkFromBattle += defender.silkFromKill;
+                //resources.silkFromBattle += defender.silkFromKill;
                 console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
                     "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
@@ -210,7 +191,7 @@ export class BattleManager {
     }
 
 
-    seekTarget(attacker, defender, defenderBase, resources) {
+    seekTarget(attacker, defender, defenderBase, resources,data) {
         for (let i = 0; i < attacker.length; i++) {
             // make the enemy base the default target
             let minDistance = $.math.distance(attacker[i].x, attacker[i].y, defenderBase.x, defenderBase.y);
@@ -229,7 +210,7 @@ export class BattleManager {
             // move towards their closest target & attack() when they collide
             attacker[i].direction = attacker[i].getAngleToPoint(target.x, target.y);
             if (attacker[i].collides(target)) {
-                this.attack(attacker[i], target, resources);
+                this.attack(attacker[i], target, resources,data);
             }
         }
     }

@@ -162,7 +162,7 @@ export class BattleGui {
         $.text.print($.w / 2, textHeight, "Total Silk: ", $.w / 2);
         textHeight += $.h / 20;
         let silkTotal = String(data.resources.silkFromBattle);
-        $.text.print($.w / 2, textHeight, silkTotal, $.w / 2);
+        $.text.print($.w / 2, textHeight, ""+resources.silkFromBattle, $.w / 2);
 
         // Clean up animal groups
         for (let i = 0; i < data.playerAnimals.length; i++) {
