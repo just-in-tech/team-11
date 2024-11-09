@@ -3,33 +3,29 @@ import { Resources } from "../resources.js";
 
 const resources = new Resources();
 
-let currentFibre;
-let currentWave = 0;
-
 export class BattleGui {
     constructor(data) {
         // asset loading
         this.battleBackgroundImage = $.loadImage($.w / 2, $.h / 2, "./engine/_battle/spritesheet/battlebackground_1.png");
+        this.silkIcon = $.loadImage($.w/2, $.h * 17/100, "./engine/assets/resources/smallsilkicon.png");
+        this.fibreIcon = $.loadImage($.w/5, $.h * 90/100, "./engine/assets/resources/smallfibreicon.png");
 
         this.unitButtonY = $.h * (90 / 100);  // baseline button sizes
         this.unitButtonX = $.w * (20 / 100);
         // make buttons for user to purchase units
         this.antButton = $.makeButton(this.unitButtonX * 2, this.unitButtonY, 100, 150);
-        this.antButton.label = "Buy    AntXX \n Cost: " + data.playerStats.ant.priceInGame;
-        this.antButton.border = "black";
-
+        this.antButton.label = "Buy Ant        Cost: " + data.playerStats.ant.priceInGame;
+        // this.antButton.border = "blue";    <-- doesn't seem to do anything
         this.eagleButton = $.makeButton(this.unitButtonX * 3, this.unitButtonY, 100, 150);
-        this.eagleButton.label = "Buy Eagle \n Cost: " + data.playerStats.eagle.priceInGame;
-        this.eagleButton.border = "black";
+        this.eagleButton.label = "Buy Eagle    Cost: " + data.playerStats.eagle.priceInGame;
 
         this.bearButton = $.makeButton(this.unitButtonX * 4, this.unitButtonY, 100, 150);
-        this.bearButton.label = "Buy BearX \n Cost: " + data.playerStats.bear.priceInGame;
-        this.bearButton.border = "black";
+        this.bearButton.label = "Buy Bear     Cost: " + data.playerStats.bear.priceInGame;
         // surrender button during battle
-        this.surrenderButton = $.makeButton(100, 100, 100, 60);
+        this.surrenderButton = $.makeButton(100, 100, 180, 60);
         this.surrenderButton.label = "Surrender";
-        this.endButton = $.makeButton($.w / 2, $.h * 3/7, $.w / 10, $.h / 10);
-        this.endButton.label = "Confirm";
+        this.endButton = $.makeButton($.w / 2, $.h * 42/100, $.w / 12, $.h / 12);
+        this.endButton.label = "OK!";
 
         this.requests = [];
         this.battleTime = 0;
@@ -44,13 +40,11 @@ export class BattleGui {
         if (data.battleOver == true) {
             this.endBattle(data, resources);
         } else if (data.battleOver == false) {
-            // update timed events
-            this.battleTimer();
+            this.silkPanel();
             resources.generateFibre(data);
         }
         // Draw GUI Elements
         this.fibrePanel();
-        this.silkPanel();
         this.unitButtons(data);
 
         // surrender button
@@ -65,27 +59,6 @@ export class BattleGui {
         //$.drawColliders();    // for debugging
     }
 
-    // keep track of time for battle "events" like enemy spawn
-    battleTimer() {
-        this.battleTime += 1;
-        if (this.battleTime % 60 == 0) {
-            if (this.battleTime % 1200 == 0) {
-                this.enemySpawn(currentWave);
-                currentWave++;
-            }
-        }
-    }
-    // spawn enemy waves periodically here
-    enemySpawn(currentWave) {
-        this.requests.push({
-            type: "factory",
-            action: "makeAnimal",
-            value: "ant",
-            amount: (1 + currentWave % 3),
-            playerSide: false
-        })
-    }
-
     fibrePanel() {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
@@ -94,11 +67,11 @@ export class BattleGui {
         $.shape.alignment.y = "center";
         $.colour.fill = "white";
         $.shape.rectangle(this.unitButtonX, this.unitButtonY, 150, 140, 15);
-        currentFibre = String(resources.fibre);
-        $.text.size = 24;
+        //$.text.size = 24;
         $.colour.fill = "black";
-        $.text.print(this.unitButtonX, this.unitButtonY - 20, "Fibre", 140);
-        $.text.print(this.unitButtonX, this.unitButtonY + 20, currentFibre, 140);
+        $.text.print(this.unitButtonX, this.unitButtonY - 40, "Fibre", 140);
+        this.fibreIcon.draw();
+        $.text.print(this.unitButtonX, this.unitButtonY + 40, String(resources.fibre), 140);
     }
 
     silkPanel() {
@@ -108,12 +81,13 @@ export class BattleGui {
         $.shape.alignment.x = "center"; // doesn't seem to be applying properly
         $.shape.alignment.y = "center";
         $.colour.fill = "white";
+        $.colour.stroke = "black";
         $.shape.rectangle($.w / 2, $.h / 6, 150, 140, 15);
-        currentFibre = String(resources.silkFromBattle);
-        $.text.size = 20;
+        $.text.size = 14;
         $.colour.fill = "black";
-        $.text.print($.w / 2, $.h / 6 - 20, "collected \n silk: ", 140);
-        $.text.print($.w / 2, $.h / 6 + 20, String(resources.silkFromBattle), 140);
+        $.text.print($.w / 2, $.h / 6 - 40, "Collected Silk", 160);
+        this.silkIcon.draw();
+        $.text.print($.w / 2, $.h / 6 + 45, String(resources.silkFromBattle), 140);
     }
 
     unitButtons(data) {
@@ -185,9 +159,8 @@ export class BattleGui {
         let textHeight = $.h / 4;
         $.text.print($.w / 2, textHeight, "Battle Over!", $.w / 2);
         textHeight += $.h / 20;
-        $.text.print($.w / 2, textHeight, "Silk Total: ", $.w / 2);
+        $.text.print($.w / 2, textHeight, "Total Silk: ", $.w / 2);
         textHeight += $.h / 20;
-        // draw icon here
         let silkTotal = String(resources.silkFromBattle);
         $.text.print($.w / 2, textHeight, silkTotal, $.w / 2);
 
@@ -201,7 +174,8 @@ export class BattleGui {
         // Reset battle values
         this.battleTime = 0;
         resources.fibre = 0;
-        // Confirm/End Button
+        // Confirm/Continue Button
+        $.text.size = 12;
         this.endButton.draw();
         if (this.endButton.up) {
             resources.silk = resources.silkFromBattle;

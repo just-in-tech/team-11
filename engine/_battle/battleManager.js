@@ -2,18 +2,16 @@ import { $ } from "../../lib/Pen.js";
 import { Resources } from "../resources.js";
 
 const resources = new Resources();
-// height limits of the lane for animal units etc.
+// height limits for:   lane position, entity locations, etc.
 let laneTop = 65/120;
 let laneBottom = 97/120;
 let laneMiddle = (laneTop + laneBottom)/2;
+// enemy wave counter used in:   this.enemySpawn()
+let currentWave = 0;
 
 export class BattleManager {
     constructor(data) {
-        this.requests = []
-        // Load assets
-        this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
-        this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
-
+        // Entities/Colliders (p.s. these are NOT visible)
         // "Lane Walls"
         this.topWall = $.makeBoxCollider($.w / 2, $.h * laneTop, $.w, 2);
         this.topWall.static = true;
@@ -23,31 +21,32 @@ export class BattleManager {
         let treeWidth = $.w / 8;
         let treeHeight = $.h * laneBottom - $.h * laneTop;
         this.playerTree = $.makeBoxCollider(0 + treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
-        // this.playerTree.asset = this.playerTreeImage;
         this.playerTree.static = true;
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
         this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
         this.playerTree.players = 1
         this.playerTree.tree = 1
-
         // Enemy Tree
         this.computerTree = $.makeBoxCollider($.w - treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
-        // this.computerTree.asset = this.enemyTreeImage;
-        // this.computerTree.asset.w = 20;
-        // this.computerTree.asset.h = 20;
         this.computerTree.static = true;
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
         this.computerTree.players = 0
         this.computerTree.tree = 1
+
+        this.requests = []
     }
 
     battleUpdate(data) {
         if (this.playerTree.currentHealth == 0 || this.computerTree.currentHealth == 0) {
             data.battleOver = true;
         }
+
+        this.battleTimer();
+        
+
         // we say that both unit groups with their enemy and the boundaries
         data.playerAnimals.collides(data.computerAnimals);
         data.playerAnimals.collides(this.topWall);
@@ -70,12 +69,33 @@ export class BattleManager {
         this.updateCooldown(data.playerAnimals);
         this.updateCooldown(data.computerAnimals);
 
+        // Draw animal health bars
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
-
         // drawing tree/bases with: which tree, health colour, empty colour, "is tree playerTree?"
         this.drawTree(this.playerTree, "#00FF3A", "#C7FFD4", true);
         this.drawTree(this.computerTree, "#FF0000", "#FFC7C7", false);
+    }
+
+    // keep track of time for battle "events" like enemy spawn
+    battleTimer() {
+        this.battleTime += 1;
+        if (this.battleTime % 60 == 0) {
+            if (this.battleTime % 1200 == 0) {
+                this.enemySpawn(currentWave);
+                currentWave++;
+            }
+        }
+    }
+    // spawn enemy waves periodically here
+    enemySpawn(currentWave) {
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "ant",
+            amount: (1 + currentWave % 3),
+            playerSide: false
+        })
     }
 
     drawHP(group, healthColour, backgroundColour) {
@@ -118,7 +138,6 @@ export class BattleManager {
             $.colour.fill = healthColour;
             $.shape.rectangle(barX, barY, barWidth * (whichTree.currentHealth / whichTree.maxHealth), barHeight);
         }
-        console.log(this.computerTree.currentHealth);
     }
 
     updateCooldown(group) {
@@ -256,6 +275,14 @@ export class BattleManager {
                         })
     }
 
+    // Load assets (not done here anymore)
+    // this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
+    // this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+
+    // this.playerTree.asset = this.playerTreeImage;
+    // this.computerTree.asset = this.enemyTreeImage;
+    // this.computerTree.asset.w = 20;
+    // this.computerTree.asset.h = 20;
     */
     getRequests() {
         const requestsToBeReturned = this.requests;
