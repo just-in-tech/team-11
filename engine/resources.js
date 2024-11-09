@@ -5,13 +5,12 @@ export class Resources {
         this.silk = 400;
         this.silkFromBattle=0;
         this.fibre=40;
-            
     }
 
     // 'frame-based' resource generation
-    generateFibre() {
-        if ($.frameCount % this.fibre.fibreInterval === 0) {
-            this.fibre.fibre += this.fibre.fibrePerInterval;
+    generateFibre(data) {
+        if ($.frameCount % data.playerStats.fibre.fibreInterval === 0) {
+            this.fibre += data.playerStats.fibre.fibrePerInterval;
             // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
         }
     }

@@ -46,7 +46,7 @@ export class BattleGui {
         } else if (data.battleOver == false) {
             // update timed events
             this.battleTimer();
-            resources.generateFibre();
+            resources.generateFibre(data);
         }
         // Draw GUI Elements
         this.fibrePanel();
