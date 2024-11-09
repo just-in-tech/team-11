@@ -589,5 +589,196 @@ export class BuildTreeScene {
             }
 
         }
+
+
+
+//draw tree in battle
+        drawBattleTree() {
+
+            // trunk
+    
+            // this.treeimg.draw()
+            // this.treeimg.w = 270
+            // this.treeimg.h = 270
+            // this.treeimg.x = 60
+            // this.treeimg.y = 450
+    
+            //  this.computerTree = $.makeBoxCollider($.w - 20, $.h * 1 / 2, $.w / 8, $.h / 8);
+    
+            // troop branch
+    
+    
+            // this.playerTree = $.makeBoxCollider(60, 450, 270, 270);
+            // $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
+            // this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+    
+            let branchX = $.w/8;
+            let branchSize = 270;
+            let speedBranchX = branchX + 3;
+            let largerBranchSize = branchSize + 135;
+    
+            this.battleTreeImage.draw();
+            this.enemyTreeImage.draw();
+    
+            this.troopbranchinitial.x = branchX;
+            this.troopbranchstage2.x = branchX;
+            this.troopbranchstage3.x = branchX;
+    
+            this.troopbranchinitial.w = branchSize;
+            this.troopbranchinitial.h = branchSize;
+            this.troopbranchstage2.w = branchSize;
+            this.troopbranchstage2.h = branchSize;
+            this.troopbranchstage3.w = branchSize;
+            this.troopbranchstage3.h = branchSize;
+    
+            // health branch
+    
+            this.healthbranchinitial.x = branchX;
+            this.healthbranchstage2.x = branchX;
+            this.healthbranchstage3.x = branchX;
+    
+            this.healthbranchinitial.w = branchSize;
+            this.healthbranchinitial.h = branchSize;
+            this.healthbranchstage2.w = largerBranchSize;
+            this.healthbranchstage2.h = largerBranchSize;
+            this.healthbranchstage3.w = largerBranchSize;
+            this.healthbranchstage3.h = largerBranchSize;
+    
+            // fibre branch
+    
+            this.fibrebranchinitial.x = branchX;
+            this.fibrebranchstage2.x = branchX;
+            this.fibrebranchstage3.x = branchX;
+    
+            this.fibrebranchinitial.w = branchSize;
+            this.fibrebranchinitial.h = branchSize;
+            this.fibrebranchstage2.w = branchSize;
+            this.fibrebranchstage2.h = branchSize;
+            this.fibrebranchstage3.w = largerBranchSize;
+            this.fibrebranchstage3.h = largerBranchSize;
+    
+            // silk branch
+    
+            this.silkbranchinitial.x = branchX;
+            this.silkbranchstage2.x = branchX;
+            this.silkbranchstage3.x = branchX;
+    
+            this.silkbranchinitial.w = branchSize;
+            this.silkbranchinitial.h = branchSize;
+            this.silkbranchstage2.w = branchSize;
+            this.silkbranchstage2.h = branchSize;
+            this.silkbranchstage3.w = branchSize;
+            this.silkbranchstage3.h = branchSize;
+    
+            // speed branch
+            
+            this.speedbranchinitial.x = speedBranchX;
+            this.speedbranchstage2.x = speedBranchX;
+            this.speedbranchstage3.x = speedBranchX;
+    
+            this.speedbranchinitial.w = branchSize;
+            this.speedbranchinitial.h = branchSize;
+            this.speedbranchstage2.w = branchSize;
+            this.speedbranchstage2.h = branchSize;
+            this.speedbranchstage3.w = branchSize;
+            this.speedbranchstage3.h = branchSize;
+    
+            // damage branch
+    
+            this.damagebranchinitial.x = branchX;
+            this.damagebranchstage2.x = branchX;
+            this.damagebranchstage3.x = branchX;
+    
+            this.damagebranchinitial.w = branchSize;
+            this.damagebranchinitial.h = branchSize;
+            this.damagebranchstage2.w = largerBranchSize;
+            this.damagebranchstage2.h = largerBranchSize;
+            this.damagebranchstage3.w = largerBranchSize;
+            this.damagebranchstage3.h = largerBranchSize;
+    
+            // damage branch checker
+    
+            if (this.damagebranchstate == 1) {
+                this.damagebranchinitial.draw()
+            }
+    
+            if (this.damagebranchstate == 2) {
+                this.damagebranchstage2.draw()
+            }
+    
+            if (this.damagebranchstate >= 3) {
+                this.damagebranchstage3.draw()
+            }
+    
+            // health branch checker
+    
+            if (this.healthbranchstate == 1) {
+                this.healthbranchinitial.draw()
+            }
+    
+            if (this.healthbranchstate == 2) {
+                this.healthbranchstage2.draw()
+            }
+    
+            if (this.healthbranchstate >= 3) {
+                this.healthbranchstage3.draw()
+            }
+    
+            // silk branch checker
+    
+            if (this.silkbranchstate == 1) {
+                this.silkbranchinitial.draw()
+            }
+    
+            if (this.silkbranchstate == 2) {
+                this.silkbranchstage2.draw()
+            }
+    
+            if (this.silkbranchstate >= 3) {
+                this.silkbranchstage3.draw()
+            }
+    
+            // fibre branch checker
+    
+            if (this.fibrebranchstate == 1) {
+                this.fibrebranchinitial.draw()
+            }
+    
+            if (this.fibrebranchstate == 2) {
+                this.fibrebranchstage2.draw()
+            }
+    
+            if (this.fibrebranchstate >= 3) {
+                this.fibrebranchstage3.draw()
+            }
+    
+            // speed branch checker
+    
+            if (this.speedbranchstate == 1) {
+                this.speedbranchinitial.draw()
+            }
+    
+            if (this.speedbranchstate == 2) {
+                this.speedbranchstage2.draw()
+            }
+    
+            if (this.speedbranchstate >= 3) {
+                this.speedbranchstage3.draw()
+            }
+    
+            // troop branch checker
+    
+            if (this.troopbranchstate == 1) {
+                this.troopbranchinitial.draw()
+            }
+    
+            if (this.troopbranchstate == 2) {
+                this.troopbranchstage2.draw()
+            }
+    
+            if (this.troopbranchstate >= 3) {
+                this.troopbranchstage3.draw()
+            }
+        }
         
 }

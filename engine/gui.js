@@ -26,7 +26,7 @@ export class Gui {
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);
-            this.treeMenu.drawBattleTree()
+            //this.treeMenu.drawBattleTree()
         } else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
         } else if (data.gameState == "    ") {
