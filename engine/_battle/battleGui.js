@@ -28,7 +28,7 @@ export class BattleGui {
         // surrender button during battle
         this.surrenderButton = $.makeButton(100, 100, 100, 60);
         this.surrenderButton.label = "Surrender";
-        this.endButton = $.makeButton($.w / 2, $.h / 2, $.w / 10, $.h / 10);
+        this.endButton = $.makeButton($.w / 2, $.h * 3/7, $.w / 10, $.h / 10);
         this.endButton.label = "Confirm";
 
         this.requests = [];
@@ -60,7 +60,9 @@ export class BattleGui {
         }
 
         // draw entities
-        $.drawColliders();
+        data.playerAnimals.draw();
+        data.computerAnimals.draw();
+        //$.drawColliders();    // for debugging
     }
 
     // keep track of time for battle "events" like enemy spawn
@@ -108,9 +110,9 @@ export class BattleGui {
         $.colour.fill = "white";
         $.shape.rectangle($.w / 2, $.h / 6, 150, 140, 15);
         currentFibre = String(resources.silkFromBattle);
-        $.text.size = 24;
+        $.text.size = 20;
         $.colour.fill = "black";
-        $.text.print($.w / 2, $.h / 6 - 20, "Silk Collected: ", 140);
+        $.text.print($.w / 2, $.h / 6 - 20, "collected \n silk: ", 140);
         $.text.print($.w / 2, $.h / 6 + 20, String(resources.silkFromBattle), 140);
     }
 

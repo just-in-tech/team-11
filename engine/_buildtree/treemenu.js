@@ -4,6 +4,8 @@ export class BuildTreeScene {
 
     constructor() {
         this.treeimg = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialtrunk.png")
+        this.battleTreeImage = $.loadImage($.w/8, $.h*56/100, "./engine/_battle/spritesheet/initialtrunk.png");
+        this.enemyTreeImage = $.loadImage($.w - $.w/8, $.h/2, "./engine/_battle/spritesheet/enemyTree.png");
         this.background = $.loadImage($.w / 2, $.h / 2, "./engine/_buildtree/scene.jpg")
 
         // branches
@@ -653,81 +655,94 @@ export class BuildTreeScene {
 
         // troop branch
 
-        this.troopbranchinitial.x = 60
-        this.troopbranchstage2.x = 60
-        this.troopbranchstage3.x = 60
 
-        this.troopbranchinitial.w = 270
-        this.troopbranchinitial.h = 270
-        this.troopbranchstage2.w = 270
-        this.troopbranchstage2.h = 270
-        this.troopbranchstage3.w = 270
-        this.troopbranchstage3.h = 270
+        // this.playerTree = $.makeBoxCollider(60, 450, 270, 270);
+        // $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
+        // this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+
+        let branchX = $.w/8;
+        let branchSize = 270;
+        let speedBranchX = branchX + 3;
+        let largerBranchSize = branchSize + 135;
+
+        this.battleTreeImage.draw();
+        this.enemyTreeImage.draw();
+
+        this.troopbranchinitial.x = branchX;
+        this.troopbranchstage2.x = branchX;
+        this.troopbranchstage3.x = branchX;
+
+        this.troopbranchinitial.w = branchSize;
+        this.troopbranchinitial.h = branchSize;
+        this.troopbranchstage2.w = branchSize;
+        this.troopbranchstage2.h = branchSize;
+        this.troopbranchstage3.w = branchSize;
+        this.troopbranchstage3.h = branchSize;
 
         // health branch
 
-        this.healthbranchinitial.x = 60
-        this.healthbranchstage2.x = 60
-        this.healthbranchstage3.x = 60
+        this.healthbranchinitial.x = branchX;
+        this.healthbranchstage2.x = branchX;
+        this.healthbranchstage3.x = branchX;
 
-        this.healthbranchinitial.w = 270
-        this.healthbranchinitial.h = 270
-        this.healthbranchstage2.w = 405
-        this.healthbranchstage2.h = 405
-        this.healthbranchstage3.w = 405
-        this.healthbranchstage3.h = 405
+        this.healthbranchinitial.w = branchSize;
+        this.healthbranchinitial.h = branchSize;
+        this.healthbranchstage2.w = largerBranchSize;
+        this.healthbranchstage2.h = largerBranchSize;
+        this.healthbranchstage3.w = largerBranchSize;
+        this.healthbranchstage3.h = largerBranchSize;
 
         // fibre branch
 
-        this.fibrebranchinitial.x = 60
-        this.fibrebranchstage2.x = 60
-        this.fibrebranchstage3.x = 60
+        this.fibrebranchinitial.x = branchX;
+        this.fibrebranchstage2.x = branchX;
+        this.fibrebranchstage3.x = branchX;
 
-        this.fibrebranchinitial.w = 270
-        this.fibrebranchinitial.h = 270
-        this.fibrebranchstage2.w = 270
-        this.fibrebranchstage2.h = 270
-        this.fibrebranchstage3.w = 405
-        this.fibrebranchstage3.h = 405
+        this.fibrebranchinitial.w = branchSize;
+        this.fibrebranchinitial.h = branchSize;
+        this.fibrebranchstage2.w = branchSize;
+        this.fibrebranchstage2.h = branchSize;
+        this.fibrebranchstage3.w = largerBranchSize;
+        this.fibrebranchstage3.h = largerBranchSize;
 
         // silk branch
 
-        this.silkbranchinitial.x = 60
-        this.silkbranchstage2.x = 60
-        this.silkbranchstage3.x = 60
+        this.silkbranchinitial.x = branchX;
+        this.silkbranchstage2.x = branchX;
+        this.silkbranchstage3.x = branchX;
 
-        this.silkbranchinitial.w = 270
-        this.silkbranchinitial.h = 270
-        this.silkbranchstage2.w = 270
-        this.silkbranchstage2.h = 270
-        this.silkbranchstage3.w = 270
-        this.silkbranchstage3.h = 270
+        this.silkbranchinitial.w = branchSize;
+        this.silkbranchinitial.h = branchSize;
+        this.silkbranchstage2.w = branchSize;
+        this.silkbranchstage2.h = branchSize;
+        this.silkbranchstage3.w = branchSize;
+        this.silkbranchstage3.h = branchSize;
 
         // speed branch
+        
+        this.speedbranchinitial.x = speedBranchX;
+        this.speedbranchstage2.x = speedBranchX;
+        this.speedbranchstage3.x = speedBranchX;
 
-        this.speedbranchinitial.x = 63
-        this.speedbranchstage2.x = 63
-        this.speedbranchstage3.x = 63
-
-        this.speedbranchinitial.w = 270
-        this.speedbranchinitial.h = 270
-        this.speedbranchstage2.w = 270
-        this.speedbranchstage2.h = 270
-        this.speedbranchstage3.w = 270
-        this.speedbranchstage3.h = 270
+        this.speedbranchinitial.w = branchSize;
+        this.speedbranchinitial.h = branchSize;
+        this.speedbranchstage2.w = branchSize;
+        this.speedbranchstage2.h = branchSize;
+        this.speedbranchstage3.w = branchSize;
+        this.speedbranchstage3.h = branchSize;
 
         // damage branch
 
-        this.damagebranchinitial.x = 60
-        this.damagebranchstage2.x = 60
-        this.damagebranchstage3.x = 60
+        this.damagebranchinitial.x = branchX;
+        this.damagebranchstage2.x = branchX;
+        this.damagebranchstage3.x = branchX;
 
-        this.damagebranchinitial.w = 270
-        this.damagebranchinitial.h = 270
-        this.damagebranchstage2.w = 405
-        this.damagebranchstage2.h = 405
-        this.damagebranchstage3.w = 405
-        this.damagebranchstage3.h = 405
+        this.damagebranchinitial.w = branchSize;
+        this.damagebranchinitial.h = branchSize;
+        this.damagebranchstage2.w = largerBranchSize;
+        this.damagebranchstage2.h = largerBranchSize;
+        this.damagebranchstage3.w = largerBranchSize;
+        this.damagebranchstage3.h = largerBranchSize;
 
         // damage branch checker
 

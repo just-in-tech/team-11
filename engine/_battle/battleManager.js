@@ -2,6 +2,10 @@ import { $ } from "../../lib/Pen.js";
 import { Resources } from "../resources.js";
 
 const resources = new Resources();
+// height limits of the lane for animal units etc.
+let laneTop = 65/120;
+let laneBottom = 97/120;
+let laneMiddle = (laneTop + laneBottom)/2;
 
 export class BattleManager {
     constructor(data) {
@@ -11,13 +15,15 @@ export class BattleManager {
         this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
 
         // "Lane Walls"
-        this.topWall = $.makeBoxCollider($.w / 2, $.h / 3, $.w, 2);
+        this.topWall = $.makeBoxCollider($.w / 2, $.h * laneTop, $.w, 2);
         this.topWall.static = true;
-        this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * 2 / 3), $.w, 2);
+        this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * laneBottom), $.w, 2);
         this.bottomWall.static = true;
         // Player Tree
-        this.playerTree = $.makeBoxCollider(60, 450, 270, 270);
-        this.playerTree.asset = this.playerTreeImage;
+        let treeWidth = $.w / 8;
+        let treeHeight = $.h * laneBottom - $.h * laneTop;
+        this.playerTree = $.makeBoxCollider(0 + treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
+        // this.playerTree.asset = this.playerTreeImage;
         this.playerTree.static = true;
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
@@ -26,10 +32,10 @@ export class BattleManager {
         this.playerTree.tree = 1
 
         // Enemy Tree
-        this.computerTree = $.makeBoxCollider($.w - 20, $.h * 1 / 2, $.w / 8, $.h / 8);
-        this.computerTree.asset = this.enemyTreeImage;
-        this.computerTree.asset.w = 20;
-        this.computerTree.asset.h = 20;
+        this.computerTree = $.makeBoxCollider($.w - treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
+        // this.computerTree.asset = this.enemyTreeImage;
+        // this.computerTree.asset.w = 20;
+        // this.computerTree.asset.h = 20;
         this.computerTree.static = true;
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;

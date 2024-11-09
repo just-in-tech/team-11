@@ -69,7 +69,9 @@ export class Factory {
 
     spawnHeight() {
         //  give a height to units: "somewhere in the middle 20% of the screen"
-        return $.math.random($.h * (40/100), $.h * (60/100));
+        let laneTop = 65/120;
+        let laneBottom = 97/120;
+        return $.math.random($.h * laneTop, $.h * laneBottom);
     }
     
     processRequests(requests, data,resources) {
