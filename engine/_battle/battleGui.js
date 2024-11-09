@@ -2,6 +2,7 @@ import { $ } from "../../lib/Pen.js";
 import { Resources } from "../resources.js";
 
 const resources = new Resources();
+let currentWave = 0;
 
 export class BattleGui {
     constructor(data) {
@@ -40,6 +41,7 @@ export class BattleGui {
         if (data.battleOver == true) {
             this.endBattle(data, resources);
         } else if (data.battleOver == false) {
+            this.battleTimer();
             this.silkPanel();
             resources.generateFibre(data);
         }
@@ -57,6 +59,41 @@ export class BattleGui {
         data.playerAnimals.draw();
         data.computerAnimals.draw();
         //$.drawColliders();    // for debugging
+    }
+
+    // keep track of time for battle "events" like enemy spawn
+    battleTimer() {
+        this.battleTime += 1;
+        if (this.battleTime % 60 == 0) {
+            if (this.battleTime % 600 == 0) {
+                this.enemySpawn(currentWave);
+                currentWave++;
+            }
+        }
+    }
+    // spawn enemy waves periodically here
+    enemySpawn(currentWave) {
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "ant",
+            amount: (1 + currentWave % 3),
+            playerSide: false
+        })
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "eagle",
+            amount: (currentWave % 4),
+            playerSide: false
+        })
+        this.requests.push({
+            type: "factory",
+            action: "makeAnimal",
+            value: "bear",
+            amount: (currentWave % 5),
+            playerSide: false
+        })
     }
 
     fibrePanel() {

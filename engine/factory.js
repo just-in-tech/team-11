@@ -128,14 +128,22 @@ export class Factory {
                                     data.computerStats.ant.attackInterval,
                                     request.playerSide));
                             } else if (request.value == "eagle") {
-                                let attackSpeed = 200;
                                 let size = 20;
-                                data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size,
+                                data.computerAnimals.push(this.makeEagle(x, y, direction, size,
+                                    data.computerStats.eagle.damage,
+                                    data.computerStats.eagle.maxHealth,
+                                    data.computerStats.eagle.speed, 
+                                    data.computerStats.eagle.acceleration,
+                                    data.computerStats.eagle.attackInterval,
                                     request.playerSide));
                             } else if (request.value == "bear") {
-                                let attackSpeed = 200;
                                 let size = 40;
-                                data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size,
+                                data.computerAnimals.push(this.makeBear(x, y, direction, size,
+                                    data.computerStats.bear.damage,
+                                    data.computerStats.bear.maxHealth,
+                                    data.computerStats.bear.speed, 
+                                    data.computerStats.bear.acceleration,
+                                    data.computerStats.bear.attackInterval,
                                     request.playerSide));
                             }
                         }
