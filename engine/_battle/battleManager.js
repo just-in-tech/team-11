@@ -5,28 +5,28 @@ const resources = new Resources();
 
 export class BattleManager {
     constructor(data) {
-        this.requests=[]
+        this.requests = []
         // Load assets
         this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/playerTree.png");
-        this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+        this.enemyTreeImage = $.loadImage(700, 400, "./engine/_battle/spritesheet/enemyTree.png");
 
         // "Lane Walls"
-        this.topWall = $.makeBoxCollider($.w/2, $.h/3, $.w, 2);
+        this.topWall = $.makeBoxCollider($.w / 2, $.h / 3, $.w, 2);
         this.topWall.static = true;
-        this.bottomWall = $.makeBoxCollider($.w/2, ($.h * 2/3), $.w, 2);
+        this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * 2 / 3), $.w, 2);
         this.bottomWall.static = true;
         // Player Tree
-        this.playerTree = $.makeBoxCollider($.w * 1/8, $.h/2, $.w/8, $.h/8);
+        this.playerTree = $.makeBoxCollider($.w * 1 / 8, $.h / 2, $.w / 8, $.h / 8);
         // this.playerTree.asset = this.playerTreeImage;
         this.playerTree.static = true;
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
         this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
-        this.playerTree.players=1
-        this.playerTree.tree=1
+        this.playerTree.players = 1
+        this.playerTree.tree = 1
 
         // Enemy Tree
-        this.computerTree = $.makeBoxCollider($.w * 7/8, $.h/2, $.w/8, $.h/8);
+        this.computerTree = $.makeBoxCollider($.w - 20, $.h * 1 / 2, $.w / 8, $.h / 8);
         this.computerTree.asset = this.enemyTreeImage;
         this.computerTree.asset.w = 20;
         this.computerTree.asset.h = 20;
@@ -34,8 +34,8 @@ export class BattleManager {
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
-        this.computerTree.players=0
-        this.computerTree.tree=1
+        this.computerTree.players = 0
+        this.computerTree.tree = 1
     }
 
     battleUpdate(data) {
@@ -73,8 +73,8 @@ export class BattleManager {
     }
 
     drawHP(group, healthColour, backgroundColour) {
-        let barHeight = $.h * (1/100);
-        let barWidth = $.w * (3/100);
+        let barHeight = $.h * (1 / 100);
+        let barWidth = $.w * (3 / 100);
         if (group.length > 0) {
             for (let i = 0; i < group.length; i++) {
                 // draw HP
@@ -85,20 +85,20 @@ export class BattleManager {
                 if (group[i].currentHealth > 0) {
                     $.colour.fill = healthColour;
                     $.shape.rectangle(group[i].x - (group[i].w), group[i].y - (group[i].w + barHeight), barWidth * (group[i].currentHealth / group[i].maxHealth), barHeight);
-                // #FF0000  -- Straight Red
-                // #FFC7C7  -- Pale Red  (lost health)
-                // #00FF3A  -- Straight Green
-                // #C7FFD4  -- Pale Green (lost health) 
+                    // #FF0000  -- Straight Red
+                    // #FFC7C7  -- Pale Red  (lost health)
+                    // #00FF3A  -- Straight Green
+                    // #C7FFD4  -- Pale Green (lost health) 
                 }
             }
         }
     }
 
     drawTree(whichTree, healthColour, backgroundColour, player) {
-        let barHeight = $.h * (5/100);
-        let barWidth = $.w * (15/100);
-        let barX = $.w * (5/100);
-        let barY = $.h * (20/100);
+        let barHeight = $.h * (5 / 100);
+        let barWidth = $.w * (15 / 100);
+        let barX = $.w * (5 / 100);
+        let barY = $.h * (20 / 100);
         // draw a health bar
         $.shape.alignment.x = "left";
         $.colour.stroke = "black";
@@ -174,7 +174,7 @@ export class BattleManager {
                 // *TODO* PUSH REQUEST: UNIT KILL
                 resources.silkFromBattle += defender.silkFromKill;
                 console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
-                     "added with silkFromKill: ", defender.silkFromKill)
+                    "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
                 defender.currentHealth -= attacker.damage;
             }
@@ -200,7 +200,7 @@ export class BattleManager {
                         minDistance = newMinDistance;
                     }
                 }
-            } 
+            }
             // move towards their closest target & attack() when they collide
             attacker[i].direction = attacker[i].getAngleToPoint(target.x, target.y);
             if (attacker[i].collides(target)) {

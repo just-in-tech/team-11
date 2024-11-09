@@ -9,26 +9,26 @@ let currentWave = 0;
 export class BattleGui {
     constructor(data) {
         // asset loading
-        this.battleBackgroundImage = $.loadImage($.w/2, $.h/3, "./engine/_battle/spritesheet/battlebackground.png");
+        this.battleBackgroundImage = $.loadImage($.w / 2, $.h / 2, "./engine/_battle/spritesheet/battlebackground_1.png");
 
-        this.unitButtonY = $.h * (90/100);  // baseline button sizes
-        this.unitButtonX = $.w * (20/100);
+        this.unitButtonY = $.h * (90 / 100);  // baseline button sizes
+        this.unitButtonX = $.w * (20 / 100);
         // make buttons for user to purchase units
-        this.antButton = $.makeButton(this.unitButtonX*2, this.unitButtonY, 100, 150);
+        this.antButton = $.makeButton(this.unitButtonX * 2, this.unitButtonY, 100, 150);
         this.antButton.label = "Buy    AntXX \n Cost: " + data.playerStats.ant.priceInGame;
         this.antButton.border = "black";
 
-        this.eagleButton = $.makeButton(this.unitButtonX*3, this.unitButtonY, 100, 150);
+        this.eagleButton = $.makeButton(this.unitButtonX * 3, this.unitButtonY, 100, 150);
         this.eagleButton.label = "Buy Eagle \n Cost: " + data.playerStats.eagle.priceInGame;
         this.eagleButton.border = "black";
 
-        this.bearButton = $.makeButton(this.unitButtonX*4, this.unitButtonY, 100, 150);
+        this.bearButton = $.makeButton(this.unitButtonX * 4, this.unitButtonY, 100, 150);
         this.bearButton.label = "Buy BearX \n Cost: " + data.playerStats.bear.priceInGame;
         this.bearButton.border = "black";
         // surrender button during battle
         this.surrenderButton = $.makeButton(100, 100, 100, 60);
         this.surrenderButton.label = "Surrender";
-        this.endButton = $.makeButton($.w/2, $.h/2, $.w/10, $.h/10);
+        this.endButton = $.makeButton($.w / 2, $.h / 2, $.w / 10, $.h / 10);
         this.endButton.label = "Confirm";
 
         this.requests = [];
@@ -36,7 +36,10 @@ export class BattleGui {
     }
 
     drawBattle(data) {
+        this.battleBackgroundImage.h = 800
+        this.battleBackgroundImage.w = 800
         this.battleBackgroundImage.draw();
+
         // continue drawing the battle until "battleOver" state is true from a lose state
         if (data.battleOver == true) {
             this.endBattle(data, resources);
@@ -63,10 +66,10 @@ export class BattleGui {
     // keep track of time for battle "events" like enemy spawn
     battleTimer() {
         this.battleTime += 1;
-        if (this.battleTime%60 == 0) {
-            if (this.battleTime%1200 == 0) {
+        if (this.battleTime % 60 == 0) {
+            if (this.battleTime % 1200 == 0) {
                 this.enemySpawn(currentWave);
-                    currentWave++;
+                currentWave++;
             }
         }
     }
@@ -76,7 +79,7 @@ export class BattleGui {
             type: "factory",
             action: "makeAnimal",
             value: "ant",
-            amount: (1 + currentWave%3),
+            amount: (1 + currentWave % 3),
             playerSide: false
         })
     }
@@ -103,12 +106,12 @@ export class BattleGui {
         $.shape.alignment.x = "center"; // doesn't seem to be applying properly
         $.shape.alignment.y = "center";
         $.colour.fill = "white";
-        $.shape.rectangle($.w/2, $.h/6, 150, 140, 15);
+        $.shape.rectangle($.w / 2, $.h / 6, 150, 140, 15);
         currentFibre = String(resources.silkFromBattle);
         $.text.size = 24;
         $.colour.fill = "black";
-        $.text.print($.w/2, $.h/6 - 20, "Silk Collected: ", 140);
-        $.text.print($.w/2, $.h/6 + 20, String(resources.silkFromBattle), 140);
+        $.text.print($.w / 2, $.h / 6 - 20, "Silk Collected: ", 140);
+        $.text.print($.w / 2, $.h / 6 + 20, String(resources.silkFromBattle), 140);
     }
 
     unitButtons(data) {
@@ -169,22 +172,22 @@ export class BattleGui {
         }
     }
 
-    
+
 
     endBattle(data, resources) {
-//Justin maybe
+        //Justin maybe
         $.colour.fill = "white";
         $.colour.stroke = "black";
-        $.shape.rectangle($.w/2, $.h/3, $.w/4, $.h/4);
+        $.shape.rectangle($.w / 2, $.h / 3, $.w / 4, $.h / 4);
         $.colour.fill = "black";
-        let textHeight = $.h/4;
-        $.text.print($.w/2, textHeight, "Battle Over!", $.w/2);
-        textHeight += $.h/20;
-        $.text.print($.w/2, textHeight, "Silk Total: ", $.w/2);
-        textHeight += $.h/20;
+        let textHeight = $.h / 4;
+        $.text.print($.w / 2, textHeight, "Battle Over!", $.w / 2);
+        textHeight += $.h / 20;
+        $.text.print($.w / 2, textHeight, "Silk Total: ", $.w / 2);
+        textHeight += $.h / 20;
         // draw icon here
         let silkTotal = String(resources.silkFromBattle);
-        $.text.print($.w/2, textHeight, silkTotal, $.w/2);
+        $.text.print($.w / 2, textHeight, silkTotal, $.w / 2);
 
         // Clean up animal groups
         for (let i = 0; i < data.playerAnimals.length; i++) {
