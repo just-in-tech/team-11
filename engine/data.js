@@ -1,15 +1,15 @@
 import { $ } from "../lib/Pen.js";
-import { Resources } from "./resources.js";
+import { Resources } from  "../engine/resources.js";
 
 export class Data {
     constructor() {
-        this.resources = new Resources()
         this.gameState = "mainmenu"; // gameState = "loading" | "mainmenu" | "treemenu" | "battle"
 
         this.playerAnimals = $.makeGroup();
         this.computerAnimals = $.makeGroup();
         this.battleOver = false;
 
+        this.resources=new Resources();
         this.playerStats = {  // PLAYER ANT IS GOOD
             ant: {
                 unlocked: 1,   //bool true (1) is unlocked
@@ -20,7 +20,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200, //how offen the animal attacks (in frames)
                 priceInGame: 10, //price to put on the track
-                silkFromKill: 10,
+                silkFromKill: 1,
             },
             eagle: {
                 unlocked: 0,   //bool true (1) is unlocked
@@ -31,7 +31,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 50, //
-                silkFromKill: 10,
+                silkFromKill: 2,
             },
             bear: {
                 unlocked: 0,   //bool true (1) is unlocked
@@ -42,7 +42,7 @@ export class Data {
                 acceleration: 1,
                 attackInterval: 200,
                 priceInGame: 110,
-                silkFromKill: 10,
+                silkFromKill: 3,
             },
             tree: {
                 treeHealth: 200,

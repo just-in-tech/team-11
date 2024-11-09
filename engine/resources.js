@@ -1,16 +1,30 @@
 import { $ } from "../lib/Pen.js";
 
 export class Resources {
+    #silkFromBattle
     constructor() { 
         this.silk = 400;
         this.silkFromBattle=0;
         this.fibre=40;
+            
+    }
+
+    get silkFromBattle(){
+        return this.#silkFromBattle
+    }
+
+    set silkFromBattle(value){
+        if(!Number.isFinite(value)){
+            throw Error("kjshfkjhdshkj")
+            console.log("OH NO",value)
+        }
+        this.#silkFromBattle= value;
     }
 
     // 'frame-based' resource generation
-    generateFibre(data) {
-        if ($.frameCount % data.playerStats.fibre.fibreInterval === 0) {
-            this.fibre += data.playerStats.fibre.fibrePerInterval;
+    generateFibre() {
+        if ($.frameCount % this.fibre.fibreInterval === 0) {
+            this.fibre.fibre += this.fibre.fibrePerInterval;
             // console.log("Current Fibre:", this.fibre);   // debug: log fibre value each time
         }
     }
@@ -37,7 +51,8 @@ export class Resources {
             if (request.type == "resources") {
                 if(request.action=="endTheGame"){
                     this.silk+=this.silkFromBattle
-                }else if (request.action == "playerkilledcomputer") {
+                }
+                if (request.action == "playerkilledcomputer") {
                     if (request.value == "ant") {
                         this.silkFromBattle+=data.playerStats.ant.silkFromKill
                     } else if (request.value == "eagle") {
@@ -65,7 +80,7 @@ export class Resources {
                         throw new Error("request value dosen't exist")
                     }
                 }else{
-                    throw new Error("request action dosen't exist",request.type)
+                    throw new Error("request action dosen't exist")
                 }
                     
                 

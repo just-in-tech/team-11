@@ -3,7 +3,7 @@ import { Factory } from "./factory.js";
 import { MainMenu } from "./_mainmenu/mainmenu.js";
 import { BattleGui } from "./_battle/battleGui.js";
 import { BattleManager } from "./_battle/battleManager.js";
-import { BuildTreeScene } from "./_buildtree/treemenu.js";
+import { BuildTreeScene as treemenu } from "./_buildtree/treemenu_changed.js";
 
 export class Gui {
     constructor(data) {
@@ -11,7 +11,7 @@ export class Gui {
         this.mainMenu = new MainMenu()
         this.battleGui = new BattleGui(data);
         this.battleManager = new BattleManager(data);
-        this.treeMenu = new BuildTreeScene();
+        this.treeMenu_op = new treemenu();
     }
 
     update(data, resources) {
@@ -32,8 +32,8 @@ export class Gui {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);
             this.treeMenu_op.drawBattleTree()
-            this.battleGui.audio.play()
             this.treeMenu_op.audio.pause()
+            this.battleGui.audio.play()
         } else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
         } else if (data.gameState == "    ") {
@@ -56,6 +56,8 @@ export class Gui {
             return this.requests = this.mainMenu.getRequests()
         } else if (data.gameState == "battle") {
             return this.requests = this.battleGui.getRequests();
+        } else if (data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
+            return this.requests = this.treeMenu_op.getRequests();              //_______
         } else {
             throw new Error("incorrect gamestate set")
         }
