@@ -152,9 +152,11 @@ export class Factory {
                 if (request.action == "unlockAnimalBranch") {
                     if (request.value == "eagle") {
                         data.playerStats.eagle.unlocked = 1
+                        data.resources.silk-= data.statsUpgrades.troopBranch[request.value].upgradecost
 
                     } else if (request.value == "bear") {
                         data.playerStats.bear.unlocked = 1
+                        data.resources.silk-= data.statsUpgrades.troopBranch[request.value].upgradecost
 
                     } else {
                         throw new Error("request value dosen't exist")
@@ -164,6 +166,7 @@ export class Factory {
                         data.playerStats.ant.damage = data.statsUpgrades.damageBranch[request.value].ant.damage
                         data.playerStats.eagle.damage = data.statsUpgrades.damageBranch[request.value].eagle.damage
                         data.playerStats.bear.damage = data.statsUpgrades.damageBranch[request.value].bear.damage
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                         //data.playerStats.ant.fibreCost+= 5
                         //data.playerStats.eagle.fibreCost+= 15
                         //data.playerStats.bear.fibreCost+= 30
@@ -174,7 +177,7 @@ export class Factory {
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
-
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else {
                         throw new Error("request value dosen't exist")
                     }
@@ -186,6 +189,7 @@ export class Factory {
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else if (request.value == "level3") {
                         data.playerStats.ant.speed = 2
                         data.playerStats.eagle.speed = 15
@@ -193,6 +197,7 @@ export class Factory {
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else {
                         throw new Error("request value dosen't exist")
                     }
@@ -201,10 +206,12 @@ export class Factory {
                         data.playerStats.ant.silkFromKill = data.statsUpgrades.silkBranch[request.value].ant.silkFromKill
                         data.playerStats.eagle.silkFromKill = data.statsUpgrades.silkBranch[request.value].eagle.silkFromKill
                         data.playerStats.bear.silkFromKill = data.statsUpgrades.silkBranch[request.value].bear.silkFromKill
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else if (request.value == "level3") {
                         data.playerStats.ant.silkFromKill = data.statsUpgrades.silkBranch[request.value].ant.silkFromKill
                         data.playerStats.eagle.silkFromKill = data.statsUpgrades.silkBranch[request.value].eagle.silkFromKill
                         data.playerStats.bear.silkFromKill = data.statsUpgrades.silkBranch[request.value].bear.silkFromKill
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else {
                         throw new Error("request value dosen't exist")
                     }
@@ -212,9 +219,11 @@ export class Factory {
                     if (request.value == "level2") {
                         data.playerStats.fibre.fibrePerInterval = data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
                         data.playerStats.fibre.fibreInterval = data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else if (request.value == "level3") {
                         data.playerStats.fibre.fibrePerInterval = data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
                         data.playerStats.fibre.fibreInterval = data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                     } else {
                         throw new Error("request value dosen't exist")
                     }
@@ -223,7 +232,7 @@ export class Factory {
                         data.playerStats.ant.damage = data.statsUpgrades.damageBranch[request.value].ant.damage
                         data.playerStats.eagle.damage = data.statsUpgrades.damageBranch[request.value].eagle.damage
                         data.playerStats.bear.damage = data.statsUpgrades.damageBranch[request.value].bear.damage
-
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
@@ -232,7 +241,7 @@ export class Factory {
                         data.playerStats.ant.damage = data.statsUpgrades.damageBranch[request.value].ant.damage
                         data.playerStats.eagle.damage = data.statsUpgrades.damageBranch[request.value].eagle.damage
                         data.playerStats.bear.damage = data.statsUpgrades.damageBranch[request.value].bear.damage
-
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
@@ -245,7 +254,7 @@ export class Factory {
                         data.playerStats.ant.maxHealth = data.statsUpgrades.healthBranch[request.value].ant.maxHealth
                         data.playerStats.eagle.maxHealth = data.statsUpgrades.healthBranch[request.value].eagle.maxHealth
                         data.playerStats.bear.maxHealth = data.statsUpgrades.healthBranch[request.value].bear.maxHealth
-
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
@@ -254,6 +263,7 @@ export class Factory {
                         data.playerStats.ant.maxHealth = data.statsUpgrades.healthBranch[request.value].ant.maxHealth
                         data.playerStats.eagle.maxHealth = data.statsUpgrades.healthBranch[request.value].eagle.maxHealth
                         data.playerStats.bear.maxHealth = data.statsUpgrades.healthBranch[request.value].bear.maxHealth
+                        data.resources.silk-= data.statsUpgrades[request.action][request.value].upgradecost
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10
                         //data.playerStats.ant.fibreCost+=10

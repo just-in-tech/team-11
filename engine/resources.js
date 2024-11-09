@@ -1,7 +1,6 @@
 import { $ } from "../lib/Pen.js";
 
 export class Resources {
-    #silkFromBattle
     constructor() { 
         this.silk = 400;
         this.silkFromBattle=0;
@@ -9,17 +8,9 @@ export class Resources {
             
     }
 
-    get silkFromBattle(){
-        return this.#silkFromBattle
-    }
+    
 
-    set silkFromBattle(value){
-        if(!Number.isFinite(value)){
-            throw Error("kjshfkjhdshkj")
-            console.log("OH NO",value)
-        }
-        this.#silkFromBattle= value;
-    }
+    
 
     // 'frame-based' resource generation
     generateFibre() {
