@@ -739,7 +739,7 @@ export class BuildTreeScene {
             this.damagebranchstage2.draw()
         }
 
-        if (this.damagebranchstate == 3) {
+        if (this.damagebranchstate >= 3) {
             this.damagebranchstage3.draw()
         }
 
@@ -753,7 +753,7 @@ export class BuildTreeScene {
             this.healthbranchstage2.draw()
         }
 
-        if (this.healthbranchstate == 3) {
+        if (this.healthbranchstate >= 3) {
             this.healthbranchstage3.draw()
         }
 
@@ -767,7 +767,7 @@ export class BuildTreeScene {
             this.silkbranchstage2.draw()
         }
 
-        if (this.silkbranchstate == 3) {
+        if (this.silkbranchstate >= 3) {
             this.silkbranchstage3.draw()
         }
 
@@ -781,7 +781,7 @@ export class BuildTreeScene {
             this.fibrebranchstage2.draw()
         }
 
-        if (this.fibrebranchstate == 3) {
+        if (this.fibrebranchstate >= 3) {
             this.fibrebranchstage3.draw()
         }
 
@@ -795,7 +795,7 @@ export class BuildTreeScene {
             this.speedbranchstage2.draw()
         }
 
-        if (this.speedbranchstate == 3) {
+        if (this.speedbranchstate >= 3) {
             this.speedbranchstage3.draw()
         }
 
@@ -809,7 +809,7 @@ export class BuildTreeScene {
             this.troopbranchstage2.draw()
         }
 
-        if (this.troopbranchstate == 3) {
+        if (this.troopbranchstate >= 3) {
             this.troopbranchstage3.draw()
         }
     }
