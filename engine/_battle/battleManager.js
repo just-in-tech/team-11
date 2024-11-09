@@ -1,47 +1,51 @@
 import { $ } from "../../lib/Pen.js";
-import { Resources } from "../resources.js";
 
-const resources = new Resources();
+
+
+// height limits for:   lane position, entity locations, etc.
+let laneTop = 65/120;
+let laneBottom = 97/120;
+let laneMiddle = (laneTop + laneBottom)/2;
+// enemy wave counter used in:   this.enemySpawn()
+let currentWave = 0;
 
 export class BattleManager {
     constructor(data) {
-        this.requests = []
-        // Load assets
-        this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
-        this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
-
+        // Entities/Colliders (p.s. these are NOT visible)
         // "Lane Walls"
-        this.topWall = $.makeBoxCollider($.w / 2, $.h / 3, $.w, 2);
+        this.topWall = $.makeBoxCollider($.w / 2, $.h * laneTop, $.w, 2);
         this.topWall.static = true;
-        this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * 2 / 3), $.w, 2);
+        this.bottomWall = $.makeBoxCollider($.w / 2, ($.h * laneBottom), $.w, 2);
         this.bottomWall.static = true;
         // Player Tree
-        this.playerTree = $.makeBoxCollider(60, 450, 270, 270);
-        this.playerTree.asset = this.playerTreeImage;
+        let treeWidth = $.w / 8;
+        let treeHeight = $.h * laneBottom - $.h * laneTop;
+        this.playerTree = $.makeBoxCollider(0 + treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
         this.playerTree.static = true;
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
         this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
         this.playerTree.players = 1
         this.playerTree.tree = 1
-
         // Enemy Tree
-        this.computerTree = $.makeBoxCollider($.w - 20, $.h * 1 / 2, $.w / 8, $.h / 8);
-        this.computerTree.asset = this.enemyTreeImage;
-        this.computerTree.asset.w = 20;
-        this.computerTree.asset.h = 20;
+        this.computerTree = $.makeBoxCollider($.w - treeWidth, $.h * laneMiddle, treeWidth, treeHeight);
         this.computerTree.static = true;
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
         this.computerTree.players = 0
         this.computerTree.tree = 1
+
+        this.requests = []
     }
 
     battleUpdate(data) {
         if (this.playerTree.currentHealth == 0 || this.computerTree.currentHealth == 0) {
             data.battleOver = true;
+            this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
+            this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         }
+        
         // we say that both unit groups with their enemy and the boundaries
         data.playerAnimals.collides(data.computerAnimals);
         data.playerAnimals.collides(this.topWall);
@@ -58,19 +62,21 @@ export class BattleManager {
         //data.computerAnimals.collides(data.computerAnimals);
 
         // Handles animal movement & "pathing"
-        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, resources);
-        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, resources);
+        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, data.resources,data);
+        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, data.resources,data);
         // Update attackCooldown values
         this.updateCooldown(data.playerAnimals);
         this.updateCooldown(data.computerAnimals);
 
+        // Draw animal health bars
         this.drawHP(data.playerAnimals, "#00FF3A", "#C7FFD4");
         this.drawHP(data.computerAnimals, "#FF0000", "#FFC7C7");
-
         // drawing tree/bases with: which tree, health colour, empty colour, "is tree playerTree?"
         this.drawTree(this.playerTree, "#00FF3A", "#C7FFD4", true);
         this.drawTree(this.computerTree, "#FF0000", "#FFC7C7", false);
     }
+
+
 
     drawHP(group, healthColour, backgroundColour) {
         let barHeight = $.h * (1 / 100);
@@ -112,7 +118,6 @@ export class BattleManager {
             $.colour.fill = healthColour;
             $.shape.rectangle(barX, barY, barWidth * (whichTree.currentHealth / whichTree.maxHealth), barHeight);
         }
-        console.log(this.computerTree.currentHealth);
     }
 
     updateCooldown(group) {
@@ -124,68 +129,48 @@ export class BattleManager {
         }
     }
 
-    attack(attacker, defender, resources) {
+    attack(attacker, defender, resources,data) {
         // when attack is ready, the defender takes damage or dies accordingly
         if (attacker.attackCooldown == 0) {
             if (defender.currentHealth <= attacker.damage) {
                 //justin from here
-                /*
                 if(defender.players==0){
                     if(defender.animaltype=="ant"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "ant",
-                        })
+                        data.resources.silkFromBattle+=data.playerStats.ant.silkFromKill
                     }else if(defender.animaltype=="eagle"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "eagle",
-                        })
+                        data.resources.silkFromBattle+=data.playerStats.eagle.silkFromKill
                     }else if(defender.animaltype=="bear"){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "bear",
-                        })
-                    }else if(defender.tree==1){
-                        this.requests.push({
-                            type: "resources",
-                            action: "playerkilledcomputer",
-                            value: "bear",
-                        })
+                        data.resources.silkFromBattle+=data.playerStats.bear.silkFromKill
+                    }else if(defender.tree=1){
+                        data.resources.silkFromBattle+=data.playerStats.tree.silkFromTreeKill
+                        data.resources.silk+=data.resources.silkFromBattle
                     }else{
                         throw new Error("contact justin error in battle manager")
                     }
+                    
                 }else if(defender.players==1){
-                    if(defender.tree=1){
-                        this.requests.push({
-                            type: "resources",
-                            action: "computerkilledplayer",
-                            value: "tree",
-                        })
+                    if(defender.tree==1){
+                        data.resources.silk+=data.resources.silkFromBattle
                     }
                 }else{
                     throw new Error("contact justin error in battle manager")
-                }*/ //Justin to here
+                } //Justin to here
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
-                resources.silkFromBattle += defender.silkFromKill;
-                console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
-                    "added with silkFromKill: ", defender.silkFromKill)
+                // console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
+                    // "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
                 defender.currentHealth -= attacker.damage;
             }
             // reset the attack cooldown
             attacker.attackCooldown = attacker.attackInterval;
-            console.log("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
+            // ("ant #", attacker.id, "did", attacker.damage, "damage to ant #", defender.id);
         }
     }
 
 
-    seekTarget(attacker, defender, defenderBase, resources) {
+    seekTarget(attacker, defender, defenderBase, resources,data) {
         for (let i = 0; i < attacker.length; i++) {
             // make the enemy base the default target
             let minDistance = $.math.distance(attacker[i].x, attacker[i].y, defenderBase.x, defenderBase.y);
@@ -204,7 +189,7 @@ export class BattleManager {
             // move towards their closest target & attack() when they collide
             attacker[i].direction = attacker[i].getAngleToPoint(target.x, target.y);
             if (attacker[i].collides(target)) {
-                this.attack(attacker[i], target, resources);
+                this.attack(attacker[i], target, resources,data);
             }
         }
     }
@@ -250,6 +235,14 @@ export class BattleManager {
                         })
     }
 
+    // Load assets (not done here anymore)
+    // this.playerTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/initialtrunk.png");
+    // this.enemyTreeImage = $.loadImage(0, 0, "./engine/_battle/spritesheet/enemyTree.png");
+
+    // this.playerTree.asset = this.playerTreeImage;
+    // this.computerTree.asset = this.enemyTreeImage;
+    // this.computerTree.asset.w = 20;
+    // this.computerTree.asset.h = 20;
     */
     getRequests() {
         const requestsToBeReturned = this.requests;

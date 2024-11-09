@@ -7,6 +7,10 @@ export class Factory {
         // note: asset -- holds image
         this.antSprite = $.loadImage(10, 10, "./engine/animals/ant/ant1.png");
         this.enemyAntSprite = $.loadImage(10, 10, "./engine/animals/ant/enemyAnt1.png");
+        this.eagleSprite = $.loadImage(10, 10, "./engine/animals/eagle/eagle.png");
+        this.enemyEagleSprite = $.loadImage(10, 10, "./engine/animals/eagle/enemyEagle.png");
+        this.bearSprite = $.loadImage(10, 10, "./engine/animals/bear/bear.png");
+        this.enemyBearSprite = $.loadImage(10, 10, "./engine/animals/bear/enemyBear.png");
     }
     makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
         const ant = $.makeCircleCollider(x, y, size);
@@ -34,6 +38,11 @@ export class Factory {
     }
     makeEagle(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
         const eagle = $.makeCircleCollider(x, y, size);
+        if (direction == 270) {
+            eagle.asset = this.enemyEagleSprite;
+        } else if (direction == 90) {
+            eagle.asset = this.eagleSprite;
+        }
         eagle.bounciness = 0;
         eagle.fill = "green"; // "no fill" possible?
         // eagle.friction = 0;
@@ -51,6 +60,11 @@ export class Factory {
     }
     makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
         const bear = $.makeCircleCollider(x, y, size);
+        if (direction == 270) {
+            bear.asset = this.enemyBearSprite;
+        } else if (direction == 90) {
+            bear.asset = this.bearSprite;
+        }
         bear.bounciness = 0;
         bear.fill = "green"; // "no fill" possible?
         //bear.friction = 0;
@@ -69,7 +83,13 @@ export class Factory {
 
     spawnHeight() {
         //  give a height to units: "somewhere in the middle 20% of the screen"
+<<<<<<< HEAD
         return $.math.random($.h * (40 / 100), $.h * (60 / 100));
+=======
+        let laneTop = 65/120;
+        let laneBottom = 97/120;
+        return $.math.random($.h * laneTop, $.h * laneBottom);
+>>>>>>> 4c88261385d632243206e2f974beb35555257f32
     }
 
     processRequests(requests, data, resources) {
@@ -126,14 +146,22 @@ export class Factory {
                                     data.computerStats.ant.attackInterval,
                                     request.playerSide));
                             } else if (request.value == "eagle") {
-                                let attackSpeed = 200;
                                 let size = 20;
-                                data.enemyAnimals.push(this.makeEagle(x, y, data.computerStats.eagle.speed, direction, attackSpeed, size,
+                                data.computerAnimals.push(this.makeEagle(x, y, direction, size,
+                                    data.computerStats.eagle.damage,
+                                    data.computerStats.eagle.maxHealth,
+                                    data.computerStats.eagle.speed, 
+                                    data.computerStats.eagle.acceleration,
+                                    data.computerStats.eagle.attackInterval,
                                     request.playerSide));
                             } else if (request.value == "bear") {
-                                let attackSpeed = 200;
                                 let size = 40;
-                                data.enemyAnimals.push(this.makeBear(x, y, data.computerStats.bear.speed, direction, attackSpeed, size,
+                                data.computerAnimals.push(this.makeBear(x, y, direction, size,
+                                    data.computerStats.bear.damage,
+                                    data.computerStats.bear.maxHealth,
+                                    data.computerStats.bear.speed, 
+                                    data.computerStats.bear.acceleration,
+                                    data.computerStats.bear.attackInterval,
                                     request.playerSide));
                             }
                         }
@@ -142,12 +170,92 @@ export class Factory {
 
                 }
             }
+<<<<<<< HEAD
             // to unlock animal on the treemenu
             console.log("type ", request.type)
             if (request.type == "upgrade branch") {
                 if (request.action == "unlockAnimalBranch") {
                     if (request.value == "eagle") {
                         data.playerStats.eagle.unlocked = 1
+=======
+                // to unlock animal on the treemenu
+                console.log("type ",request.type)
+                if (request.type == "upgrade branch"){
+                    if (request.action == "unlockAnimalBranch"){
+                        if (request.value == "eagle") {
+                            data.playerStats.eagle.unlocked=1
+                            
+                        } else if (request.value == "bear") {
+                            data.playerStats.bear.unlocked=1
+                            
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    }else if (request.action == "damageBranch") {
+                        if (request.value == "level2") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damageBranch[request.value].ant.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damageBranch[request.value].eagle.damage
+                            data.playerStats.bear.damage=data.statsUpgrades.damageBranch[request.value].bear.damage
+                            //data.playerStats.ant.fibreCost+= 5
+                            //data.playerStats.eagle.fibreCost+= 15
+                            //data.playerStats.bear.fibreCost+= 30
+                        } else if (request.value == "level3") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damageBranch[request.value].bear.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damageBranch[request.value].bear.damage
+                            data.playerStats.bear.damage= data.statsUpgrades.damageBranch[request.value].bear.damage
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    }else if (request.action == "speedBranch") {
+                        if (request.value == "level2") {
+                            data.playerStats.ant.speed=data.statsUpgrades.speedBranch[request.value].bear.speed
+                            data.playerStats.eagle.speed=data.statsUpgrades.speedBranch[request.value].bear.speed
+                            data.playerStats.bear.speed=data.statsUpgrades.speedBranch[request.value].bear.speed
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        } else if (request.value == "level3") {
+                            data.playerStats.ant.speed=2
+                            data.playerStats.eagle.speed=15
+                            data.playerStats.bear.speed=4
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                            //data.playerStats.ant.fibreCost+=10
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    }else if (request.action == "silkBranch") {
+                        if (request.value == "level2") {
+                            data.playerStats.ant.silkFromKill=data.statsUpgrades.silkBranch[request.value].ant.silkFromKill
+                            data.playerStats.eagle.silkFromKill=data.statsUpgrades.silkBranch[request.value].eagle.silkFromKill
+                            data.playerStats.bear.silkFromKill=data.statsUpgrades.silkBranch[request.value].bear.silkFromKill
+                        } else if (request.value == "level3") {
+                            data.playerStats.ant.silkFromKill=data.statsUpgrades.silkBranch[request.value].ant.silkFromKill
+                            data.playerStats.eagle.silkFromKill=data.statsUpgrades.silkBranch[request.value].eagle.silkFromKill
+                            data.playerStats.bear.silkFromKill=data.statsUpgrades.silkBranch[request.value].bear.silkFromKill
+                        }else{
+                            throw new Error("request value dosen't exist")
+                        }
+                    }else if (request.action == "fibreBranch") {
+                            if (request.value == "level2") {
+                                data.playerStats.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
+                                data.playerStats.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                            } else if (request.value == "level3") {
+                                data.playerStats.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
+                                data.playerStats.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                            }else{
+                                throw new Error("request value dosen't exist")
+                            }
+                    }else if (request.action == "damageBranch") {
+                        if (request.value == "level2") {
+                            data.playerStats.ant.damage=data.statsUpgrades.damageBranch[request.value].ant.damage
+                            data.playerStats.eagle.damage=data.statsUpgrades.damageBranch[request.value].eagle.damage
+                            data.playerStats.bear.damage=data.statsUpgrades.damageBranch[request.value].bear.damage
+>>>>>>> 4c88261385d632243206e2f974beb35555257f32
 
                     } else if (request.value == "bear") {
                         data.playerStats.bear.unlocked = 1
