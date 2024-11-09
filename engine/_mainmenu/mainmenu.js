@@ -7,13 +7,18 @@ export class MainMenu {
 
         // buttons
 
-        this.playbutton = $.makeButton($.w / 2, $.h / 2 + 50, 200, 70, "START")
-        this.instructionsbutton = $.makeButton($.w / 2, $.h / 2 + 150, 200, 70, "INSTRUCTIONS")
+        this.playbutton = $.makeButton($.w / 2, $.h / 2, 200, 70, "START")
+        this.instructionsbutton = $.makeButton($.w / 2, $.h / 2 + 100, 200, 70, "INSTRUCTIONS")
 
         // pop-up instructions
 
         //this.popupbackground = $.loadImage($.w / 2, $.h / 2, "./engine/_mainmenu/pixelborder.png")
         this.exitinstbutton = $.makeButton(720, 80, 30, 30, "X")
+
+        // instruction images
+
+        this.inst1 = $.loadImage(250, 280, "./engine/_mainmenu/inst1.png")
+        this.inst2 = $.loadImage(550, 280, "./engine/_mainmenu/inst2.png")
 
         // states
 
@@ -30,7 +35,7 @@ export class MainMenu {
         $.text.size = 80
         $.text.font = this.font
 
-        $.text.print($.w / 2, 120, "'TREE GAME'", 800)
+        $.text.print($.w / 2, 140, "TIMBER TOWERS DEFENCE", 800)
 
         this.playbutton.draw()
         this.instructionsbutton.draw()
@@ -55,12 +60,17 @@ export class MainMenu {
             //this.popupbackground.draw()
             $.colour.fill = "#d1d1d1"
             $.shape.rectangle(250, 250, 295, 270)
+            this.inst1.w = 180
+            this.inst1.h = 180
+            this.inst1.draw()
             $.shape.rectangle(550, 250, 295, 270)
+            this.inst2.w = 180
+            this.inst2.h = 180
+            this.inst2.draw()
             $.shape.rectangle(250, 525, 295, 270)
             $.shape.rectangle(550, 525, 295, 270)
             $.colour.fill = "black"
             $.text.size = 15
-            $.text.print(250, 260, "Images to be added here later", 285)
             $.text.print(250, 160, "1. Use silk to upgrade tree branches to increase your chances of beating the enemy in battle", 285)
             $.text.print(550, 160, "2. Head to battle - use fibre to spawn the best combination of allies to defeat the enemy", 285)
             $.text.print(250, 435, "3. Lost? Use silk won in battle to continue upgrading tree", 285)
