@@ -23,21 +23,25 @@ export class Gui {
             this.mainMenu.draw();
             this.mainMenu.update(data)
         } else if (data.gameState == "treemenu") {
-            this.treeMenu.draw()
-            this.treeMenu.update(data)
+            this.treeMenu_op.draw()
+            this.treeMenu_op.update(data)
         } else if (data.gameState == "treemenu_op") { //to be removed when hollys and justin's treemenus are merged
-            this.treeMenu_op.draw()                    //  ⮟
+            this.treeMenu_op.draw()
+            this.treeMenu_op.audio.play()
+            this.battleGui.audio.pause()         //  ⮟
             this.treeMenu_op.update(data, resources)              //_______
         } else if (data.gameState == "battle") {
             this.battleGui.drawBattle(data);
             this.battleManager.battleUpdate(data);
-            this.treeMenu.drawBattleTree()
+            this.treeMenu_op.drawBattleTree()
+            this.battleGui.audio.play()
+            this.treeMenu_op.audio.pause()
         } else if (data.gameState == "credits") {
             this.battleGui.drawBattle(data);
         } else if (data.gameState == "    ") {
             //empty gamestate add what is needed
         } else {
-            throw new Error("incorrect gamestate set")
+            throw new Error("Incorrect gamestate set")
         }
     }
 

@@ -42,7 +42,7 @@ export class MainMenu {
     update(data) {
         if (this.playbutton.down) {
             // change to tree build gamestate
-            data.gameState = "treemenu";
+            data.gameState = "treemenu_op";
         }
 
         if (this.instructionsbutton.down) {

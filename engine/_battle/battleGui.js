@@ -11,6 +11,8 @@ export class BattleGui {
         // asset loading
         this.battleBackgroundImage = $.loadImage($.w / 2, $.h / 2, "./engine/_battle/spritesheet/battlebackground_1.png");
 
+        this.audio = new Audio("./engine/audio/battletheme.mp3")
+
         this.unitButtonY = $.h * (90 / 100);  // baseline button sizes
         this.unitButtonX = $.w * (20 / 100);
         // make buttons for user to purchase units
@@ -204,7 +206,7 @@ export class BattleGui {
         if (this.endButton.up) {
             resources.silk = resources.silkFromBattle;
             resources.silkFromBattle = 0;
-            data.gameState = "treemenu";
+            data.gameState = "treemenu_op";
             data.battleOver = false;
             //Justin
             this.requests.push({

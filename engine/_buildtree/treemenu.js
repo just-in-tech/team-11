@@ -6,6 +6,8 @@ export class BuildTreeScene {
         this.treeimg = $.loadImage($.w / 2, 450, "./engine/_buildtree/initialtrunk.png")
         this.background = $.loadImage($.w / 2, $.h / 2, "./engine/_buildtree/scene.jpg")
 
+        this.audio = new Audio("./engine/audio/buildtheme.mp3")
+
         // branches
 
         this.troopbranchinitial = $.loadImage($.w / 2, 450, "./engine/_buildtree/troopbranchinitial.png")
