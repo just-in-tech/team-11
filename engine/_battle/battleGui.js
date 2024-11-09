@@ -42,7 +42,7 @@ export class BattleGui {
             this.endBattle(data, resources);
         } else if (data.battleOver == false) {
             this.battleTimer();
-            this.silkPanel();
+            this.silkPanel(data);
             resources.generateFibre(data);
         }
         // Draw GUI Elements
@@ -111,7 +111,7 @@ export class BattleGui {
         $.text.print(this.unitButtonX, this.unitButtonY + 40, String(resources.fibre), 140);
     }
 
-    silkPanel() {
+    silkPanel(data) {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
         $.text.alignment.y = "center";
@@ -124,7 +124,7 @@ export class BattleGui {
         $.colour.fill = "black";
         $.text.print($.w / 2, $.h / 6 - 40, "Collected Silk", 160);
         this.silkIcon.draw();
-        $.text.print($.w / 2, $.h / 6 + 45, String(resources.silkFromBattle), 140);
+        $.text.print($.w / 2, $.h / 6 + 45, String(data.resources.silkFromBattle), 140);
     }
 
     unitButtons(data) {
@@ -198,8 +198,8 @@ export class BattleGui {
         textHeight += $.h / 20;
         $.text.print($.w / 2, textHeight, "Total Silk: ", $.w / 2);
         textHeight += $.h / 20;
-        let silkTotal = String(data.resources.silkFromBattle);
-        $.text.print($.w / 2, textHeight, ""+resources.silkFromBattle, $.w / 2);
+        //let silkTotal = String(data.resources.silkFromBattle);
+        $.text.print($.w / 2, textHeight, ""+data.resources.silkFromBattle, $.w / 2);
 
         // Clean up animal groups
         for (let i = 0; i < data.playerAnimals.length; i++) {
@@ -215,16 +215,10 @@ export class BattleGui {
         $.text.size = 12;
         this.endButton.draw();
         if (this.endButton.up) {
-            resources.silk = resources.silkFromBattle;
-            resources.silkFromBattle = 0;
+            data.resources.silk += data.resources.silkFromBattle;
+            data.resources.silkFromBattle = 0;
             data.gameState = "treemenu";
             data.battleOver = false;
-            //Justin
-            this.requests.push({
-                type: "resources",
-                action: "endTheGame",
-            })
-            //to here is justin
         }
     }
 

@@ -135,21 +135,21 @@ export class BattleManager {
                 //justin from here
                 if(defender.players==0){
                     if(defender.animaltype=="ant"){
-                        resources.silkFromBattle+=data.playerStats.ant.silkFromKill
+                        data.resources.silkFromBattle+=data.playerStats.ant.silkFromKill
                     }else if(defender.animaltype=="eagle"){
-                        resources.silkFromBattle+=data.playerStats.eagle.silkFromKill
+                        data.resources.silkFromBattle+=data.playerStats.eagle.silkFromKill
                     }else if(defender.animaltype=="bear"){
-                        resources.silkFromBattle+=data.playerStats.bear.silkFromKill
+                        data.resources.silkFromBattle+=data.playerStats.bear.silkFromKill
                     }else if(defender.tree=1){
-                        resources.silkFromBattle+=data.playerStats.tree.silkFromTreeKill
-                        resources.silk+=data.resources.silkFromBattle
+                        data.resources.silkFromBattle+=data.playerStats.tree.silkFromTreeKill
+                        data.resources.silk+=data.resources.silkFromBattle
                     }else{
                         throw new Error("contact justin error in battle manager")
                     }
                     
                 }else if(defender.players==1){
                     if(defender.tree==1){
-                        resources.silk+=resources.silkFromBattle
+                        data.resources.silk+=data.resources.silkFromBattle
                     }
                 }else{
                     throw new Error("contact justin error in battle manager")
@@ -157,7 +157,6 @@ export class BattleManager {
                 defender.currentHealth = 0;
                 defender.remove();
                 // *TODO* PUSH REQUEST: UNIT KILL
-                //resources.silkFromBattle += defender.silkFromKill;
                 console.log("Unit died", "silkFromBattle: ", resources.silkFromBattle,
                     "added with silkFromKill: ", defender.silkFromKill)
             } else if (defender.currentHealth > attacker.damage) {
