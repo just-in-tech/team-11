@@ -208,11 +208,11 @@ export class Factory {
                         }
                     }else if (request.action == "fibreBranch") {
                             if (request.value == "level2") {
-                                resources.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
-                                resources.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                                data.playerStats.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
+                                data.playerStats.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
                             } else if (request.value == "level3") {
-                                resources.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
-                                resources.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
+                                data.playerStats.fibre.fibrePerInterval=data.statsUpgrades.fibreBranch[request.value].fibrePerinterval
+                                data.playerStats.fibre.fibreInterval=data.statsUpgrades.fibreBranch[request.value].fibreInterval
                             }else{
                                 throw new Error("request value dosen't exist")
                             }

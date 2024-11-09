@@ -1,7 +1,7 @@
 import { $ } from "../../lib/Pen.js";
-import { Resources } from "../resources.js";
 
-const resources = new Resources();
+
+
 // height limits for:   lane position, entity locations, etc.
 let laneTop = 65/120;
 let laneBottom = 97/120;
@@ -63,8 +63,8 @@ export class BattleManager {
         //data.computerAnimals.collides(data.computerAnimals);
 
         // Handles animal movement & "pathing"
-        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, resources);
-        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, resources);
+        this.seekTarget(data.playerAnimals, data.computerAnimals, this.computerTree, data.resources);
+        this.seekTarget(data.computerAnimals, data.playerAnimals, this.playerTree, data.resources);
         // Update attackCooldown values
         this.updateCooldown(data.playerAnimals);
         this.updateCooldown(data.computerAnimals);

@@ -38,13 +38,13 @@ export class BattleGui {
 
         // continue drawing the battle until "battleOver" state is true from a lose state
         if (data.battleOver == true) {
-            this.endBattle(data, resources);
+            this.endBattle(data, data.resources);
         } else if (data.battleOver == false) {
-            this.silkPanel();
-            resources.generateFibre(data);
+            this.silkPanel(data);
+            data.resources.generateFibre(data);
         }
         // Draw GUI Elements
-        this.fibrePanel();
+        this.fibrePanel(data);
         this.unitButtons(data);
 
         // surrender button
@@ -59,7 +59,7 @@ export class BattleGui {
         //$.drawColliders();    // for debugging
     }
 
-    fibrePanel() {
+    fibrePanel(data) {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
         $.text.alignment.y = "center";
@@ -71,10 +71,10 @@ export class BattleGui {
         $.colour.fill = "black";
         $.text.print(this.unitButtonX, this.unitButtonY - 40, "Fibre", 140);
         this.fibreIcon.draw();
-        $.text.print(this.unitButtonX, this.unitButtonY + 40, String(resources.fibre), 140);
+        $.text.print(this.unitButtonX, this.unitButtonY + 40, String(data.resources.fibre), 140);
     }
 
-    silkPanel() {
+    silkPanel(data) {
         // Todo: Add "progress bar" effect
         $.text.alignment.x = "center";
         $.text.alignment.y = "center";
@@ -87,14 +87,14 @@ export class BattleGui {
         $.colour.fill = "black";
         $.text.print($.w / 2, $.h / 6 - 40, "Collected Silk", 160);
         this.silkIcon.draw();
-        $.text.print($.w / 2, $.h / 6 + 45, String(resources.silkFromBattle), 140);
+        $.text.print($.w / 2, $.h / 6 + 45, String(data.resources.silkFromBattle), 140);
     }
 
     unitButtons(data) {
         // Buy Animal Buttons
         this.antButton.draw();
         // show a white version if a unit can be bought (grey if not)
-        if (resources.fibre >= data.playerStats.ant.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.ant.priceInGame) {
             this.antButton.background = "white";
             // clicking will remove some fibre and spawn a unit for the player
             if (this.antButton.up) {
@@ -105,7 +105,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre -= data.playerStats.ant.priceInGame;
+                data.resources.fibre -= data.playerStats.ant.priceInGame;
             }
         } else {
             this.antButton.background = "grey";
@@ -113,7 +113,7 @@ export class BattleGui {
         if (data.playerStats.eagle.unlocked == 1) {
             this.eagleButton.draw();
         }
-        if (resources.fibre >= data.playerStats.eagle.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.eagle.priceInGame) {
             this.eagleButton.background = "white";
             if (this.eagleButton.up) {
                 this.requests.push({    // request a player eagle
@@ -131,7 +131,7 @@ export class BattleGui {
         if (data.playerStats.bear.unlocked == 1) {
             this.bearButton.draw();
         }
-        if (resources.fibre >= data.playerStats.bear.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.bear.priceInGame) {
             this.bearButton.background = "white";
             if (this.bearButton.up) {
                 this.requests.push({    // request a player bear
@@ -141,7 +141,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre -= data.playerStats.bear.priceInGame;
+                data.resources.fibre -= data.playerStats.bear.priceInGame;
             }
         } else {
             this.bearButton.background = "grey";
@@ -161,7 +161,7 @@ export class BattleGui {
         textHeight += $.h / 20;
         $.text.print($.w / 2, textHeight, "Total Silk: ", $.w / 2);
         textHeight += $.h / 20;
-        let silkTotal = String(resources.silkFromBattle);
+        let silkTotal = String(data.resources.silkFromBattle);
         $.text.print($.w / 2, textHeight, silkTotal, $.w / 2);
 
         // Clean up animal groups
@@ -173,13 +173,13 @@ export class BattleGui {
         }
         // Reset battle values
         this.battleTime = 0;
-        resources.fibre = 0;
+        data.resources.fibre = 0;
         // Confirm/Continue Button
         $.text.size = 12;
         this.endButton.draw();
         if (this.endButton.up) {
-            resources.silk = resources.silkFromBattle;
-            resources.silkFromBattle = 0;
+            data.resources.silk = data.resources.silkFromBattle;
+            data.resources.silkFromBattle = 0;
             data.gameState = "treemenu";
             data.battleOver = false;
             //Justin
