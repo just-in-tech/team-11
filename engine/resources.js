@@ -37,8 +37,7 @@ export class Resources {
             if (request.type == "resources") {
                 if(request.action=="endTheGame"){
                     this.silk+=this.silkFromBattle
-                }
-                if (request.action == "playerkilledcomputer") {
+                }else if (request.action == "playerkilledcomputer") {
                     if (request.value == "ant") {
                         this.silkFromBattle+=data.playerStats.ant.silkFromKill
                     } else if (request.value == "eagle") {
@@ -66,7 +65,7 @@ export class Resources {
                         throw new Error("request value dosen't exist")
                     }
                 }else{
-                    throw new Error("request action dosen't exist")
+                    throw new Error("request action dosen't exist",request.type)
                 }
                     
                 
