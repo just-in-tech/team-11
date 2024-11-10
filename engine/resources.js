@@ -2,7 +2,7 @@ import { $ } from "../lib/Pen.js";
 
 export class Resources {
     constructor() { 
-        this.silk = 400;
+        this.silk = 0;
         this.silkFromBattle=0;
         this.fibre=40;
             
