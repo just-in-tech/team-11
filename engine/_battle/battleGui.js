@@ -17,7 +17,7 @@ export class BattleGui {
         this.unitButtonX = $.w * (20 / 100);
         // make buttons for user to purchase units
         this.antButton = $.makeButton(this.unitButtonX * 2, this.unitButtonY, 100, 150);
-        this.antButton.label = "Buy    AntXX \n Cost: " + data.playerStats.ant.priceInGame;
+        this.antButton.label = "Buy    Ant \n Cost: " + data.playerStats.ant.priceInGame;
         this.antButton.border = "black";
 
         this.eagleButton = $.makeButton(this.unitButtonX * 3, this.unitButtonY, 100, 150);

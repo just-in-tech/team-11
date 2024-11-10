@@ -54,7 +54,11 @@ export class Factory {
         eagle.attackInterval = attackInterval;
         eagle.attackCooldown = eagle.attackInterval;
         eagle.animaltype = "eagle"
-        eagle.players = playerSide
+        if (playerSide === true) {
+            eagle.player = 0
+        } else {
+            eagle.player = 1
+        }
         return eagle;
     }
     makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
@@ -72,7 +76,11 @@ export class Factory {
         bear.attackInterval = attackInterval;
         bear.attackCooldown = bear.attackInterval;
         bear.animaltype = "bear"
-        bear.players = playerSide
+        if (playerSide === true) {
+            bear.player = 0
+        } else {
+            bear.player = 1
+        }
         return bear;
     }
 

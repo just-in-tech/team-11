@@ -30,7 +30,7 @@ export class BattleManager {
         this.playerTree.fill = "green";
         this.playerTree.currentHealth = data.playerStats.tree.treeHealth;
         this.playerTree.maxHealth = data.playerStats.tree.treeHealth;
-        this.playerTree.players = 1;
+        this.playerTree.player = 1;
         this.playerTree.tree = 1;
 
         // Enemy Tree
@@ -47,7 +47,7 @@ export class BattleManager {
         this.computerTree.fill = "brown";
         this.computerTree.currentHealth = data.computerStats.tree.treeHealth;
         this.computerTree.maxHealth = data.computerStats.tree.treeHealth;
-        this.computerTree.players = 0;
+        this.computerTree.player = 0;
         this.computerTree.tree = 1;
     }
 
