@@ -1,7 +1,5 @@
 import { $ } from "../../lib/Pen.js";
-import { Resources } from "../resources.js";
 
-const resources = new Resources();
 
 export class BattleManager {
     constructor(data) {

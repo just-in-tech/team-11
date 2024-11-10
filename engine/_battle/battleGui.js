@@ -1,7 +1,7 @@
 import { $ } from "../../lib/Pen.js";
-import { Resources } from "../resources.js";
+//import { Resources } from "../resources.js";
 
-const resources = new Resources();
+//const resources = new Resources();
 
 let currentFibre;
 let currentWave = 0;
@@ -44,11 +44,11 @@ export class BattleGui {
 
         // continue drawing the battle until "battleOver" state is true from a lose state
         if (data.battleOver == true) {
-            this.endBattle(data, resources);
+            this.endBattle(data, data.resources);
         } else if (data.battleOver == false) {
             // update timed events
             this.battleTimer();
-            resources.generateFibre();
+            data.resources.generateFibre();
         }
         // Draw GUI Elements
         this.fibrePanel(data.resources);
@@ -120,7 +120,7 @@ export class BattleGui {
         // Buy Animal Buttons
         this.antButton.draw();
         // show a white version if a unit can be bought (grey if not)
-        if (resources.fibre >= data.playerStats.ant.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.ant.priceInGame) {
             this.antButton.background = "white";
             // clicking will remove some fibre and spawn a unit for the player
             if (this.antButton.up) {
@@ -131,7 +131,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre -= data.playerStats.ant.priceInGame;
+                data.resources.fibre -= data.playerStats.ant.priceInGame;
             }
         } else {
             this.antButton.background = "grey";
@@ -139,7 +139,7 @@ export class BattleGui {
         if (data.playerStats.eagle.unlocked == 1) {
             this.eagleButton.draw();
         }
-        if (resources.fibre >= data.playerStats.eagle.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.eagle.priceInGame) {
             this.eagleButton.background = "white";
             if (this.eagleButton.up) {
                 this.requests.push({    // request a player eagle
@@ -149,7 +149,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre -= data.playerStats.eagle.priceInGame;
+                data.resources.fibre -= data.playerStats.eagle.priceInGame;
             }
         } else {
             this.eagleButton.background = "grey";
@@ -157,7 +157,7 @@ export class BattleGui {
         if (data.playerStats.bear.unlocked == 1) {
             this.bearButton.draw();
         }
-        if (resources.fibre >= data.playerStats.bear.priceInGame) {
+        if (data.resources.fibre >= data.playerStats.bear.priceInGame) {
             this.bearButton.background = "white";
             if (this.bearButton.up) {
                 this.requests.push({    // request a player bear
@@ -167,7 +167,7 @@ export class BattleGui {
                     amount: 1,
                     playerSide: true
                 })
-                resources.fibre -= data.playerStats.bear.priceInGame;
+                data.resources.fibre -= data.playerStats.bear.priceInGame;
             }
         } else {
             this.bearButton.background = "grey";
@@ -199,11 +199,11 @@ export class BattleGui {
         }
         // Reset battle values
         this.battleTime = 0;
-        resources.fibre = 0;
+        data.resources.fibre = 0;
         // Confirm/End Button
         this.endButton.draw();
         if (this.endButton.up) {
-            resources.silk += resources.silkFromBattle;
+            data.resources.silk += data.resources.silkFromBattle;
             resources.silkFromBattle = 0;
             data.gameState = "treemenu_op";
             data.battleOver = false;
