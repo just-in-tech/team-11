@@ -16,21 +16,21 @@ export class BattleGui {
         this.unitButtonY = $.h * (90 / 100);  // baseline button sizes
         this.unitButtonX = $.w * (20 / 100);
         // make buttons for user to purchase units
-        this.antButton = $.makeButton(this.unitButtonX * 2, this.unitButtonY, 100, 150);
+        this.antButton = $.makeButton(this.unitButtonX * 2, this.unitButtonY, 100, 100);
         this.antButton.label = "Buy    Ant \n Cost: " + data.playerStats.ant.priceInGame;
         this.antButton.border = "black";
 
-        this.eagleButton = $.makeButton(this.unitButtonX * 3, this.unitButtonY, 100, 150);
+        this.eagleButton = $.makeButton(this.unitButtonX * 3, this.unitButtonY, 100, 100);
         this.eagleButton.label = "Buy Eagle \n Cost: " + data.playerStats.eagle.priceInGame;
         this.eagleButton.border = "black";
 
-        this.bearButton = $.makeButton(this.unitButtonX * 4, this.unitButtonY, 100, 150);
+        this.bearButton = $.makeButton(this.unitButtonX * 4, this.unitButtonY, 100, 100);
         this.bearButton.label = "Buy BearX \n Cost: " + data.playerStats.bear.priceInGame;
         this.bearButton.border = "black";
         // surrender button during battle
-        this.surrenderButton = $.makeButton(100, 100, 100, 60);
+        this.surrenderButton = $.makeButton(100, 60, 100, 60);
         this.surrenderButton.label = "Surrender";
-        this.endButton = $.makeButton($.w / 2, $.h / 2, $.w / 10, $.h / 10);
+        this.endButton = $.makeButton($.w / 2, $.h / 2 + 50, $.w / 10, $.h / 10);
         this.endButton.label = "Confirm";
 
         this.requests = [];
@@ -93,7 +93,7 @@ export class BattleGui {
         $.shape.alignment.x = "center"; // doesn't seem to be applying properly
         $.shape.alignment.y = "center";
         $.colour.fill = "white";
-        $.shape.rectangle(this.unitButtonX, this.unitButtonY, 150, 140, 15);
+        $.shape.rectangle(this.unitButtonX, this.unitButtonY, 130, 120, 15);
         currentFibre = String(resources.fibre);
         $.text.size = 24;
         $.colour.fill = "black";
@@ -180,15 +180,15 @@ export class BattleGui {
         //Justin maybe
         $.colour.fill = "white";
         $.colour.stroke = "black";
-        $.shape.rectangle($.w / 2, $.h / 3, $.w / 4, $.h / 4);
+        $.shape.rectangle($.w / 2, $.h / 2, $.w / 4, $.h / 4);
         $.colour.fill = "black";
         let textHeight = $.h / 4;
-        $.text.print($.w / 2, textHeight, "Battle Over!", $.w / 2);
+        $.text.print($.w / 2, textHeight + 130, "Battle Over!", $.w / 2);
         textHeight += $.h / 20;
-        $.text.print($.w / 2, textHeight, "Silk Total: ", $.w / 2);
+        $.text.print($.w / 2, textHeight + 120, "Silk Total: ", $.w / 2);
         textHeight += $.h / 20;
         // draw icon here
-        $.text.print($.w / 2, textHeight,""+data.resources.silkFromBattle, $.w / 2);
+        $.text.print($.w / 2, textHeight + 100, "" + data.resources.silkFromBattle, $.w / 2);
 
         // Clean up animal groups
         for (let i = 0; i < data.playerAnimals.length; i++) {
