@@ -180,7 +180,7 @@ export class BattleGui {
         //Justin maybe
         $.colour.fill = "white";
         $.colour.stroke = "black";
-        $.shape.rectangle($.w / 2, $.h / 3, $.w / 4, $.h / 4);
+        $.shape.rectangle($.w / 2, $.h / 2, $.w / 4, $.h / 4);
         $.colour.fill = "black";
         let textHeight = $.h / 4;
         $.text.print($.w / 2, textHeight, "Battle Over!", $.w / 2);
@@ -188,7 +188,7 @@ export class BattleGui {
         $.text.print($.w / 2, textHeight, "Silk Total: ", $.w / 2);
         textHeight += $.h / 20;
         // draw icon here
-        $.text.print($.w / 2, textHeight,""+data.resources.silkFromBattle, $.w / 2);
+        $.text.print($.w / 2, textHeight, "" + data.resources.silkFromBattle, $.w / 2);
 
         // Clean up animal groups
         for (let i = 0; i < data.playerAnimals.length; i++) {

@@ -7,8 +7,11 @@ export class Factory {
         // note: asset -- holds image
         this.antSprite = $.loadImage(10, 10, "./engine/animals/ant/ant1.png");
         this.enemyAntSprite = $.loadImage(10, 10, "./engine/animals/ant/enemyAnt1.png");
+
+        this.spawnaudio = new Audio("./engine/audio/spawn.mp3")
     }
     makeAnt(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
+        this.spawnaudio.play()
         const ant = $.makeCircleCollider(x, y, size);
         if (direction == 270) {
             ant.asset = this.enemyAntSprite;
@@ -29,7 +32,7 @@ export class Factory {
         ant.attackInterval = attackInterval;
         ant.attackCooldown = ant.attackInterval;
         ant.animaltype = "ant"
-        if(playerSide===true){
+        if (playerSide === true) {
             ant.player = 0
         } else {
             ant.player = 1
@@ -37,6 +40,7 @@ export class Factory {
         return ant;
     }
     makeEagle(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
+        this.spawnaudio.play()
         const eagle = $.makeCircleCollider(x, y, size);
         eagle.bounciness = 0;
         eagle.fill = "green"; // "no fill" possible?
@@ -54,6 +58,7 @@ export class Factory {
         return eagle;
     }
     makeBear(x, y, direction, size, damage, maxHealth, speed, acceleration, attackInterval, playerSide) {   // (feed values like "speed" from data later)
+        this.spawnaudio.play()
         const bear = $.makeCircleCollider(x, y, size);
         bear.bounciness = 0;
         bear.fill = "green"; // "no fill" possible?
