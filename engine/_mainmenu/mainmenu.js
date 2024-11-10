@@ -19,6 +19,7 @@ export class MainMenu {
 
         this.inst1 = $.loadImage(250, 280, "./engine/_mainmenu/inst1.png")
         this.inst2 = $.loadImage(550, 280, "./engine/_mainmenu/inst2.png")
+        this.inst3 = $.loadImage(250, 555, "./engine/_mainmenu/inst3.png")
 
         // states
 
@@ -68,6 +69,9 @@ export class MainMenu {
             this.inst2.h = 180
             this.inst2.draw()
             $.shape.rectangle(250, 525, 295, 270)
+            this.inst3.w = 180
+            this.inst3.h = 180
+            this.inst3.draw()
             $.shape.rectangle(550, 525, 295, 270)
             $.colour.fill = "black"
             $.text.size = 15
