@@ -234,7 +234,7 @@ export class BattleManager {
                 console.log(
                     "Unit died",
                     "silkFromBattle: ",
-                    resources.silkFromBattle,
+                    data.resources.silkFromBattle,
                     "added with silkFromKill: ",
                     defender.silkFromKill
                 );

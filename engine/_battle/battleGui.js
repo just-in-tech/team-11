@@ -48,7 +48,7 @@ export class BattleGui {
         } else if (data.battleOver == false) {
             // update timed events
             this.battleTimer();
-            data.resources.generateFibre();
+            data.resources.generateFibre(data);
         }
         // Draw GUI Elements
         this.fibrePanel(data.resources);
@@ -206,7 +206,7 @@ export class BattleGui {
             data.resources.silk += data.resources.silkFromBattle;
             resources.silkFromBattle = 0;
             data.gameState = "treemenu_op";
-            data.battleOver = false;
+            data.battleOver = true;
         }
     }
 

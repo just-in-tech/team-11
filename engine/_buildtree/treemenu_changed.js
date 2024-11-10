@@ -315,6 +315,7 @@ export class BuildTreeScene {
 
         if (this.battlebutton.up) {
             data.gameState = "battle";
+            data.battleOver=false
         }
 
         $.colour.fill = "white"
