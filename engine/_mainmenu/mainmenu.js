@@ -73,7 +73,11 @@ export class MainMenu {
             this.inst3.h = 180
             this.inst3.draw()
             $.shape.rectangle(550, 525, 295, 270)
+            $.colour.fill = "white"
+            $.shape.rectangle(550, 555, 180, 180)
             $.colour.fill = "black"
+            $.text.size = 10
+            $.text.print(550, 555, "YOU WIN!")
             $.text.size = 15
             $.text.print(250, 160, "1. Use silk to upgrade tree branches to increase your chances of beating the enemy in battle", 285)
             $.text.print(550, 160, "2. Head to battle - use fibre to spawn the best combination of allies to defeat the enemy", 285)
